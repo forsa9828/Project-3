@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS abot_db;
+CREATE DATABASE abot_db;
+
