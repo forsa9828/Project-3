@@ -1,22 +1,22 @@
 module.exports = {
 
-    signup: function(req, res) {
+    signup: (req, res) => {
         res.render("/signup");
     },
 
 
-    signin: function(req, res) {
+    signin: (req, res) => {
         res.render("/loggedin");
         
     },
 
-    index: function(req, res) {
+    index: (req, res) => {
         res.render("/loggedin");
 
     },
 
-    logout: function(req, res) {
-        req.session.destroy(function(err) {
+    logout: (req, res) => {
+        req.session.destroy((err) => {
             res.redirect('/');
         
         });
