@@ -3,7 +3,7 @@ const authController = require("./authController.js");
 const bodyParser= require("body-parser");
 
 
-module.exports = (app) => {
+module.exports = app => {
     app.get("/auth/signup", authController.signup);
 
     app.get("/auth/signin", authController.signin);
@@ -15,6 +15,13 @@ module.exports = (app) => {
         }
     );
  
+    isLoggedIn = (req, res, next) => {
+ 
+        if (req.isAuthenticated())
+            return next();
+        res.redirect("/signin");
+ 
+    }
 
     app.get("/auth/loggedin", isLoggedIn, authController.index);
  
@@ -26,12 +33,5 @@ module.exports = (app) => {
     );
 
  
-    isLoggedIn = (req, res, next) => {
- 
-        if (req.isAuthenticated())
-            return next();
-        res.redirect("/signin");
- 
-    }
  
 }
