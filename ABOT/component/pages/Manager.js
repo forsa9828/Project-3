@@ -1,0 +1,1 @@
+//landing page for manager with links to managers only pages 
