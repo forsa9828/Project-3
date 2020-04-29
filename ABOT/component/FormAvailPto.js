@@ -9,8 +9,7 @@ import {
 	Item,
 	Input,
 	Label,
-    Button,
-    Text
+	Text
 } from "native-base";
 
 export default class FormAvailPto extends Component {
@@ -40,7 +39,9 @@ export default class FormAvailPto extends Component {
 							<Label>End Time</Label>
 							<Input />
 						</Item>
- 
+						<Button small primary>
+							<Text>Submit</Text>
+						</Button>
 					</Form>
 				</Content>
 			</Container>

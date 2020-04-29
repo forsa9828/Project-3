@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import FormAvailPto from "./component/FormAvailPto";
+// import FormAvailPto from "./component/FormAvailPto";
+import Table from './component/Table';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <FormAvailPto />
+      <Table />
     </View>
   );
 }
