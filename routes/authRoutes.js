@@ -1,20 +1,27 @@
- var passport = require("passport");
-var authController = require("./authController.js");
-var bodyParser= require("body-parser");
+const passport = require("passport");
+const authController = require("./authController.js");
+const bodyParser= require("body-parser");
 
 
-module.exports = function (app){
+module.exports = app => {
     app.get("/auth/signup", authController.signup);
 
     app.get("/auth/signin", authController.signin);
  
     app.post("/auth/signup", passport.authenticate("local-signup", {
-        failureRedirect: "/signup"}),function(req,res){
+        failureRedirect: "/signup"}), (req,res) => {
             res.redirect("/loggedin")
             
         }
     );
  
+    isLoggedIn = (req, res, next) => {
+ 
+        if (req.isAuthenticated())
+            return next();
+        res.redirect("/signin");
+ 
+    }
 
     app.get("/auth/loggedin", isLoggedIn, authController.index);
  
@@ -26,12 +33,5 @@ module.exports = function (app){
     );
 
  
-    function isLoggedIn(req, res, next) {
- 
-        if (req.isAuthenticated())
-            return next();
-        res.redirect("/signin");
- 
-    }
  
 }

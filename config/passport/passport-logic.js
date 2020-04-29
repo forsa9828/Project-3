@@ -1,17 +1,17 @@
-var bCrypt = require("bcrypt");
-var UserDB = require("../../models");
-var LocalStrategy = require("passport-local").Strategy;
+const bCrypt = require("bcrypt");
+const UserDB = require("../../models");
+const LocalStrategy = require("passport-local").Strategy;
 
 
-module.exports = function(passport, user) {
+module.exports = (passport, user) => {
     //SIGN-UP 
     passport.use("local-signup", new LocalStrategy({
             usernameField: "email",
             passwordField: "password",
             passReqToCallback: true
         },
-        function(req, email, password, done) {
-            var generateHash = function(password) {
+        (req, email, password, done) => {
+            let generateHash = password => {
                 return bCrypt.hashSync(password, 8, null);
             };
 
@@ -19,21 +19,21 @@ module.exports = function(passport, user) {
                 where: {
                     email: email
                 }
-            }).then(function(user) {
+            }).then(user => {
                 if (user) {
                     return done(null, false, {
                         message: "That email is already taken."
                     });
                 } else {
-                    var userPassword = generateHash(password);
-                    var data = {
+                    let userPassword = generateHash(password);
+                    let data = {
                         email: req.body.email,
                         password: userPassword,
                         firstname: req.body.firstname,
                         lastname: req.body.lastname
                     };
 
-                    UserDB.user.create(data).then(function(newUser) {
+                    UserDB.user.create(data).then(newUser => {
                         if (!newUser) {
                             return done(null, false);
                         }
@@ -52,20 +52,20 @@ module.exports = function(passport, user) {
             passwordField: "password",
             passReqToCallback: true
         },
-        function(req, email, password, done) {
+        (req, email, password, done) => {
 
             UserDB.user.findOne({
                 where: {
                     email: email
                 }
-            }).then(function(user, err) {
+            }).then((user, err) => {
 
                 if (!user) {
                     return done(null, false, {
                         message: "Email does not exist."
                     });
                 }
-                var validPassword = bCrypt.compareSync(password, user.password);
+                let validPassword = bCrypt.compareSync(password, user.password);
 
                 if (!validPassword) {
                     return done(null, false, {
@@ -73,11 +73,11 @@ module.exports = function(passport, user) {
                     });
                 }
 
-                var userInfo = user.get();
+                let userInfo = user.get();
                 console.log(userInfo);
                 return done(null, userInfo);
 
-            }).catch(function(err) {
+            }).catch(err => {
                 return done(null, false, {
                     message: "Sorry! Something weng wrong with your sign in."
                 });
@@ -87,12 +87,12 @@ module.exports = function(passport, user) {
         }
     ));
 
-    passport.serializeUser(function(user, done) {
+    passport.serializeUser((user, done) => {
         done(null, user.id);
     });
 
-    passport.deserializeUser(function(id, done) {
-        UserDB.user.findByPk(id).then(function(user) {
+    passport.deserializeUser((id, done) => {
+        UserDB.user.findByPk(id).then(user => {
             if (user) {
                 done(null, user.get());
             } else {
