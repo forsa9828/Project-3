@@ -1,39 +1,27 @@
 //form for sign up and login 
+import React, { Component } from 'react';
+import { Container, Header, Content, Form, Item, Input } from 'native-base';
 
-import React, {Component} from "react";
-import {Text, View, Picker, TextInput, Button, StyleSheet} from "react-native";
 
-//email and password reuseable code in both signup and login
-export class Form extends Component {
-    state ={
-        email:"",
-        password: "" 
-    }
+export default function FormCard() {
+  
+    return (
+          <Form>
+            <Item>
+              <Input placeholder="Username" />
+            </Item>
+            <Item last>
+              <Input placeholder="Password" />
+            </Item>
+          </Form>
+    );
+  }
 
-    //function here to handle change 
 
-    render() {
-        return(
-            <View style={styles.container}>
-                <Text style={styles.formLabel}> Demo Form </Text>
-                <View>
-                <TextInput
-                    style={styles.inputStyle}
-                    name="email"
-                    placeholder="Email"
-                    value={this.state.email}
-                />
-                <TextInput
-                    style={styles.inputStyle}
-                    name="password"
-                    placeholder="password"
-                    value={this.state.password}
-                />
-                </View>
-            </View>
-        )
-    }
-}
+// function FormCardSignUp() to writeout placeholders  
+
+
+
 
 // https://blog.logrocket.com/build-better-forms-with-react-native-ui-components/
 const styles = StyleSheet.create({

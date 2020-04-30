@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import {Form, ErrorBoundary} from "./component/Form";
+import {FormCard} from "./component/Form";
 
 export default function App() {
   return (
@@ -8,7 +8,7 @@ export default function App() {
     //   <Text>Open up App.js to start working on your app!</Text>
     // </View>
     <View style={styles.container}>
-     <Form />
+     <FormCard />
     </View>
      
   );
