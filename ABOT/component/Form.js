@@ -1,61 +1,83 @@
 //form for sign up and login 
 import React, { Component } from 'react';
-import { Container, Header, Content, Form, Item, Input } from 'native-base';
+import { Container, Header, Content, Form, Item, Input, Picker, Left, Right, Body, Title, Icon} from "native-base";
 
 
-export default function FormCard() {
+export function FormLogin() {
   
-    return (
-          <Form>
-            <Item>
-              <Input placeholder="Username" />
-            </Item>
-            <Item last>
-              <Input placeholder="Password" />
-            </Item>
-          </Form>
+  return (
+    <Container>
+        <Header>
+          <Left />
+            <Body>
+              <Title>Login</Title>
+            </Body>
+          <Right />
+       </Header>
+
+      <Form>
+        <Item>
+          <Input 
+            placeholder="Email" />
+        </Item>
+        <Item>
+          <Input 
+            placeholder="Password" />
+        </Item>
+    </Form>
+  </Container>
     );
+  
   }
 
+ 
 
-// function FormCardSignUp() to writeout placeholders  
+//this is for SIGN UP
+export function  FormSignUp () {
+  return (
 
+    <Container>
+      <Header>
+        <Left />
+          <Body>
+            <Title>Sign Up</Title>
+          </Body>
+        <Right />
+      </Header>
 
+          <Content>
+            <Form>
+              <Item>
+                <Input placeholder="First Name" />
+              </Item>
+              <Item>
+                <Input placeholder="Last Name" />
+              </Item>
+              <Item>
+                <Input 
+                  placeholder="Email" />
+              </Item>
+              <Item>
+                <Input 
+                  placeholder="Password" />
+              </Item>
+              <Item>
+                <Picker 
+                  mode="dropdown"
+                  placeholder="Position" //place holder not showing up...
+                   iosIcon={<Icon name="arrow-down" />}
+                  //  selectedValue={this.state.selected2} //comment ths out to let us know we need somethin like this from state
+                  //  onValueChange={this.onValueChange2.bind(this)} //comment this out to let us know we need this type of method 
+                >
+                  <Picker.Item label="Manager" />
+                  <Picker.Item label ="Employee" />
+                </Picker>
+              </Item>
+            </Form>
+          </Content>
 
+    </Container>
+  )
+    
+};
 
-// https://blog.logrocket.com/build-better-forms-with-react-native-ui-components/
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: 50,
-    },
-  
-    formLabel: {
-      fontSize: 20,
-      color: '#fff',
-    },
-    inputStyle: {
-      marginTop: 20,
-      width: 300,
-      height: 40,
-      paddingHorizontal: 10,
-      borderRadius: 50,
-      backgroundColor: '#DCDCDC',
-    },
-    formText: {
-      alignItems: 'center',
-      justifyContent: 'center',
-      color: '#fff',
-      fontSize: 20,
-    },
-    text: {
-      color: '#fff',
-      fontSize: 20,
-    },
-  });
-//signup
-
-//login

@@ -1,16 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import {FormCard} from "./component/Form";
+import {FormSignUp, FormLogin} from "./component/Form";
 
 export default function App() {
   return (
     // <View style={styles.container}>
     //   <Text>Open up App.js to start working on your app!</Text>
     // </View>
-    <View style={styles.container}>
-     <FormCard />
-    </View>
-     
+  
+    //  <FormLogin />
+     <FormSignUp />
+  
   );
 }
 
