@@ -2,12 +2,26 @@ const db = require("../models");
 const sequelize = require("sequelize");
 
 module.exports = app => {
-	// Get all examples
 	app.get("/api/schedule", (req, res) => {
 		//this is to display the full work schedule currently
 		db.schedule
 			.findAll({
 				order: [sequelize.col("date")]
+			})
+			.then(dbschedule => {
+				res.json(dbschedule);
+			});
+	});
+
+	app.post("/api/schedule", (req, res) => {
+		//this is to create schedule entries in db (manager creating the schedule)
+		db.schedule
+			.create({
+				firstName: req.body.firstName,
+				lastName: req.body.lastName,
+				date: Date.parse(req.body.date),
+				startTime: req.body.startTime,
+				endTime: req.body.endTime
 			})
 			.then(dbschedule => {
 				res.json(dbschedule);
@@ -46,7 +60,7 @@ module.exports = app => {
 
 	app.post("/api/avail", (req, res) => {
 		//this is to be able to add availability for the week
-		db.schedule
+		db.availability
 			.create({
 				firstName: req.body.firstName,
 				lastName: req.body.lastName,
@@ -54,15 +68,27 @@ module.exports = app => {
 				startTime: req.body.startTime,
 				endTime: req.body.endTime
 			})
-			.then(dbschedule => {
-				res.json(dbschedule);
+			.then(dbavailability => {
+				res.json(dbavailability);
 			});
 	});
 
-	// Delete a request off by id -- not implemented
-	app.delete("/api/requestoff/:id", (req, res) => {
-		db.Schedule.destroy({ where: { id: req.params.id } }).then(dbSchedule => {
-			res.json(dbSchedule);
-		});
+	app.get("/api/avail", (req, res) => {
+		db.availability
+			.findAll({
+				order: [sequelize.col("date")]
+			})
+			.then(dbavailability => {
+				res.json(dbavailability);
+			});
+	});
+
+	// Update a PTO request from false to true
+	app.put("/api/requestoff/:id", (req, res) => {
+		db.pto
+			.update({ approved: true }, { where: { id: req.params.id } })
+			.then(dbpto => {
+				res.json(dbpto);
+			});
 	});
 };
