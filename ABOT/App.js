@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import {FormSignUp, FormLogin} from "./component/Form";
+// import { StyleSheet, Text, View } from 'react-native';
+// import {FormSignUp, FormLogin} from "./component/Form";
+import SignIn from "./component/pages/Signin";
 
 export default function App() {
   return (
@@ -9,16 +10,17 @@ export default function App() {
     // </View>
   
     //  <FormLogin />
-     <FormSignUp />
+    //  <FormSignUp />
+    <SignIn />
   
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });

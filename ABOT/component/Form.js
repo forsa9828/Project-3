@@ -2,8 +2,7 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Form, Item, Input, Picker, Left, Right, Body, Title, Icon} from "native-base";
 
-
-export function FormLogin() {
+export function FormLogin(props) {
   
   return (
     <Container>
@@ -18,10 +17,14 @@ export function FormLogin() {
       <Form>
         <Item>
           <Input 
+            name="email"
+            value={props.email}
             placeholder="Email" />
         </Item>
         <Item>
           <Input 
+            name="password"
+            value={props.password}
             placeholder="Password" />
         </Item>
     </Form>
@@ -32,7 +35,6 @@ export function FormLogin() {
 
  
 
-//this is for SIGN UP
 export function  FormSignUp () {
   return (
 
