@@ -1,6 +1,6 @@
 //nothing new to add
 import React, { Component } from "react";
-import {FormSignUp, FormLogin} from "./component/Form";
+import {FormSignUp, FormLogin} from "../component/Form";
 
 class SignIn extends Component {
     state = {
@@ -22,7 +22,7 @@ class SignIn extends Component {
             <FormLogin
                 email={this.state.email}
                 password={this.state.password}
-                onChange={this.state.handleInputChange}
+                onChange={this.handleInputChange}
             />
         )
     }

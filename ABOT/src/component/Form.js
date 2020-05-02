@@ -19,7 +19,9 @@ export function FormLogin(props) {
           <Input 
             name="email"
             value={props.email}
-            placeholder="Email" />
+            placeholder="Email" 
+            type="text"
+            onChange={() =>props.onChange}/>
         </Item>
         <Item>
           <Input 
