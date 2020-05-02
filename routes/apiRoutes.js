@@ -2,7 +2,6 @@ const db = require("../models");
 const sequelize = require("sequelize");
 
 module.exports = app => {
-	// Get all examples
 	app.get("/api/schedule", (req, res) => {
 		//this is to display the full work schedule currently
 		db.schedule
@@ -15,7 +14,7 @@ module.exports = app => {
 	});
 
 	app.post("/api/schedule", (req, res) => {
-		//this is to display the full work schedule currently
+		//this is to create schedule entries in db (manager creating the schedule)
 		db.schedule
 			.create({
 				firstName: req.body.firstName,
