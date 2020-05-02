@@ -1,5 +1,5 @@
 //form for sign up and login 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { Container, Header, Content, Form, Item, Input, Picker, Left, Right, Body, Title, Icon} from "native-base";
 
 export function FormLogin(props) {
@@ -16,7 +16,7 @@ export function FormLogin(props) {
 
       <Form>
         <Item>
-          <Input 
+          <Input
             name="email"
             value={props.email}
             placeholder="Email" 
@@ -27,8 +27,11 @@ export function FormLogin(props) {
           <Input 
             name="password"
             value={props.password}
-            placeholder="Password" />
+            placeholder="Password" 
+            type="password"
+            onChange={() =>props.onChange}/>
         </Item>
+        {/* button needs to be here  */}
     </Form>
   </Container>
     );
@@ -77,6 +80,7 @@ export function  FormSignUp () {
                   <Picker.Item label ="Employee" />
                 </Picker>
               </Item>
+              {/* button needs to be here  */}
             </Form>
           </Content>
 

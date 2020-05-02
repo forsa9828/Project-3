@@ -15,13 +15,14 @@ class SignIn extends Component {
           [name]: value
         });
       };
+      
 
 
     render() {
         return(
             <FormLogin
-                email={this.state.email}
-                password={this.state.password}
+                email={this.setState.email}
+                password={this.setState.password}
                 onChange={this.handleInputChange}
             />
         )
