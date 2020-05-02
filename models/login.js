@@ -16,14 +16,6 @@ module.exports = function (sequelize, DataTypes) {
       notEmpty: true
     },
 
-    username: {
-      type: DataTypes.TEXT
-    },
-
-    about: {
-      type: DataTypes.STRING
-    },
-
     email: {
       type: DataTypes.STRING,
       validate: {
@@ -32,6 +24,26 @@ module.exports = function (sequelize, DataTypes) {
     },
 
     password: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+
+    employmentType: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+
+    emergencyContact: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+
+    emergencyContactPhone: {
       type: DataTypes.STRING,
       allowNull: false
     },

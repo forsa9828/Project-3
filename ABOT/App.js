@@ -1,19 +1,22 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+// import FormAvailPto from "./component/FormAvailPto";
+
+import MyAlert from './component/Modal';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <MyAlert />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 10,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: 'stretch',
+    justifyContent: 'space-evenly',
   },
 });
