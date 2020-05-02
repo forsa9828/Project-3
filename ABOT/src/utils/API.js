@@ -9,6 +9,10 @@ export default {
 		return axios.get("/api/requestoff");
 	},
 
+	createSchedule: function() {
+		return axios.post("/api/schedule")
+	},
+
 	postRequests: function() {
 		return axios.post("/api/requestoff");
 	},
@@ -17,8 +21,12 @@ export default {
 		return axios.post("/api/avail");
 	},
 
-	deleteRequest: function() {
-		return axios.destroy("/api/requestoff/:id");
+	getAvail: function() {
+		return axios.get("/api/avail");
+	},
+
+	approveReq: function() {
+		return axios.put("/api/requestoff/:id")
 	},
 
 	loggedIn: function() {
