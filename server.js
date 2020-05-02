@@ -33,7 +33,7 @@ require("./config/passport/passport-logic")(passport, db.user);
 var syncOptions = { force: true };
 
 if (process.env.NODE_ENV === "test") {
-	syncOptions.force = true;
+	syncOptions.force = false;
 }
 
 // Starting the server, syncing our models ------------------------------------/

@@ -1,32 +1,31 @@
 import React, { Component } from "react";
+import { Button } from 'react-native';
 import { Form, Item, Input, Label, Text } from "native-base";
 
-function FormAvailPto() {
+function FormAvailPto(props) {
 	return (
 		<Form>
 			<Item stackedLabel>
 				<Label>First Name</Label>
-				<Input name='firstname' value={props.firstname} />
+				<Input value={props.firstname} />
 			</Item>
 			<Item stackedLabel>
 				<Label>Last Name</Label>
-				<Input name='lastname' value={props.lastname} />
+				<Input value={props.lastname} />
 			</Item>
 			<Item stackedLabel>
 				<Label>Date</Label>
-				<Input name='date' value={props.date} />
+				<Input value={props.date} />
 			</Item>
 			<Item stackedLabel>
 				<Label>Start Time</Label>
-				<Input name='starttime' value={props.starttime} />
+				<Input value={props.starttime} />
 			</Item>
 			<Item stackedLabel>
 				<Label>End Time</Label>
-				<Input name='endtime' value={props.endtime} />
+				<Input value={props.endtime} />
 			</Item>
-			<Button small primary>
-				<Text>Submit</Text>
-			</Button>
+			<Button title="Submit" onPress={props.clicked}/>
 		</Form>
 	);
 }

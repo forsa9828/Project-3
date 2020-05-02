@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import FormAvailPto from "../FormAvailPto";
+import { Alert } from "react-native";
+import FormAvailPto from "../component/FormAvailPto";
+import API from "../utils/API";
 
 class RequestOff extends Component {
 	state = {
@@ -15,32 +17,22 @@ class RequestOff extends Component {
 		});
 	};
 
-	handleFormSubit = event => {
+	handleFormSubmit = event => {
 		event.preventDefault();
+		API.postRequests()
+		Alert.alert("Request Success!");
 	};
 
 	render() {
 		return (
-			<FormAvailPto>
-				<Input name='firstname' value={this.setState.firstname} />
-				<Input name='lastname' value={this.setState.lastname} />
-				<Input
-					name='date'
-					value={this.setState.date}
-					onChange={this.handleInputChange}
-				/>
-				<Input
-					name='starttime'
-					value={this.setState.starttime}
-					onChange={this.handleInputChange}
-				/>
-				<Input
-					name='endtime'
-					value={this.setState.endtime}
-					onChange={this.handleInputChange}
-				/>
-				<Button onClick={this.handleFormSubit} />
-			</FormAvailPto>
+			<FormAvailPto
+				firstname={this.setState.firstname}
+				lastname={this.setState.lastname}
+				date={this.setState.date}
+				starttime={this.setState.starttime}
+				endtime={this.setState.endtime}
+				clicked={this.handleFormSubmit}
+			/>
 		);
 	}
 }
