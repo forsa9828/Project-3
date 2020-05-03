@@ -8,22 +8,11 @@ class SignIn extends Component {
         password: ""
     }
 
-
-    handleInputChange = event => {
-        const { name, value } = event.target;
-        this.setState({
-          [name]: value
-        });
-      };
-      
-
-
     render() {
         return(
             <FormLogin
                 email={this.setState.email}
                 password={this.setState.password}
-                onChange={this.handleInputChange}
             />
         )
     }

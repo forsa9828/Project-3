@@ -1,6 +1,7 @@
 //form for sign up and login 
 import React, { Component } from "react";
 import { Container, Header, Content, Form, Item, Input, Picker, Left, Right, Body, Title, Icon} from "native-base";
+import {Button} from "react-native";
 
 export function FormLogin(props) {
   
@@ -13,25 +14,25 @@ export function FormLogin(props) {
             </Body>
           <Right />
        </Header>
-
-      <Form>
-        <Item>
-          <Input
-            name="email"
-            value={props.email}
-            placeholder="Email" 
-            type="text"
-            onChange={() =>props.onChange}/>
-        </Item>
-        <Item>
-          <Input 
-            name="password"
-            value={props.password}
-            placeholder="Password" 
-            type="password"
-            onChange={() =>props.onChange}/>
-        </Item>
-        {/* button needs to be here  */}
+        <Form>
+          <Item>
+            <Input
+              name="email"
+              value={props.email}
+              placeholder="Email" 
+              />
+          </Item>
+          <Item>
+            <Input 
+              name="password"
+              value={props.password}
+              placeholder="Password" 
+              type="password"
+              />
+          </Item>
+          <Button 
+              title="Submit"
+          />
     </Form>
   </Container>
     );
@@ -40,7 +41,7 @@ export function FormLogin(props) {
 
  
 
-export function  FormSignUp () {
+export function  FormSignUp (props) {
   return (
 
     <Container>
@@ -55,32 +56,50 @@ export function  FormSignUp () {
           <Content>
             <Form>
               <Item>
-                <Input placeholder="First Name" />
-              </Item>
-              <Item>
-                <Input placeholder="Last Name" />
+                <Input 
+                  placeholder="First Name" 
+                  name="first name"
+                  value={props.firstName}
+                  placeholder="First Name"
+                  />
               </Item>
               <Item>
                 <Input 
+                  placeholder="Last Name" 
+                  name="last name"
+                  value={props.firstName}
+                  placeholder="Last Name" 
+                />
+              </Item>
+              <Item>
+                <Input 
+                  placeholder="Email"
+                  name="email"
+                  value={props.email}
                   placeholder="Email" />
               </Item>
               <Item>
                 <Input 
-                  placeholder="Password" />
+                  placeholder="Password" 
+                  name="password"
+                  value={props.password}
+                  placeholder="Password"/>
               </Item>
               <Item>
+
                 <Picker 
                   mode="dropdown"
-                  placeholder="Position" //place holder not showing up...
                    iosIcon={<Icon name="arrow-down" />}
-                  //  selectedValue={this.state.selected2} //comment ths out to let us know we need somethin like this from state
+                  //  selectedValue={props.position}
                   //  onValueChange={this.onValueChange2.bind(this)} //comment this out to let us know we need this type of method 
                 >
-                  <Picker.Item label="Manager" />
-                  <Picker.Item label ="Employee" />
+                  <Picker.Item label="Manager" value={props.position} />
+                  <Picker.Item label ="Employee" value ={props.position}/>
                 </Picker>
               </Item>
-              {/* button needs to be here  */}
+              <Button 
+                title="Submit"
+              />
             </Form>
           </Content>
 

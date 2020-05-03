@@ -2,6 +2,7 @@ import React from "react";
 // import { StyleSheet, Text, View } from 'react-native';
 // import {FormSignUp, FormLogin} from "./component/Form";
 import SignIn from "./src/pages/Signin";
+import SignUp from "./src/pages/Signup";
 
 export default function App() {
   return (
@@ -11,7 +12,8 @@ export default function App() {
   
     //  <FormLogin />
     //  <FormSignUp />
-    <SignIn />
+    // <SignIn />
+    <SignUp />
   
   );
 }
