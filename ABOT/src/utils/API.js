@@ -13,15 +13,15 @@ export default {
 		return axios.post("/api/schedule")
 	},
 
-	postRequests: function() {
-		// return axios.post("/api/requestoff");
-		return fetch("/api/requestoff"), {
-			method: "POST"
-		}
-		.then(res => console.log(res.data))
-		.catch(function() {
-			console.log("Promise Rejected");
-		});
+	postRequests: function(data) {
+		return axios.post("http://192.168.0.10:8080/api/requestoff", data);
+		// return fetch("/api/requestoff"), {
+		// 	method: "POST"
+		// }
+		// .then(res => console.log(res.data))
+		// .catch(function() {
+		// 	console.log("Promise Rejected");
+		// });
 	},
 
 	postAvail: function() {

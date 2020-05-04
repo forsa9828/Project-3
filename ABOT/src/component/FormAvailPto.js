@@ -7,11 +7,11 @@ function FormAvailPto(props) {
 		<Form>
 			<Item stackedLabel>
 				<Label>First Name</Label>
-				<Input value={props.firstname} />
+				<Input value={props.firstName} />
 			</Item>
 			<Item stackedLabel>
 				<Label>Last Name</Label>
-				<Input value={props.lastname} />
+				<Input value={props.lastName} />
 			</Item>
 			<Item stackedLabel>
 				<Label>Date</Label>
@@ -19,11 +19,11 @@ function FormAvailPto(props) {
 			</Item>
 			<Item stackedLabel>
 				<Label>Start Time</Label>
-				<Input value={props.starttime} />
+				<Input value={props.startTime} />
 			</Item>
 			<Item stackedLabel>
 				<Label>End Time</Label>
-				<Input value={props.endtime} />
+				<Input value={props.endTime} />
 			</Item>
 			<Button title="Submit" onPress={props.clicked}/>
 		</Form>

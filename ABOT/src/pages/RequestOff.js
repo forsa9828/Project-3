@@ -5,9 +5,11 @@ import API from "../utils/API";
 
 class RequestOff extends Component {
 	state = {
+		firstName: "",
+		lastName: "",
 		date: "",
-		starttime: "",
-		endtime: ""
+		startTime: "",
+		endTime: ""
 	};
 
 	handleInputChange = event => {
@@ -19,18 +21,24 @@ class RequestOff extends Component {
 
 	handleFormSubmit = event => {
 		event.preventDefault();
-		API.postRequests()
-		Alert.alert("Request Success!");
+		const {firstName, lastName, date, startTime, endTime} = this.state
+		API.postRequests({firstName, lastName, date, startTime, endTime})		
+		.then(res => console.log(res.data))
+		.catch(function(err) {
+			console.log(err);
+			console.log("Promise Rejected");
+		});
+		// Alert.alert("Request Success!");
 	};
 
 	render() {
 		return (
 			<FormAvailPto
-				firstname={this.setState.firstname}
-				lastname={this.setState.lastname}
+				firstName={this.setState.firstName}
+				lastName={this.setState.lastName}
 				date={this.setState.date}
-				starttime={this.setState.starttime}
-				endtime={this.setState.endtime}
+				startTime={this.setState.startTime}
+				endTime={this.setState.endTime}
 				clicked={this.handleFormSubmit}
 			/>
 		);
