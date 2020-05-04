@@ -30,10 +30,10 @@ require("./routes/apiRoutes")(app);
 require("./routes/authRoutes")(app);
 require("./config/passport/passport-logic")(passport, db.user);
 
-var syncOptions = { force: true };
+var syncOptions = { force: false };
 
 if (process.env.NODE_ENV === "test") {
-	syncOptions.force = false;
+	syncOptions.force = true;
 }
 
 // Starting the server, syncing our models ------------------------------------/

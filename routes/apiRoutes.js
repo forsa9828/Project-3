@@ -42,6 +42,7 @@ module.exports = app => {
 	// Create a request off
 	app.post("/api/requestoff", (req, res) => {
 		//this is to be able to add the request off
+		console.log("api route hit");
 		let newRequest = req.body;
 		console.log(newRequest);
 		db.pto
