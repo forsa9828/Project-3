@@ -10,7 +10,7 @@ export default {
 	},
 
 	postRequests: function() {
-		return axios.post("/api/requestoff");
+		return axios.post("exp://192.168.1.210:19000/api/requestoff");
 	},
 
 	postAvail: function() {
