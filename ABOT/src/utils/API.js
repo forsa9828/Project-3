@@ -30,26 +30,26 @@ export default {
 	},
 
 	loggedIn: function() {
-		return axios.get("/auth/loggedin");
+		return axios.get("http://192.168.1.72:8080/auth/loggedin");
 	},
 
 	logOut: function() {
 		return axios.get("/auth/logout");
 	},
 
-	logIn: function() {
-		return axios.post("/auth/signin");
+	logIn: function(data) {
+		return axios.post("http://192.168.1.72:8080/auth/signin", data);
 	},
 
-	authUser: function() {
-		return axios.post("/auth/signup");
+	authUser: function(data) {
+		return axios.post("http://192.168.1.72:8080/auth/signup", data);
 	},
 
 	renderSignup: function() {
-		return axios.get("auth/signup");
+		return axios.get("http://192.168.1.72:8080/auth/signup");
 	},
 
 	renderSignin: function() {
-		return axios.get("/auth/signin");
+		return axios.get("http://192.168.1.72:8080/auth/signin");
 	}
 };

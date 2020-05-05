@@ -1,6 +1,6 @@
 //nothing new to add
 import React, { Component } from "react";
-import {FormSignUp, FormLogin} from "../component/Form";
+import {FormLogin} from "../component/Form";
 
 class SignIn extends Component {
     state = {
