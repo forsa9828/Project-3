@@ -21,7 +21,7 @@ class SignIn extends Component {
             email,
             password
         } = this.state;
-        API.loggedIn({
+        API.renderSignin({
             email,
             password
         })

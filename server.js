@@ -7,6 +7,7 @@ var app = express();
 var passport = require("passport");
 var session = require("express-session");
 var bodyParser = require("body-parser");
+var cors = require('cors');
 
 var PORT = process.env.PORT || 8080;
 
@@ -23,7 +24,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.set("views", "./views");
+app.set("views", "html");
+app.use(cors({origin: true, credentials: true}));
 
 // Routes
 require("./routes/apiRoutes")(app);
