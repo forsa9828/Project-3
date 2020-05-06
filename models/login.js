@@ -35,17 +35,17 @@ module.exports = function (sequelize, DataTypes) {
 
     phone: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
 
     emergencyContact: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
 
     emergencyContactPhone: {
       type: DataTypes.STRING,
-      allowNull: true
+      allowNull: false
     },
 
     last_login: {

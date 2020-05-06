@@ -30,8 +30,14 @@ module.exports = (passport, user) => {
                         email: req.body.email,
                         password: userPassword,
                         firstname: req.body.firstname,
-                        lastname: req.body.lastname
+                        lastname: req.body.lastname,
+                        employmentType: req.body.employmentType,
+                        phone: req.body.phone, 
+                        emergencyContact: req.body.emergencyContact,
+                        emergencyContactPhone: req.body.emergencyContactPhone
                     };
+
+                    console.log("here is data " + data.employmentType, data.email)
 
                     UserDB.user.create(data).then(newUser => {
                         if (!newUser) {

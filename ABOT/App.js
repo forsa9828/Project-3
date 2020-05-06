@@ -12,8 +12,8 @@ export default function App() {
   
     //  <FormLogin />
     //  <FormSignUp />
-    // <SignIn />
-    <SignUp />
+    <SignIn />
+    // <SignUp />
   
   );
 }
