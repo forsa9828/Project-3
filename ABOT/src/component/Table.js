@@ -10,13 +10,13 @@ function Table(props) {
 			<ListItem>
 				<Body>
 					<Text>
-						{props.firstname}  {props.lastname}
+						{props.firstName}  {props.lastName}
 					</Text>
 					<Text note>
 						{"\n"}
-						{props.starttime}
+						{props.startTime}
 						{" - "}
-						{props.endtime}
+						{props.endTime}
 					</Text>
 				</Body>
 			</ListItem>

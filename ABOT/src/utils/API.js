@@ -2,51 +2,51 @@ import axios from "axios";
 
 export default {
 	getSchedule: function() {
-		return axios.get("/api/schedule");
+		return axios.get("http://192.168.0.10:8080/api/schedule");
 	},
 
 	getRequests: function() {
-		return axios.get("/api/requestoff");
+		return axios.get("http://192.168.0.10:8080/api/requestoff");
 	},
 
-	createSchedule: function() {
-		return axios.post("/api/schedule")
+	createSchedule: function(data) {
+		return axios.post("http://192.168.0.10:8080/api/schedule", data)
 	},
 
 	postRequests: function(data) {
 		return axios.post("http://192.168.0.10:8080/api/requestoff", data);
 	},
 
-	postAvail: function() {
-		return axios.post("/api/avail");
+	postAvail: function(data) {
+		return axios.post("http://192.168.0.10:8080/api/avail", data);
 	},
 
 	getAvail: function() {
-		return axios.get("/api/avail");
+		return axios.get("http://192.168.0.10:8080/api/avail");
 	},
 
-	approveReq: function() {
-		return axios.put("/api/requestoff/:id")
+	approveReq: function(data) {
+		return axios.put("http://192.168.0.10:8080/api/requestoff/:id", data)
 	},
 
 	loggedIn: function() {
-		return axios.get("/auth/loggedin");
+		return axios.get("http://192.168.0.10:8080/auth/loggedin");
 	},
 
 	logOut: function() {
-		return axios.get("/auth/logout");
+		return axios.get("http://192.168.0.10:8080/auth/logout");
 	},
 
-	logIn: function() {
-		return axios.post("/auth/signin");
+	logIn: function(data) {
+		return axios.post("http://192.168.0.10:8080/auth/signin", data);
 	},
 
-	authUser: function() {
-		return axios.post("/auth/signup");
+	authUser: function(data) {
+		return axios.post("http://192.168.0.10:8080/auth/signup", data);
 	},
 
 	renderSignup: function() {
-		return axios.get("auth/signup");
+		return axios.get("http://192.168.0.10:8080/auth/signup");
 	},
 
 	renderSignin: function() {

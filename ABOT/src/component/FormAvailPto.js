@@ -3,20 +3,18 @@ import { Button } from "react-native";
 import { Form, Item, Input, Label, Text } from "native-base";
 
 function FormAvailPto(props) {
-	// const [value, onChangeText] = React.useState('');
-
 	return (
 		<Form>
 			<Item stackedLabel>
 				<Label>First Name</Label>
-				<Input
+				<Text
 					value={props.firstName}
 					onChangeText={value => props.onValueChange({ firstName: value })}
 				/>
 			</Item>
 			<Item stackedLabel>
 				<Label>Last Name</Label>
-				<Input
+				<Text
 					value={props.lastName}
 					onChangeText={value => props.onValueChange({ lastName: value })}
 				/>
@@ -25,6 +23,7 @@ function FormAvailPto(props) {
 				<Label>Date</Label>
 				<Input
 					value={props.date}
+					placeholder="MM/DD/YYYY"
 					onChangeText={value => props.onValueChange({ date: value })}
 				/>
 			</Item>
@@ -32,6 +31,7 @@ function FormAvailPto(props) {
 				<Label>Start Time</Label>
 				<Input
 					value={props.startTime}
+					placeholder="08:00am"
 					onChangeText={value => props.onValueChange({ startTime: value })}
 				/>
 			</Item>
@@ -39,6 +39,7 @@ function FormAvailPto(props) {
 				<Label>End Time</Label>
 				<Input
 					value={props.endTime}
+					placeholder="12:00pm"
 					onChangeText={value => props.onValueChange({ endTime: value })}
 				/>
 			</Item>
