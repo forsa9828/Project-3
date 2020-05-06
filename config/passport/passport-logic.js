@@ -37,8 +37,6 @@ module.exports = (passport, user) => {
                         emergencyContactPhone: req.body.emergencyContactPhone
                     };
 
-                    console.log("here is data " + data.employmentType, data.email)
-
                     UserDB.user.create(data).then(newUser => {
                         if (!newUser) {
                             return done(null, false);
@@ -80,7 +78,7 @@ module.exports = (passport, user) => {
                 }
 
                 let userInfo = user.get();
-                console.log(userInfo);
+                console.log("soo"+ userInfo);
                 return done(null, userInfo);
 
             }).catch(err => {

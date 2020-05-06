@@ -1,6 +1,7 @@
 //nothing new to add
 import React, { Component } from "react";
 import {FormLogin} from "../component/Form";
+import API from "../utils/API";
 
 class SignIn extends Component {
     state = {
@@ -8,11 +9,33 @@ class SignIn extends Component {
         password: ""
     }
 
+    onValueChange= (value) => {
+        this.setState(value, function(){
+            console.log(this.state)
+        })
+    }
+
+    signInSubmit = (event) => {
+        event.preventDefault();  
+        const {
+            email,
+            password
+        } = this.state;
+        API.loggedIn({
+            email,
+            password
+        })
+        .then(res => console.log("successful!" + res.data))
+        .catch(error=> console.log(error))
+    }
+
     render() {
         return(
             <FormLogin
-                email={this.setState.email}
-                password={this.setState.password}
+                email={this.state.email}
+                password={this.state.password}
+                onValueChange={this.onValueChange}
+                clickedIn={this.signInSubmit}
             />
         )
     }

@@ -16,10 +16,9 @@ class SignUp extends Component {
     }
 
     onValueChange=(value) =>{
-        // console.log(value)
-        this.setState(
-           value
-        , function(){ console.log(this.state)})
+        this.setState(value, function(){ 
+            console.log(this.state)
+        })
     }
 
     signUpSubmit=(event) => {

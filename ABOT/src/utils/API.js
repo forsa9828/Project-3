@@ -29,8 +29,8 @@ export default {
 		return axios.put("/api/requestoff/:id")
 	},
 
-	loggedIn: function() {
-		return axios.get("http://192.168.1.72:8080/auth/loggedin");
+	loggedIn: function(data) {
+		return axios.get("http://192.168.1.72:8080/auth/loggedin",data);
 	},
 
 	logOut: function() {

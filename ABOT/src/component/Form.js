@@ -44,6 +44,7 @@ export function FormLogin(props) {
           </Item>
           <Button 
               title="Submit"
+              onPress={props.clickedIn}
           />
     </Form>
   </Container>
