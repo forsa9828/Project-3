@@ -7,14 +7,14 @@ function FormAvailPto(props) {
 		<Form>
 			<Item stackedLabel>
 				<Label>First Name</Label>
-				<Text
+				<Input
 					value={props.firstName}
 					onChangeText={value => props.onValueChange({ firstName: value })}
 				/>
 			</Item>
 			<Item stackedLabel>
 				<Label>Last Name</Label>
-				<Text
+				<Input
 					value={props.lastName}
 					onChangeText={value => props.onValueChange({ lastName: value })}
 				/>

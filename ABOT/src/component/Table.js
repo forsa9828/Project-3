@@ -10,7 +10,7 @@ function Table(props) {
 			<ListItem>
 				<Body>
 					<Text>
-						{props.firstName}  {props.lastName}
+						{props.firstName} {props.lastName}
 					</Text>
 					<Text note>
 						{"\n"}

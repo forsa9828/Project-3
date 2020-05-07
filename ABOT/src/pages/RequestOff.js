@@ -1,39 +1,39 @@
 import React, { Component } from "react";
-import { Alert } from "react-native";
+import { Alert, View, Text } from "react-native";
 import FormAvailPto from "../component/FormAvailPto";
 import API from "../utils/API";
+import ValidationComponent from "react-native-form-validator";
 
-class RequestOff extends Component {
-	constructor() {
-		super();
+class RequestOff extends ValidationComponent {
+	constructor(props) {
+		super(props);
 		this.state = {
-			firstName: "",
-			lastName: "",
-			date: "",
-			startTime: "",
-			endTime: "",
-			data:[]
+			firstName: null,
+			lastName: null,
+			date: null,
+			startTime: null,
+			endTime: null
 		};
 	}
 
-	componentDidMount = () => {
-		API.loggedIn(res)
-		.then(res => res.json())
-		.then(console.log(res.json));
-	};
+	// componentDidMount = () => {
+	// 	API.loggedIn(req, res)
+	// 	.then(res => res.json())
+	// 	.then(console.log(response.json));
+	// };
 
 	onValueChange = value => {
-		this.setState(value)
+		this.setState(value);
 	};
 
 	handleFormSubmit = event => {
 		event.preventDefault();
-		const { firstName, lastName, date, startTime, endTime } = this.state;
-
-		this.state !== ""
-			? Alert.alert(
+		const { firstName, lastName, date, startTime, endTime } = this.state
+		console.log(this.state)
+		// if(this.state === "")
+		this.state.firstName == null ? Alert.alert(
 					"Uh oh, you might be missing some information, please make sure all fields are filled out."
-			  )
+			  ) : this.state.lastName == null ? Alert.alert("Please enter your last name")
 			: API.postRequests({ firstName, lastName, date, startTime, endTime })
 					.then(Alert.alert("Request Success!"))
 					.catch(function(err) {
@@ -44,16 +44,17 @@ class RequestOff extends Component {
 
 	render() {
 		return (
-			<FormAvailPto
-				firstName={this.state.firstName}
-				lastName={this.state.lastName}
-				date={this.state.date}
-				startTime={this.state.startTime}
-				endTime={this.state.endTime}
-				onValueChange={this.onValueChange}
-				clicked={this.handleFormSubmit}
-				error={this.state.error}
-			/>
+			<View>
+				<FormAvailPto
+					firstName={this.state.firstName}
+					lastName={this.state.lastName}
+					date={this.state.date}
+					startTime={this.state.startTime}
+					endTime={this.state.endTime}
+					onValueChange={this.onValueChange}
+					clicked={this.handleFormSubmit}
+				/>
+			</View>
 		);
 	}
 }
