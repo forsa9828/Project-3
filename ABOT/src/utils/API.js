@@ -38,7 +38,7 @@ export default {
 	},
 
 	logIn: function(data) {
-		return axios.get("http://192.168.1.72:8080/auth/signin", data);
+		return axios.post("http://192.168.1.72:8080/auth/signin", data);
 	},
 
 	authUser: function(data) {

@@ -12,9 +12,10 @@ export default function App() {
   
     //  <FormLogin />
     //  <FormSignUp />
-    <SignIn />
-    // <SignUp />
+    // <SignIn /> 
+    <SignUp />
   
+    // signin will be the landing page 
   );
 }
 

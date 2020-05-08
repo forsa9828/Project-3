@@ -172,6 +172,8 @@ export function  FormSignUp (props) {
               <Button 
                 title="Submit"
                 onPress={props.clicked}
+
+                
               />
             </Form>
           </Content>

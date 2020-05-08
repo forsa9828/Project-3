@@ -1,8 +1,11 @@
 import React, {Component} from "react";
 import {FormSignUp} from "../component/Form";
 import API from "../utils/API";
+import {Alert} from "react-native";
+import ValidationComponent from "react-native-form-validator";
 
-class SignUp extends Component {
+
+class SignUp extends ValidationComponent {
     state= {
         firstname: "",
         lastname: "",
@@ -11,16 +14,15 @@ class SignUp extends Component {
         employmentType: "",
         phone: "",
         emergencyContact: "",
-        emergencyContactPhone: ""
-
+        emergencyContactPhone: "",
+    
     }
 
     onValueChange=(value) =>{
-        this.setState(value, function(){ 
-            console.log(this.state)
-        })
+        this.setState(value)
     }
 
+   
     signUpSubmit=(event) => {
         event.preventDefault();
         const {
@@ -33,6 +35,24 @@ class SignUp extends Component {
             emergencyContact,
             emergencyContactPhone
         } = this.state;
+       
+        // console.log(this.state.firstname)
+
+        //trying to loop through the object 
+        for (const property in this.state){
+        //     // console.log((`${property}: ${this.state[property]}`))
+    
+        //     // show which field is missing information 
+             if(this.state[property] == ""){
+                     const missingMsg= "please enter missing fields of:" +
+                     `${property}` 
+    
+                    Alert.alert(missingMsg)
+             }
+            else{
+                console.log(this.state[property])
+            }
+        }
         API.authUser({
             firstname,
             lastname,
@@ -43,8 +63,10 @@ class SignUp extends Component {
             emergencyContact,
             emergencyContactPhone
         })
-        .then(res=>console.log(res.data))
+        .then(res=> console.log(res.data))
         .catch(error => console.log(error))
+    
+      
 }
 
 
@@ -61,6 +83,7 @@ class SignUp extends Component {
                 emergencyContactPhone={this.state.emergencyContactPhone}
                 onValueChange={this.onValueChange}
                 clicked={this.signUpSubmit}
+
             />
         )
     }
