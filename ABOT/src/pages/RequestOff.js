@@ -16,24 +16,20 @@ class RequestOff extends ValidationComponent {
 		};
 	}
 
-	// componentDidMount = () => {
-	// 	API.loggedIn(req, res)
-	// 	.then(res => res.json())
-	// 	.then(console.log(response.json));
-	// };
-
 	onValueChange = value => {
 		this.setState(value);
 	};
 
 	handleFormSubmit = event => {
 		event.preventDefault();
-		const { firstName, lastName, date, startTime, endTime } = this.state
-		console.log(this.state)
-		// if(this.state === "")
-		this.state.firstName == null ? Alert.alert(
+		const { firstName, lastName, date, startTime, endTime } = this.state;
+		console.log(this.state);
+		this.state.firstName == null
+			? Alert.alert(
 					"Uh oh, you might be missing some information, please make sure all fields are filled out."
-			  ) : this.state.lastName == null ? Alert.alert("Please enter your last name")
+			  )
+			: this.state.lastName == null
+			? Alert.alert("Please enter your last name")
 			: API.postRequests({ firstName, lastName, date, startTime, endTime })
 					.then(Alert.alert("Request Success!"))
 					.catch(function(err) {

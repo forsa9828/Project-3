@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Table from "../component/Table";
-import { Alert, View, Text } from "react-native";
 import API from "../utils/API";
 
 class SchedulePage extends Component {
@@ -10,12 +9,7 @@ class SchedulePage extends Component {
 		this.state = {
 			schedules: [],
 			error: null,
-			isLoaded: false,
-			// firstName,
-			// lastName: null,
-			// date: null,
-			// startTime: null,
-			// endTime: null
+			isLoaded: false
 		};
 	}
 
@@ -25,9 +19,6 @@ class SchedulePage extends Component {
 			.then(response => {
 				let schedules = response.data;
 				this.setState({ schedules });
-				// const { firstName, lastName, date, startTime, endTime }  = this.state
-
-				console.log(schedules);
 			})
 			.catch(error => console.error(error))
 			.finally(() => {
@@ -43,21 +34,19 @@ class SchedulePage extends Component {
 
 	render() {
 		let { schedules } = this.state;
-		// console.log(schedules)
 		return schedules.map(schedule => {
-		return (
-			<Table
-				date = {schedule.date}
-				{...console.log(schedule.date)}
-				firstName = {schedule.firstName}
-				lastName = {schedule.lastName}
-				startTime = {schedule.startTime}
-				endTime = {schedule.endTime}
-				
+			return (
+				<Table
+					key={schedule.id}
+					date={schedule.date}
+					firstName={schedule.firstName}
+					lastName={schedule.lastName}
+					startTime={schedule.startTime}
+					endTime={schedule.endTime}
 				/>
-					);
-				})
-				}
+			);
+		});
+	}
 }
 
 export default SchedulePage;
