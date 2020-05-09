@@ -78,6 +78,7 @@ export function  FormSignUp (props) {
                       firstname: value
                     }
                   )}
+                  onEndEditing={(value) => props.checkInput(value)}
         
                   />
     
@@ -92,6 +93,7 @@ export function  FormSignUp (props) {
                         lastname: value
                       }
                     )}
+                  onEndEditing={(value) => props.checkInput(value)}
                 />
               </Item>
               <Item>
@@ -120,6 +122,7 @@ export function  FormSignUp (props) {
                       password: value
                     }
                   )}
+                  onEndEditing={(value) => props.checkPswd(value)}
                     />
               </Item>
               <Item>
@@ -162,6 +165,7 @@ export function  FormSignUp (props) {
                       emergencyContact: value
                     }
                   )}
+                  onEndEditing={(value) => props.checkInput(value)}
                  />
               </Item>
               <Item>

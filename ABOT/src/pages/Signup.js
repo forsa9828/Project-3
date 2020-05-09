@@ -39,9 +39,39 @@ class SignUp extends ValidationComponent {
             // this.setState(
             //     {message: "Enter valid email"}
             // )
+        }
     }
+   
 
+    checkPass= () => {
+        const {password} = this.state;
+        //8 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character
+        const passwordRegEx= /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+    
+        if(passwordRegEx.test(password)){
+            console.log("passed")
+        }else{
+            console.log("not passed")
+        }
+    }
+    
+    checkInput =() => {
+        const {firstname, lastname, emergencyContact} = this.state;
+        console.log(firstname, lastname, emergencyContact)
+        const inputRegEx = /^[A-Za-z]+$/
 
+        //testing one value from state here
+        // if(inputRegEx.test(firstname)){
+        //     console.log("ok")
+        // }else{
+        //     console.log("nope")
+        // }
+
+        if(inputRegEx.test(firstname) && inputRegEx.test(lastname) && inputRegEx.test(emergencyContact)){
+            console.log("ok")
+        }else{
+            console.log("nope")
+        }
     }
    
     signUpSubmit=(event) => {
@@ -102,6 +132,8 @@ class SignUp extends ValidationComponent {
                 emergencyContact={this.state.emergencyContact}
                 emergencyContactPhone={this.state.emergencyContactPhone}
                 checkEmail={this.checkEmail}
+                checkPswd={this.checkPass}
+                checkInput ={this.checkInput}
                 onValueChange={this.onValueChange}
                 clicked={this.signUpSubmit}
 
