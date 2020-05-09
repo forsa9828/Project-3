@@ -58,20 +58,23 @@ class SignUp extends ValidationComponent {
     checkInput =() => {
         const {firstname, lastname, emergencyContact} = this.state;
         console.log(firstname, lastname, emergencyContact)
-        const inputRegEx = /^[A-Za-z]+$/
+        //1-20 characters, allows white space  and hypens btwn names
+        const inputRegEx = /^[A-Za-z-\s ]{1,20}$/
+        
+
 
         //testing one value from state here
-        // if(inputRegEx.test(firstname)){
-        //     console.log("ok")
-        // }else{
-        //     console.log("nope")
-        // }
-
-        if(inputRegEx.test(firstname) && inputRegEx.test(lastname) && inputRegEx.test(emergencyContact)){
+        if(inputRegEx.test(firstname)){
             console.log("ok")
         }else{
             console.log("nope")
         }
+
+        // if(inputRegEx.test(firstname) && inputRegEx.test(lastname) && inputRegEx.test(emergencyContact)){
+        //     console.log("ok")
+        // }else{
+        //     console.log("nope")
+        // }
     }
    
     signUpSubmit=(event) => {
@@ -87,21 +90,7 @@ class SignUp extends ValidationComponent {
             emergencyContactPhone
         } = this.state;
        
-        //trying to loop through the object 
-        // for (const property in this.state){
-        //     console.log((`${property}: ${this.state[property]}`))
-    
-        // //    show which fields is missing information 
-        //      if(this.state[property] == ""){
-        //              const missingMsg= "please enter missing fields of:" +
-        //              `${property}` 
-    
-        //             Alert.alert(missingMsg) 
-        //      }
-        //     else{
-        //         console.log(this.state[property])
-        //     }
-        // }
+     
         // API.authUser({
         //     firstname,
         //     lastname,

@@ -79,7 +79,7 @@ export function  FormSignUp (props) {
                     }
                   )}
                   onEndEditing={(value) => props.checkInput(value)}
-        
+                  // minLength={1}
                   />
     
               </Item>
