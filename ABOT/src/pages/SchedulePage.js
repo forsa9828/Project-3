@@ -1,42 +1,63 @@
 import React, { Component } from "react";
 import Table from "../component/Table";
+import { Alert, View, Text } from "react-native";
 import API from "../utils/API";
 
 class SchedulePage extends Component {
-	constructor() {
-		super();
-		state = {
-			// firstName: "",
-			// lastName: "",
-			// date: "",
-			// startTime: "",
-			// endTime: "",
-			schedules: []
+	_isMounted = false;
+	constructor(props) {
+		super(props);
+		this.state = {
+			schedules: [],
+			error: null,
+			isLoaded: false,
+			// firstName,
+			// lastName: null,
+			// date: null,
+			// startTime: null,
+			// endTime: null
 		};
 	}
 
 	componentDidMount() {
-		API.getSchedule().then(res => this.setState({ schedules: res.data }));
-		console.log(res);
+		this._isMounted = true;
+		API.getSchedule()
+			.then(response => {
+				let schedules = response.data;
+				this.setState({ schedules });
+				// const { firstName, lastName, date, startTime, endTime }  = this.state
+
+				console.log(schedules);
+			})
+			.catch(error => console.error(error))
+			.finally(() => {
+				this.setState({ isLoaded: false });
+			});
+	}
+
+	componentWillUnmount() {
+		this.setState = (state, callback) => {
+			return;
+		};
 	}
 
 	render() {
+		let { schedules } = this.state;
+		// console.log(schedules)
+		return schedules.map(schedule => {
 		return (
-			<Table>
-				{this.state.schedules.map(schedule => {
-					return (
-						<Text
-							date={this.state.schedule.date}
-							firstName={this.schedule.firstName}
-							lastName={this.schedule.lastName}
-							startTime={this.schedule.startTime}
-							endTime={schedule.endTime}
-						/>
+			<Table
+				date = {schedule.date}
+				{...console.log(schedule.date)}
+				firstName = {schedule.firstName}
+				lastName = {schedule.lastName}
+				startTime = {schedule.startTime}
+				endTime = {schedule.endTime}
+				
+				/>
 					);
-				})}
-			</Table>
-		);
-	}
+				})
+				}
 }
 
 export default SchedulePage;
