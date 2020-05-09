@@ -7,7 +7,7 @@ module.exports = {
 
     signin: (req, res) => {
         res.render("/loggedin");
-        //re.redirect, redirect to the route for React
+        //res.redirect, redirect to the route for React
         
     },
 

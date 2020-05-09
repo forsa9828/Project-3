@@ -14,7 +14,7 @@ module.exports = (passport, user) => {
             let generateHash = password => {
                 return bCrypt.hashSync(password, 8, null);
             };
-
+//need to build it so it looks for first name and last name that is entered by Manager
             UserDB.user.findOne({
                 where: {
                     email: email
@@ -36,7 +36,7 @@ module.exports = (passport, user) => {
                         emergencyContact: req.body.emergencyContact,
                         emergencyContactPhone: req.body.emergencyContactPhone
                     };
-
+//update method instead of create, list which fields to update w/ its values 
                     UserDB.user.create(data).then(newUser => {
                         if (!newUser) {
                             return done(null, false);

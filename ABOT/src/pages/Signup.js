@@ -2,10 +2,8 @@ import React, {Component} from "react";
 import {FormSignUp} from "../component/Form";
 import API from "../utils/API";
 import {Alert} from "react-native";
-import ValidationComponent from "react-native-form-validator";
 
-
-class SignUp extends ValidationComponent {
+class SignUp extends Component {
     state= {
         firstname: "",
         lastname: "",
@@ -45,6 +43,7 @@ class SignUp extends ValidationComponent {
 
     checkPass= () => {
         const {password} = this.state;
+        console.log(password)
         //8 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character
         const passwordRegEx= /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
     
@@ -61,17 +60,25 @@ class SignUp extends ValidationComponent {
         //1-20 characters, allows white space  and hypens btwn names
         const inputRegEx = /^[A-Za-z-\s ]{1,20}$/
         
-        if(!inputRegEx.test(firstname)){
-            console.log("need first name")
-        }
-        else if(!inputRegEx.test(lastname)){
-            console.log("need last name")
-        }
-        else if(!inputRegEx.test(emergencyContact)){
-            console.log("need emergency contact name")
-        }
-        else{
-            console.log("good to go")
+        //one at a time will pop up even, emergency contact though it's later down the list
+        // if(!inputRegEx.test(firstname)){
+        //     Alert.alert("need first name")
+        // }
+        // else if(!inputRegEx.test(lastname)){
+        //     Alert.alert("need last name")
+        // }
+        // else if(!inputRegEx.test(emergencyContact)){
+        //     Alert.alert("need emergency contact name")
+        // }
+        // else{
+        //     console.log("good to go")
+        // }
+
+        //if just making sure text is entered, use this 
+        if(inputRegEx.test(firstname) && inputRegEx.test(lastname) && inputRegEx.test(emergencyContact)){
+            console.log("all good")
+        }else{
+            Alert.alert("check to see if you enter all First name, Last name, and Contact Name")
         }
     }
    

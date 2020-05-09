@@ -21,12 +21,18 @@ class SignIn extends Component {
             email,
             password
         } = this.state;
-        API.renderSignin({
-            email,
-            password
-        })
-        .then(res => console.log("successful!" + res.data))
-        .catch(error=> console.log(error))
+        console.log(this.state)
+        //input valiation here to check if input field is empty 
+        if(email == "" || password == ""){
+            console.log("nothing here")
+        }else{
+            // API.renderSignin({
+        //     email,
+        //     password
+        // })
+        // .then(res => console.log("successful!" + res.data))
+        // .catch(error=> console.log(error))
+        }
     }
 
     render() {
