@@ -76,8 +76,11 @@ export function  FormSignUp (props) {
                   onChangeText={(value) => props.onValueChange(
                     {
                       firstname: value
-                    })}
+                    }
+                  )}
+        
                   />
+    
               </Item>
               <Item>
                 <Input 
@@ -101,6 +104,8 @@ export function  FormSignUp (props) {
                         email: value
                       }
                     )}
+                    //onEndEditing: Callback that is called when text input ends.
+                  onEndEditing={(value) => props.checkEmail(value)}
                  />
               </Item>
               <Item>
@@ -137,7 +142,9 @@ export function  FormSignUp (props) {
                 <Input 
                   placeholder="Your Phone Number" 
                   name="phone number"
+                  keyboardType="numeric"
                   value={props.phone}
+                  maxLength={10}
                   onChangeText={(value) => props.onValueChange(
                     {
                       phone: value
@@ -161,6 +168,8 @@ export function  FormSignUp (props) {
                 <Input
                   placeholder="Emergency Contact Phone Number"
                   name="emergencyContactPhone"
+                  keyboardType="numeric"
+                  maxLength={10}
                   value={props.emergencyContactPhone}
                   onChangeText={(value)=> props.onValueChange(
                     {
@@ -172,10 +181,10 @@ export function  FormSignUp (props) {
               <Button 
                 title="Submit"
                 onPress={props.clicked}
-
-                
               />
             </Form>
+        
+
           </Content>
 
     </Container>
