@@ -61,20 +61,18 @@ class SignUp extends ValidationComponent {
         //1-20 characters, allows white space  and hypens btwn names
         const inputRegEx = /^[A-Za-z-\s ]{1,20}$/
         
-
-
-        //testing one value from state here
-        if(inputRegEx.test(firstname)){
-            console.log("ok")
-        }else{
-            console.log("nope")
+        if(!inputRegEx.test(firstname)){
+            console.log("need first name")
         }
-
-        // if(inputRegEx.test(firstname) && inputRegEx.test(lastname) && inputRegEx.test(emergencyContact)){
-        //     console.log("ok")
-        // }else{
-        //     console.log("nope")
-        // }
+        else if(!inputRegEx.test(lastname)){
+            console.log("need last name")
+        }
+        else if(!inputRegEx.test(emergencyContact)){
+            console.log("need emergency contact name")
+        }
+        else{
+            console.log("good to go")
+        }
     }
    
     signUpSubmit=(event) => {
