@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {FormSignUp} from "../component/Form";
 import API from "../utils/API";
-import {Alert} from "react-native";
+import {Alert, View} from "react-native";
 
 class SignUp extends Component {
     state= {
@@ -27,15 +27,11 @@ class SignUp extends Component {
 
     //     if(checkEmail.test(email)){
     //         console.log("good")
-            // this.setState(
-            //     {message: ""}
-            // )
-        // }else{
-        //    console.log("not good")
-        //    Alert.alert("check your email again")
-            // this.setState(
-            //     {message: "Enter valid email"}
-            // )
+            
+    //     }else{
+    //        console.log("not good")
+    //        Alert.alert("check your email again")
+            
     //     }
     // }
    
@@ -120,7 +116,7 @@ class SignUp extends Component {
             <FormSignUp 
                 firstname={this.state.firstname}
                 lastname={this.state.lastname}
-                // email={this.state.email}
+                email={this.state.email}
                 // password={this.state.password}
                 // employmentType={this.state.employmentType}
                 // phone={this.state.phone}
@@ -131,11 +127,11 @@ class SignUp extends Component {
                 // checkInput ={this.checkInput}
                 onValueChange={this.onValueChange}
                 clicked={this.signUpSubmit}
-
-
             />
+          
         )
     }
+
 
 
 
