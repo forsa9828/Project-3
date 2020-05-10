@@ -78,7 +78,7 @@ export function  FormSignUp (props) {
                       firstname: value
                     }
                   )}
-                  onEndEditing={(value) => props.checkInput(value)}
+                  // onEndEditing={(event) => props.checkInput(event.nativeEvent.text)}
                   />
     
               </Item>
@@ -92,7 +92,7 @@ export function  FormSignUp (props) {
                         lastname: value
                       }
                     )}
-                  onEndEditing={(value) => props.checkInput(value)}
+                  // onEndEditing={(value) => props.checkInput(value)}
                 />
               </Item>
               <Item>
@@ -106,7 +106,7 @@ export function  FormSignUp (props) {
                       }
                     )}
                     //onEndEditing: Callback that is called when text input ends.
-                  onEndEditing={(value) => props.checkEmail(value)}
+                  // onEndEditing={(value) => props.checkEmail(value)}
                  />
               </Item>
               <Item>
@@ -121,7 +121,7 @@ export function  FormSignUp (props) {
                       password: value
                     }
                   )}
-                  onEndEditing={(value) => props.checkPswd(value)}
+                  // onEndEditing={(value) => props.checkPswd(value)}
                     />
               </Item>
               <Item>
@@ -164,7 +164,7 @@ export function  FormSignUp (props) {
                       emergencyContact: value
                     }
                   )}
-                  onEndEditing={(value) => props.checkInput(value)}
+                  // onEndEditing={(value) => props.checkInput(value)}
                  />
               </Item>
               <Item>
