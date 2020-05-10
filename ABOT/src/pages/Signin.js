@@ -44,8 +44,12 @@ class SignIn extends Component {
         // console.log(this.state)
 
         //input valiation here to check if input field is empty 
-        if(password == ""){
-            this.setState({pswdMsg: "Enter your password"})
+        if(email =="" || password == ""){
+            this.setState(
+            {
+                emailMsg: "Enter valid email",
+                pswdMsg: "Enter your password"
+            })
             console.log("nothing here")
         }else{
             this.setState({pswdMsg: ""});
@@ -61,7 +65,6 @@ class SignIn extends Component {
     render() {
 
         return(
-      
             <FormLogin
                 email={this.state.email}
                 password={this.state.password}
@@ -70,7 +73,6 @@ class SignIn extends Component {
                 checkEmail={this.checkEmail}
                 errEmail={this.state.emailMsg}
                 errPswd={this.state.pswdMsg}
-                
             />
        
          

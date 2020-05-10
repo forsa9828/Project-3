@@ -28,12 +28,12 @@ export function FormLogin(props) {
               )}
               onEndEditing={(value) => props.checkEmail(value)}
               />
-            <Text style={{color:"red"}}>
+          </Item>
+          <Text style={styles.errorMsg}>
               {props.errEmail}
             </Text>
-          </Item>
           <Item>
-            <Input 
+            <Input
               name="password"
               value={props.password}
               secureTextEntry= {true}
@@ -45,10 +45,10 @@ export function FormLogin(props) {
                 }
               )}
               />
-              <Text style={{color:"red"}}>
+          </Item>
+          <Text style={styles.errorMsg}>
               {props.errPswd}
             </Text>
-          </Item>
           <Button 
               title="Submit"
               onPress={props.clickedIn}
@@ -202,23 +202,9 @@ export function  FormSignUp (props) {
     
 };
 
-
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-    backgroundColor: "#eaeaea"
-  },
-  title: {
-    marginTop: 16,
-    paddingVertical: 8,
-    borderWidth: 4,
-    borderColor: "#20232a",
-    borderRadius: 6,
-    backgroundColor: "#61dafb",
-    color: "#20232a",
-    textAlign: "center",
-    fontSize: 30,
-    fontWeight: "bold"
+  errorMsg:{
+    color: "red",
+    textAlign: "center"
   }
-});
+})
