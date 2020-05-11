@@ -24,6 +24,7 @@ function FormAvailPto(props) {
 				<Input
 					value={props.date}
 					placeholder="MM/DD/YYYY"
+					placeholderTextColor = "yellow"
 					onChangeText={value => props.onValueChange({ date: value })}
 				/>
 			</Item>

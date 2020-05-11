@@ -2,11 +2,11 @@ import axios from "axios";
 
 export default {
 	getSchedule: function() {
-		return axios.get("http://192.168.0.10:8080/api/schedule");
+		return axios.get("http://192.168.0.6:8080/api/schedule");
 	},
 
 	getRequests: function() {
-		return axios.get("http://192.168.0.10:8080/api/requestoff");
+		return axios.get("http://192.168.0.6:8080/api/requestoff");
 	},
 
 	createSchedule: function(data) {
