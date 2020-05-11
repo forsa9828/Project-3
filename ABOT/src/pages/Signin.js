@@ -28,9 +28,7 @@ class SignIn extends Component {
             this.setState({emailMsg: ""})
             
         }else{
-           console.log("not good")
            this.setState({emailMsg: "Enter valid email"})
-            console.log(this.state.message)
         }
     }
 

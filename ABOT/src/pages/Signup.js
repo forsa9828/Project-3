@@ -123,6 +123,16 @@ class SignUp extends Component {
             })
         }
     }
+
+    checkEmploy= () => {
+        const {employmentType}= this.state;
+        console.log(employmentType)
+        if(!employmentType){
+            console.log("pick position")
+        }else{
+            console.log("picked!")
+        }
+    }
    
     signUpSubmit=(event) => {
         event.preventDefault();
@@ -137,7 +147,7 @@ class SignUp extends Component {
             emergencyContactPhone
         } = this.state;
 
-        //check if fields are empty 
+        //check if fields are empty (just in case user accidentally presses submit w/o entering values in fields)
         if(firstname == "" ||
             lastname  == "" ||
             email  == "" ||
@@ -146,7 +156,7 @@ class SignUp extends Component {
             phone  == "" ||
             emergencyContact == ""  ||
             emergencyContactPhone == "" ){
-            Alert.alert("Please check your entries. Something is missing")
+            Alert.alert("Please check your entries again.")
         }else{
             console.log("all good to go")
         }
@@ -191,6 +201,7 @@ class SignUp extends Component {
                 // emerConMsg={this.state.emerConMsg}
                 emerPhoneMsg={this.state.emerPhoneMsg}
                 phoneMsg={this.state.phoneMsg}
+                checkEmploy={this.checkEmploy}
                 checkPhone={this.checkPhone}
                 onValueChange={this.onValueChange}
                 clicked={this.signUpSubmit}

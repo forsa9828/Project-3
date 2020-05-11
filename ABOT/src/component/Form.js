@@ -152,17 +152,21 @@ export function  FormSignUp (props) {
                 <Picker 
                   mode="dropdown"
                   iosIcon={<Icon name="arrow-down" />}
+                  placeholder="Position"
                   selectedValue={props.employmentType}
                   onValueChange={(value) => props.onValueChange(
                       {
                         employmentType: value
                       }
                     )}
-                  placeholder="Position"
+                  onEndEditing={(value) => props.checkEmploy(value)}
+                  //this onEndEdit is not working
                 >
                   <Picker.Item label="Manager" value="Manager"/>
                   <Picker.Item label ="Employee" value="Employee"/>
+                  
                 </Picker>
+               
               </Item>
               <Item>
                 <Input 
