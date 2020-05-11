@@ -85,7 +85,7 @@ export function  FormSignUp (props) {
                       firstname: value
                     }
                   )}
-                  onEndEditing={(event) => props.checkInput(event.nativeEvent.text)}
+                  // onEndEditing={(event) => props.checkInput(event.nativeEvent.text)}
                   />
               </Item>
               <Text style={styles.errorMsg}>
@@ -102,7 +102,7 @@ export function  FormSignUp (props) {
                       }
                     )}
                   // onEndEditing={(value) => props.checkInput(value)}
-                  onEndEditing={(event) => props.checkInput(event.nativeEvent.text)}
+                  // onEndEditing={(event) => props.checkInput(event.nativeEvent.text)}
 
                 />
               </Item>
@@ -142,12 +142,12 @@ export function  FormSignUp (props) {
                       password: value
                     }
                   )}
-                  onEndEditing={(value) => props.checkPswd(value)}
+                  // onEndEditing={(value) => props.checkPswd(value)}
                     />
               </Item>
               <Text style={styles.errorMsg}>
-              {props.pwsdMsg}
-            </Text>
+                {props.pswdMsg}
+              </Text>
               <Item>
                 <Picker 
                   mode="dropdown"
@@ -176,8 +176,12 @@ export function  FormSignUp (props) {
                       phone: value
                     }
                   )}
+                  onEndEditing={(value) => props.checkPhone(value)}
                     />
               </Item>
+              <Text style={styles.errorMsg}>
+                {props.phoneMsg}
+               </Text>
               <Item>
                 <Input
                   placeholder="Emergency Contact"
@@ -188,12 +192,12 @@ export function  FormSignUp (props) {
                       emergencyContact: value
                     }
                   )}
-                  onEndEditing={(value) => props.checkInput(value)}
+                  // onEndEditing={(value) => props.checkInput(value)}
                  />
               </Item>
               <Text style={styles.errorMsg}>
-              {props.validMsg}
-            </Text>
+                {props.emerConMsg}
+               </Text>
               <Item>
                 <Input
                   placeholder="Emergency Contact Phone Number"
@@ -208,6 +212,9 @@ export function  FormSignUp (props) {
                   )}
                  />
               </Item>
+              <Text style={styles.errorMsg}>
+                {props.emerPhoneMsg}
+               </Text>
               <Button 
                 title="Submit"
                 onPress={props.clicked}

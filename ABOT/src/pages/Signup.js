@@ -16,7 +16,10 @@ class SignUp extends Component {
         emailMsg: "",
         nameMsg: "",
         lastNameMsg: "",
-        pswdMsg: ""
+        pswdMsg: "",
+        emerConMsg: "",
+        phoneMsg: "",
+        emerPhoneMsg: ""
     }
 
     onValueChange=(value) =>{
@@ -48,15 +51,18 @@ class SignUp extends Component {
     checkPass= () => {
         const {password} = this.state;
         console.log(password)
-        // 8 to 15 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character
-        const passwordRegEx= /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
+        // 8 to 10 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character
+        const passwordRegEx= /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,10}$/;
     
         if(passwordRegEx.test(password)){
             console.log("passed")
+            this.setState({
+                pswdMsg: ""
+             })
         }else{
             console.log("not passed")
             this.setState({
-                pswdMsg: "enter password"
+                pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character"
              })
         }
     }
@@ -68,7 +74,7 @@ class SignUp extends Component {
         //1-20 characters, allows white space  and hypens btwn names
         const inputRegEx = /^[A-Za-z-\s ]{1,20}$/;
         
-        //one at a time will pop up even, emergency contact though it's later down the list
+        //one at a time, msg will pop up 
         if(!inputRegEx.test(firstname)){
             this.setState({
                 nameMsg: "Enter first name",
@@ -81,26 +87,41 @@ class SignUp extends Component {
                 lastNameMsg: "Enter last name"
             })
         }
-        // else if(!inputRegEx.test(emergencyContact)){
-        //     this.setState({
-        //         nameMsg: "Emergency Contact Name",
-        //         lastNameMsg: ""
-        //     })
-        // }
+        else if(!inputRegEx.test(emergencyContact)){
+            this.setState({
+                nameMsg: "",
+                lastNameMsg: "",
+                emerConMsg: "Enter Your Emergency Contact"
+            })
+        }
         else{
             this.setState({
                 nameMsg: "",
-                lastNameMsg: ""
+                lastNameMsg: "",
+                emerConMsg: ""
             })
         }
+    }
 
-        //if just making sure text is entered, use this 
-        // if(inputRegEx.test(firstname) && inputRegEx.test(lastname) && inputRegEx.test(emergencyContact)){
-        //     console.log("all good")
-        // }else{
-        //     Alert.alert("Check if First name, Last name, and Contact Name has been entered")
-        // }
-
+    checkPhone = () => {
+        const {phone, emergencyContactPhone} = this.state;
+       
+        console.log(emergencyContactPhone)
+        if(phone.length != 10){
+            this.setState({
+                phoneMsg: "Enter a phone number"
+            })
+        }else if(emergencyContactPhone.length != 10){
+            this.setState({
+                phoneMsg: "",
+                emerPhoneMsg: "Enter a phone number"
+            })
+        }else{
+            this.setState({
+                phoneMsg: "",
+                emerPhoneMsg: ""
+            })
+        }
     }
    
     signUpSubmit=(event) => {
@@ -156,17 +177,21 @@ class SignUp extends Component {
                 lastname={this.state.lastname}
                 email={this.state.email}
                 password={this.state.password}
-                // employmentType={this.state.employmentType}
-                // phone={this.state.phone}
+                employmentType={this.state.employmentType}
+                phone={this.state.phone}
                 // emergencyContact={this.state.emergencyContact}
-                // emergencyContactPhone={this.state.emergencyContactPhone}
+                emergencyContactPhone={this.state.emergencyContactPhone}
                 // checkEmail={this.checkEmail}
-                checkPswd={this.checkPass}
-                checkInput ={this.checkInput}
-                nameMsg={this.state.nameMsg}
-                lastNameMsg={this.state.lastNameMsg}
-                emailMsg={this.state.emailMsg}
-                pswdMsg={this.state.pswdMsg}
+                // checkPswd={this.checkPass}
+                // checkInput ={this.checkInput}
+                // nameMsg={this.state.nameMsg}
+                // lastNameMsg={this.state.lastNameMsg}
+                // emailMsg={this.state.emailMsg}
+                // pswdMsg={this.state.pswdMsg}
+                // emerConMsg={this.state.emerConMsg}
+                emerPhoneMsg={this.state.emerPhoneMsg}
+                phoneMsg={this.state.phoneMsg}
+                checkPhone={this.checkPhone}
                 onValueChange={this.onValueChange}
                 clicked={this.signUpSubmit}
             />
