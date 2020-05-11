@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Alert, StyleSheet, ScrollView } from "react-native";
+import { Alert } from "react-native";
 import { ActionSheet } from "native-base";
 import ActionList from "../component/ActionList";
 import API from "../utils/API";
@@ -47,22 +47,14 @@ export default class ReviewPto extends Component {
 				title: "Select a response to this request:"
 			},
 			buttonIndex => {
-				this.setState({ clicked: BUTTONS[buttonIndex] });
-			},
-			(clicked => {
-				if(clicked === BUTTONS[1]){
+				if(buttonIndex === 1){
 					Alert.alert("Destroy")
-				} else if (clicked === BUTTONS[0]){
+				} else if (buttonIndex === 0){
 					Alert.alert("Approved")
 				} else{
 					ActionSheet.hide()
 				}
-			})
-			// BUTTONS[1]
-			// 	? Alert.alert("Destroy")
-			// 	: BUTTONS[2]
-			// 	? ActionSheet.hide()
-			// 	: Alert.alert("Approved!")
+			}
 		);
 	};
 
