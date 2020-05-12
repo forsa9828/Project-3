@@ -1,15 +1,32 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import Table from "./src/component/Table";
-import RequestOff from "./src/pages/RequestOff";
+import { StyleSheet, ScrollView, View } from "react-native";
+import { Root } from "native-base";
+import * as Font from 'expo-font';
+// import Table from "./src/component/Table";
+// import RequestOff from "./src/pages/RequestOff";
+// import SchedulePage from "./src/pages/SchedulePage";
+// import FormAvailPto from "./src/component/FormAvailPto";
+// import ActionList from "./src/component/ActionList";
+import ReviewPto from "./src/pages/ReviewPto";
 import SchedulePage from "./src/pages/SchedulePage";
+import RequestOff from "./src/pages/RequestOff";
+import Avail from "./src/pages/Avail";
+import ManageEmployees from "./src/pages/ManageEmployees";
+
+
 
 export default function App() {
 	return (
+<Root>
+
 		<View style={styles.container}>
-			<SchedulePage
-			/>
+			<ScrollView style={styles.scroll}>
+
+			<ManageEmployees/>
+			</ScrollView>
 		</View>
+</Root>
+
 	);
 }
 
@@ -19,5 +36,8 @@ const styles = StyleSheet.create({
 		backgroundColor: "#fff",
 		alignItems: "stretch",
 		justifyContent: "space-evenly"
+	},
+	scroll: {
+		marginHorizontal: 5
 	}
 });

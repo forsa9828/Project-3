@@ -84,6 +84,29 @@ module.exports = app => {
 			});
 	});
 
+	// create user from manager
+	app.post("/api/user", (req, res) => {
+		db.user
+			.create({
+				firstName: req.body.firstName,
+				lastName: req.body.lastName
+			})
+			.then(dbuser => {
+				res.json(dbuser);
+			});
+	});
+
+	// retrieve user info
+	app.get("/api/user", (req, res) => {
+		db.user
+			.findAll({
+				order: [sequelize.col("lastName")]
+			})
+			.then(dbuser => {
+				res.json(dbuser);
+			});
+	});
+
 	// Update a PTO request from false to true
 	app.put("/api/requestoff/:id", (req, res) => {
 		db.pto
