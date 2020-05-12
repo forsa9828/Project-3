@@ -85,7 +85,6 @@ export function  FormSignUp (props) {
                       firstname: value
                     }
                   )}
-                  // onEndEditing={(event) => props.checkInput(event.nativeEvent.text)}
                   />
               </Item>
               <Text style={styles.errorMsg}>
@@ -101,9 +100,6 @@ export function  FormSignUp (props) {
                         lastname: value
                       }
                     )}
-                  // onEndEditing={(value) => props.checkInput(value)}
-                  // onEndEditing={(event) => props.checkInput(event.nativeEvent.text)}
-
                 />
               </Item>
               <Text style={styles.errorMsg}>
@@ -119,17 +115,12 @@ export function  FormSignUp (props) {
                         email: value
                       }
                     )}
-                    //onEndEditing: Callback that is called when text input ends.
-                  // onEndEditing={(value) => props.checkEmail(value)}
-              
                  />
-                  {/* <Text style={styles.errorMsg}>
-                  {props.emailMsg}
-                  </Text> */}
+                  
               </Item>
-              {/* <Text style={styles.errorMsg}>
-              {props.validMsg}
-            </Text> */}
+              <Text style={styles.errorMsg}>
+              {props.emailMsg}
+            </Text>
               <Item>
                 <Input 
                   placeholder="Password" 
@@ -142,7 +133,6 @@ export function  FormSignUp (props) {
                       password: value
                     }
                   )}
-                  // onEndEditing={(value) => props.checkPswd(value)}
                     />
               </Item>
               <Text style={styles.errorMsg}>
@@ -159,14 +149,13 @@ export function  FormSignUp (props) {
                         employmentType: value
                       }
                     )}
-                  onEndEditing={(value) => props.checkEmploy(value)}
-                  //this onEndEdit is not working
-                >
+                  >
                   <Picker.Item label="Manager" value="Manager"/>
                   <Picker.Item label ="Employee" value="Employee"/>
-                  
                 </Picker>
-               
+                <Text style={styles.errorMsg}>
+                {props.employMsg}
+              </Text>
               </Item>
               <Item>
                 <Input 
@@ -180,8 +169,7 @@ export function  FormSignUp (props) {
                       phone: value
                     }
                   )}
-                  onEndEditing={(value) => props.checkPhone(value)}
-                    />
+                  />
               </Item>
               <Text style={styles.errorMsg}>
                 {props.phoneMsg}
@@ -196,7 +184,6 @@ export function  FormSignUp (props) {
                       emergencyContact: value
                     }
                   )}
-                  // onEndEditing={(value) => props.checkInput(value)}
                  />
               </Item>
               <Text style={styles.errorMsg}>
@@ -224,10 +211,7 @@ export function  FormSignUp (props) {
                 onPress={props.clicked}
               />
             </Form>
-        
-
           </Content>
-
     </Container>
   )
     
