@@ -23,7 +23,7 @@ export default function App() {
 		<View style={styles.container}>
 			<ScrollView style={styles.scroll}>
 
-			<ReviewPto/>
+			<ManageEmployees/>
 			</ScrollView>
 		</View>
 </Root>
