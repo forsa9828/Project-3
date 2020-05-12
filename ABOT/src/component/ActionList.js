@@ -1,24 +1,31 @@
-import React, { Component, FlatList } from "react";
-import { StyleSheet } from "react-native";
-import { Container, Button, Content, Text } from "native-base";
+import React, { Component } from "react";
+import { StyleSheet, View, TouchableHighlight, Text } from "react-native";
 
 function ActionList(props) {
 	return (
-		<Button style={styles.button} onPress={props.clicked}>
-			<Text>
-				{props.firstName} {props.lastName}
-			</Text>
-			<Text> {"\n"} {props.date} {props.startTime} {" - "} {props.endTime}</Text>
-		</Button>
+		<View>
+			<TouchableHighlight style={styles.button} onPress={props.clicked}>
+				<Text>
+					{" "}
+					{props.firstName} {props.lastName} {"\n"} {props.date} {"\n"}{" "}
+					{props.startTime} {" - "} {props.endTime}{" "}
+				</Text>
+			</TouchableHighlight>
+		</View>
 	);
 }
 
 const styles = StyleSheet.create({
 	button: {
 		flex: 1,
-		padding: 5,
+		padding: 10,
 		margin: 1,
 		backgroundColor: "#d6ad86"
+	},
+	titleText: {
+		fontSize: 20,
+		fontWeight: "bold",
+		margin: 10
 	}
 });
 

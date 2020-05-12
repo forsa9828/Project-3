@@ -23,13 +23,16 @@ class RequestOff extends ValidationComponent {
 	handleFormSubmit = event => {
 		event.preventDefault();
 		const { firstName, lastName, date, startTime, endTime } = this.state;
-		console.log(this.state);
 		this.state.firstName == null
-			? Alert.alert(
-					"Uh oh, you might be missing some information, please make sure all fields are filled out."
-			  )
+			? Alert.alert("Please enter your first name.")
 			: this.state.lastName == null
-			? Alert.alert("Please enter your last name")
+			? Alert.alert("Please enter your last name.")
+			: this.state.date == null
+			? Alert.alert("Please enter a valid date in MM/DD/YYYY format.")
+			: this.state.startTime == null
+			? Alert.alert("Please enter a valid start time.")
+			: this.state.endTime == null
+			? Alert.alert("Please enter a valid end time.")
 			: API.postRequests({ firstName, lastName, date, startTime, endTime })
 					.then(Alert.alert("Request Success!"))
 					.catch(function(err) {
@@ -42,6 +45,7 @@ class RequestOff extends ValidationComponent {
 		return (
 			<View>
 				<FormAvailPto
+				title="Submit a time off request!"
 					firstName={this.state.firstName}
 					lastName={this.state.lastName}
 					date={this.state.date}

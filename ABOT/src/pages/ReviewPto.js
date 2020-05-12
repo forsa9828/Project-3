@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { Alert } from "react-native";
+import { Alert, Text } from "react-native";
 import { ActionSheet } from "native-base";
 import ActionList from "../component/ActionList";
 import API from "../utils/API";
 
 export default class ReviewPto extends Component {
-    _isMounted = false;
-    constructor(props) {
+	_isMounted = false;
+	constructor(props) {
 		super(props);
 		this.state = {
 			ptoRequests: [],
@@ -16,19 +16,22 @@ export default class ReviewPto extends Component {
 	}
 
 	componentDidMount() {
-        this._isMounted = true;
+		this._isMounted = true;
 		API.getRequests()
 			.then(response => {
 				let ptoRequests = response.data;
 				this.setState({ ptoRequests });
+				ptoRequests === []
+					? Alert.alert("There are no requests to review!")
+					: this.render;
 			})
 			.catch(error => console.log(error))
 			.finally(() => {
 				this.setState({ isLoaded: false });
 			});
-    }
-    
-    componentWillUnmount() {
+	}
+
+	componentWillUnmount() {
 		this.setState = (state, callback) => {
 			return;
 		};
@@ -47,12 +50,12 @@ export default class ReviewPto extends Component {
 				title: "Select a response to this request:"
 			},
 			buttonIndex => {
-				if(buttonIndex === 1){
-					Alert.alert("Destroy")
-				} else if (buttonIndex === 0){
-					Alert.alert("Approved")
-				} else{
-					ActionSheet.hide()
+				if (buttonIndex === 1) {
+					Alert.alert("Request denied");
+				} else if (buttonIndex === 0) {
+					Alert.alert("Request approved");
+				} else {
+					ActionSheet.hide();
 				}
 			}
 		);
@@ -61,8 +64,7 @@ export default class ReviewPto extends Component {
 	render() {
 		let { ptoRequests } = this.state;
 		return ptoRequests.map(ptoRequest => {
-				return (
-
+			return (
 				<ActionList
 					key={ptoRequest.id}
 					firstName={ptoRequest.firstName}
@@ -71,8 +73,7 @@ export default class ReviewPto extends Component {
 					startTime={ptoRequest.startTime}
 					endTime={ptoRequest.endTime}
 					clicked={this.handleClick}
-					/>
-	
+				/>
 			);
 		});
 	}

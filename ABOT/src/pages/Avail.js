@@ -30,11 +30,16 @@ class Avail extends Component {
 	handleFormSubmit = event => {
 		event.preventDefault();
 		const { firstName, lastName, date, startTime, endTime } = this.state;
-
-		this.state !== ""
-			? Alert.alert(
-					"Uh oh, you might be missing some information, please make sure all fields are filled out."
-			  )
+		this.state.firstName == null
+			? Alert.alert("Please enter your first name.")
+			: this.state.lastName == null
+			? Alert.alert("Please enter your last name.")
+			: this.state.date == null
+			? Alert.alert("Please enter a valid date in MM/DD/YYYY format.")
+			: this.state.startTime == null
+			? Alert.alert("Please enter a valid start time.")
+			: this.state.endTime == null
+			? Alert.alert("Please enter a valid end time.")
 			: API.postAvail({ firstName, lastName, date, startTime, endTime })
 					.then(Alert.alert("Request Success!"))
 					.catch(function(err) {
@@ -46,6 +51,7 @@ class Avail extends Component {
 	render() {
 		return (
 			<FormAvailPto
+			title="Submit Availability!"
 				firstName={this.state.firstName}
 				lastName={this.state.lastName}
 				date={this.state.date}
@@ -59,22 +65,3 @@ class Avail extends Component {
 }
 
 export default Avail;
-
-
-// {this.props.register ? (
-//     <React.Fragment>
-
-//     <Item stackedLabel>
-//         <Label>Start Time</Label>
-//         <Input />
-//     </Item>
-//     <Item stackedLabel>
-//         <Label>End Time</Label>
-//         <Input />
-//     </Item>
-//     </React.Fragment>)
-//      : null}
-//     <Button small primary>
-//         <Text>Submit</Text>
-//     </Button>
-// </Form>

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { Container, List, Body, ListItem, Text } from "native-base";
+import { View, Container, List, Body, ListItem, Text } from "native-base";
 
 function Table(props) {
 	return (
-		<Container>
+		<View>
+
 			<ListItem itemDivider>
 				<Text>{props.date}</Text>
 			</ListItem>
@@ -20,7 +21,7 @@ function Table(props) {
 					</Text>
 				</Body>
 			</ListItem>
-		</Container>
+		</View>
 	);
 }
 
