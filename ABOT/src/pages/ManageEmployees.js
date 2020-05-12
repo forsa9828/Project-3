@@ -5,16 +5,19 @@ import {
 	Text,
 	TouchableHighlight,
 	View,
-	TextInput
+    TextInput,
+    Alert
 } from "react-native";
 import Table from "../component/Table";
 import API from "../utils/API";
 
 class ManageEmployees extends Component {
-	state = {
+    _isMounted = false;
+    state = {
         modalVisible: false,
         firstName: "",
-        lastName: ""
+        lastName: "",
+        users: []
 	};
 
     onValueChange = value => {
@@ -25,20 +28,36 @@ class ManageEmployees extends Component {
 		this.setState({ modalVisible: visible });
     };
     
-    // oncomponent mount to get users from db and display in table view
+    componentDidMount() {
+        this._isMounted = true;
+        API.getUser()
+        .then(response => {
+            let users = response.data;
+            this.setState({ users });
+            users === []
+                ? Alert.alert("There are no employees! Go add some.")
+                : this.render;
+        })
+        .catch(error => console.log(error))
+        .finally(() => {
+            this.setState({ isLoaded: false });
+        });
+    };
 
 	render() {
-		const { modalVisible } = this.state;
-		return (
-           <View>
-                <Text>Hallie Rae </Text>
+        const { modalVisible, users } = this.state;
+        return users.map(user => {
+
+            return (
+                <View>
+                <Text>{user.firstName} {user.lastName} </Text>
             
 			<View style={styles.centeredView}>
 				<Modal
 					animationType='slide'
 					transparent={true}
 					visible={modalVisible}
-				>
+                    >
 					<View style={styles.centeredView}>
 						<View style={styles.modalView}>
 							<TextInput
@@ -46,23 +65,29 @@ class ManageEmployees extends Component {
                                 placeholder='Employee first name'
                                 value={this.state.firstName}
                                 onChangeText={value => this.onValueChange({ firstName: value })}
-							></TextInput>
+                                ></TextInput>
 							<TextInput
 								style={styles.modalText}
                                 placeholder='Employee last name'
                                 value={this.state.lastName}
                                 onChangeText={value => this.onValueChange({ lastName: value })}
-							></TextInput>
+                                ></TextInput>
 
 							<TouchableHighlight
 								style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
 								onPress={() => {
                                     const { firstName, lastName } = this.state;
-                                    console.log(firstName)
+                                    API.createUser({ firstName, lastName })
+                                    .then(this.setModalVisible(!modalVisible))
+                                    .then(Alert.alert("Employee submitted successfully!"))
+                                    .catch(function(err) {
+                                        console.log(err);
+                                        console.log("Promise Rejected");
+                                    });
                                     // Add in the function to submit first name and last name to db -- needs to be created first in back end and then called in API.js
-									this.setModalVisible(!modalVisible);
+									
 								}}
-							>
+                                >
 								<Text style={styles.textStyle}>Submit new employee</Text>
 							</TouchableHighlight>
 							<TouchableHighlight
@@ -71,7 +96,7 @@ class ManageEmployees extends Component {
                                     this.setModalVisible(!modalVisible);
                                     
 								}}
-							>
+                                >
 								<Text style={styles.textStyle}>Cancel</Text>
 							</TouchableHighlight>
 						</View>
@@ -81,14 +106,15 @@ class ManageEmployees extends Component {
 				<TouchableHighlight
 					style={styles.openButton}
 					onPress={() => {
-						this.setModalVisible(true);
+                        this.setModalVisible(true);
 					}}
-				>
+                    >
 					<Text style={styles.textStyle}>Add a new employee</Text>
 				</TouchableHighlight>
 			</View>
             </View>
 		);
+    })
 	}
 }
 

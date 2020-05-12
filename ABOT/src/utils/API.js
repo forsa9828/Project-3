@@ -10,7 +10,7 @@ export default {
 	},
 
 	createSchedule: function(data) {
-		return axios.post("http://192.168.0.10:8080/api/schedule", data)
+		return axios.post("http://192.168.0.6:8080/api/schedule", data)
 	},
 
 	postRequests: function(data) {
@@ -27,6 +27,14 @@ export default {
 
 	approveReq: function(data) {
 		return axios.put("http://192.168.0.10:8080/api/requestoff/:id", data)
+	},
+
+	createUser: function(data) {
+		return axios.post("http://192.168.0.6:8080/api/user", data)
+	},
+
+	getUser: function() {
+		return axios.get("http://192.168.0.6:8080/api/user");
 	},
 
 	loggedIn: function() {
