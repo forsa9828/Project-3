@@ -53,7 +53,11 @@ export default class ReviewPto extends Component {
 				if (buttonIndex === 1) {
 					Alert.alert("Request denied");
 				} else if (buttonIndex === 0) {
-					Alert.alert("Request approved");
+					API.approveReq({ id, date })
+					.then(Alert.alert("Request approved"))
+					.catch(function(err) {
+						console.log(err);
+					});
 				} else {
 					ActionSheet.hide();
 				}
@@ -70,7 +74,7 @@ export default class ReviewPto extends Component {
 					firstName={ptoRequest.firstName}
 					lastName={ptoRequest.lastName}
 					date={ptoRequest.date}
-					startTime={ptoRequest.startTime}
+					startTime={ptoRequest.startTime + " - "}
 					endTime={ptoRequest.endTime}
 					clicked={this.handleClick}
 				/>

@@ -12,6 +12,7 @@ import SchedulePage from "./src/pages/SchedulePage";
 import RequestOff from "./src/pages/RequestOff";
 import Avail from "./src/pages/Avail";
 import ManageEmployees from "./src/pages/ManageEmployees";
+import EmployeeList from "./src/component/EmployeeList";
 
 
 
@@ -22,7 +23,7 @@ export default function App() {
 		<View style={styles.container}>
 			<ScrollView style={styles.scroll}>
 
-			<ManageEmployees/>
+			<ReviewPto/>
 			</ScrollView>
 		</View>
 </Root>

@@ -8,7 +8,7 @@ function ActionList(props) {
 				<Text>
 					{" "}
 					{props.firstName} {props.lastName} {"\n"} {props.date} {"\n"}{" "}
-					{props.startTime} {" - "} {props.endTime}{" "}
+					{props.startTime} {props.endTime}{" "}
 				</Text>
 			</TouchableHighlight>
 		</View>
