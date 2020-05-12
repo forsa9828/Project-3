@@ -6,9 +6,8 @@ function ActionList(props) {
 		<View>
 			<TouchableHighlight style={styles.button} onPress={props.clicked}>
 				<Text>
-					{" "}
-					{props.firstName} {props.lastName} {"\n"} {props.date} {"\n"}{" "}
-					{props.startTime} {props.endTime}{" "}
+					{props.firstName} {props.lastName} {props.date}
+					{props.startTime} {props.endTime}
 				</Text>
 			</TouchableHighlight>
 		</View>

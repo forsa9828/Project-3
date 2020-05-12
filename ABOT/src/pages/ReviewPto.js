@@ -73,8 +73,8 @@ export default class ReviewPto extends Component {
 					key={ptoRequest.id}
 					firstName={ptoRequest.firstName}
 					lastName={ptoRequest.lastName}
-					date={ptoRequest.date}
-					startTime={ptoRequest.startTime + " - "}
+					date={"\n"+ptoRequest.date}
+					startTime={"\n"+ptoRequest.startTime + " -"}
 					endTime={ptoRequest.endTime}
 					clicked={this.handleClick}
 				/>
