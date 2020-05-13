@@ -35,6 +35,13 @@ class RequestOff extends ValidationComponent {
 			? Alert.alert("Please enter a valid end time.")
 			: API.postRequests({ firstName, lastName, date, startTime, endTime })
 					.then(Alert.alert("Request Success!"))
+					.then(this.setState({
+						firstName: null,
+						lastName: null,
+						date: null,
+						startTime: null,
+						endTime: null
+					}))
 					.catch(function(err) {
 						console.log(err);
 						console.log("Promise Rejected");

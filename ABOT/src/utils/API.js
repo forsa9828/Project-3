@@ -14,11 +14,11 @@ export default {
 	},
 
 	postRequests: function(data) {
-		return axios.post("http://192.168.0.10:8080/api/requestoff", data);
+		return axios.post("http://192.168.0.6:8080/api/requestoff", data);
 	},
 
 	postAvail: function(data) {
-		return axios.post("http://192.168.0.10:8080/api/avail", data);
+		return axios.post("http://192.168.0.6:8080/api/avail", data);
 	},
 
 	getAvail: function() {
