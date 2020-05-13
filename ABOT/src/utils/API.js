@@ -37,6 +37,10 @@ export default {
 		return axios.get("http://192.168.0.6:8080/api/user");
 	},
 
+	deleteUser: function(key) {
+		return axios.put(`http://192.168.0.6:8080/api/user/${key}`)
+	},
+
 	loggedIn: function() {
 		return axios.get("http://192.168.0.10:8080/auth/loggedin");
 	},

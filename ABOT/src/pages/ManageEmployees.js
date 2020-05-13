@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
 	modalView: {
 		margin: 20,
 		backgroundColor: "white",
-		borderRadius: 20,
 		padding: 35,
 		alignItems: "center",
 		shadowColor: "#000",
@@ -118,12 +117,10 @@ const styles = StyleSheet.create({
 			height: 2
 		},
 		shadowOpacity: 0.25,
-		shadowRadius: 3.84,
 		elevation: 5
 	},
 	openButton: {
-		backgroundColor: "#F194FF",
-		borderRadius: 20,
+		backgroundColor: "#d6ad86",
 		padding: 10,
 		elevation: 2
 	},

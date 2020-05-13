@@ -26,8 +26,9 @@ class EmployeeList extends Component {
 			});
 	}
 
-	handleClick = event => {
-		event.preventDefault();
+	handleClick = key => {
+		// event.preventDefault();
+		console.log(key)
 		const BUTTONS = ["Delete", "Cancel"];
 		const DESTRUCTIVE_INDEX = 0;
 		const CANCEL_INDEX = 1;
@@ -40,7 +41,9 @@ class EmployeeList extends Component {
 			},
 			buttonIndex => {
 				if (buttonIndex === 0) {
-					Alert.alert("Employee has been deleted");
+					
+					API.deleteUser(key)
+					.then(Alert.alert("Employee has been deleted"))
 				} else {
 					ActionSheet.hide();
 				}
@@ -56,7 +59,7 @@ class EmployeeList extends Component {
 					key={user.id}
 					firstName={user.firstName}
 					lastName={user.lastName}
-					clicked={this.handleClick}
+					clicked={() => this.handleClick(user.id)}
 				/>
 			);
 		});
