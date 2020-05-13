@@ -127,7 +127,18 @@ module.exports = app => {
 		db.pto
 			.update(
 				{ approved: true, pending: false },
-				{ where: { id: req.params.id }, date: { date: req.params.date } }
+				{ where: { id: req.params.id } }
+			)
+			.then(dbpto => {
+				res.json(dbpto);
+			});
+	});
+
+	app.put("/api/requestoff/:id", (req, res) => {
+		db.pto
+			.update(
+				{ pending: false },
+				{ where: { id: req.params.id } }
 			)
 			.then(dbpto => {
 				res.json(dbpto);

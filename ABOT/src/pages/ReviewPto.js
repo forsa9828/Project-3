@@ -21,8 +21,8 @@ export default class ReviewPto extends Component {
 			.then(response => {
 				let ptoRequests = response.data;
 				this.setState({ ptoRequests });
-				ptoRequests === []
-					? Alert.alert("There are no requests to review!")
+				!ptoRequests === []
+					? <Text>There are no requests to review!</Text>
 					: this.render;
 			})
 			.catch(error => console.log(error))
@@ -37,8 +37,7 @@ export default class ReviewPto extends Component {
 		};
 	}
 
-	handleClick = event => {
-		event.preventDefault();
+	handleClick = (key) => {
 		const BUTTONS = ["Approve", "Deny", "Cancel"];
 		const DESTRUCTIVE_INDEX = 1;
 		const CANCEL_INDEX = 2;
@@ -51,10 +50,11 @@ export default class ReviewPto extends Component {
 			},
 			buttonIndex => {
 				if (buttonIndex === 1) {
-					Alert.alert("Request denied");
+					API.denyReq(key)
+					.then(Alert.alert("Request denied"));
 				} else if (buttonIndex === 0) {
-					API.approveReq({ id, date })
-					.then(Alert.alert("Request approved"))
+					API.approveReq(key)
+					.then(!err ? Alert.alert("Request approved") : null)
 					.catch(function(err) {
 						console.log(err);
 					});
@@ -67,6 +67,7 @@ export default class ReviewPto extends Component {
 
 	render() {
 		let { ptoRequests } = this.state;
+
 		return ptoRequests.map(ptoRequest => {
 			return (
 				<ActionList
@@ -76,7 +77,7 @@ export default class ReviewPto extends Component {
 					date={"\n"+ptoRequest.date}
 					startTime={"\n"+ptoRequest.startTime + " -"}
 					endTime={ptoRequest.endTime}
-					clicked={this.handleClick}
+					clicked={() => this.handleClick(ptoRequest.id, ptoRequest.date)}
 				/>
 			);
 		});

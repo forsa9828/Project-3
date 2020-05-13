@@ -25,8 +25,12 @@ export default {
 		return axios.get("http://192.168.0.10:8080/api/avail");
 	},
 
-	approveReq: function(data) {
-		return axios.put("http://192.168.0.6:8080/api/requestoff/:id", data)
+	approveReq: function(key) {
+		return axios.put(`http://192.168.0.6:8080/api/requestoff/${key}`)
+	},
+
+	denyReq: function(key) {
+		return axios.put(`http://192.168.0.6:8080/api/requestoff/${key}`)
 	},
 
 	createUser: function(data) {

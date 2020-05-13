@@ -15,14 +15,6 @@ class Avail extends Component {
 		};
 	}
 
-	// componentDidMount = () => {
-	// 	API.loggedIn()
-	// 	.then(this.state = {
-	// 		firstName: ,
-	// 		lastName: 
-	// 	});
-	// };
-
 	onValueChange = value => {
 		this.setState(value)
 	};
@@ -42,6 +34,13 @@ class Avail extends Component {
 			? Alert.alert("Please enter a valid end time.")
 			: API.postAvail({ firstName, lastName, date, startTime, endTime })
 					.then(Alert.alert("Request Success!"))
+					.then(this.setState({
+						firstName: null,
+						lastName: null,
+						date: null,
+						startTime: null,
+						endTime: null
+					}))
 					.catch(function(err) {
 						console.log(err);
 						console.log("Promise Rejected");
