@@ -42,14 +42,13 @@ class SignUp extends Component {
         } = this.state;
         console.log(password)
 
-        //check if  
         const inputRegEx = /^[A-Za-z-\s ]{1,20}$/;
 
-        const checkEmail=/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/
+        const checkEmail=/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/;
 
         // 8 to 10 characters which contain at least one lowercase letter, one uppercase letter, one numeric digit, and one special character
-         const passwordRegEx= /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,10}$/;
-    
+        const passwordRegEx=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,10}$/;
+        
 
         if(!inputRegEx.test(firstname)){
             this.setState({
@@ -74,9 +73,9 @@ class SignUp extends Component {
         //         pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character"
 
         //     })
-        }else if(employmentType != "Manager" || employmentType!="Employee"){
+        }else if(employmentType == ""){
+            console.log(employmentType)
             this.setState({
-                emailMsg: "",
                 pswdMsg:"",
                 employMsg: "Please select one"
             })
@@ -90,7 +89,7 @@ class SignUp extends Component {
                 phoneMsg: "",
                 emerConMsg: "Enter Your Emergency Contact"
             })
-         }else if(!emergencyContactPhone.length != 10){
+         }else if(emergencyContactPhone.length != 10){
             this.setState({
                 emerConMsg:"",
                 emerPhoneMsg: "Enter a phone number"
@@ -98,9 +97,9 @@ class SignUp extends Component {
         }else{
             console.log("good to go")
             this.setState({
+                emailMsg: "",
                 nameMsg: "",
                 lastNameMsg: "",
-                emailMsg: "",
                 pswdMsg: "",
                 employMsg: "",
                 emerConMsg: "",

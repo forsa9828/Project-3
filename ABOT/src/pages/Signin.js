@@ -18,20 +18,6 @@ class SignIn extends Component {
         })
     }
 
-    checkEmail =() => {
-        const {email} = this.state;
-        console.log(email)
-
-         const checkEmail=/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/
-
-        if(checkEmail.test(email)){
-            this.setState({emailMsg: ""})
-            
-        }else{
-           this.setState({emailMsg: "Enter valid email"})
-        }
-    }
-
 
     signInSubmit = (event) => {
         event.preventDefault();  
@@ -41,15 +27,23 @@ class SignIn extends Component {
         } = this.state;
         // console.log(this.state)
 
-        //input valiation here to check if input field is empty 
-        if(email =="" || password == ""){
+        //validation here
+        const checkEmail=/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/
+
+        if(!checkEmail.test(email)){
+            this.setState(
+                {
+                    emailMsg: "Enter valid email",
+                })
+        } else if(password == ""){
             this.setState(
             {
-                emailMsg: "Enter valid email",
+                emailMsg: "",
                 pswdMsg: "Enter your password"
             })
             console.log("nothing here")
         }else{
+            console.log("good to go!")
             this.setState({pswdMsg: ""});
             // API.renderSignin({
         //     email,

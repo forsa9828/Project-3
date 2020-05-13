@@ -1,7 +1,7 @@
 //form for sign up and login 
 import React, { Component } from "react";
 import { Container, Header, Content, Form, Item, Input, Picker, Left, Right, Body, Title, Icon} from "native-base";
-import {Button, StyleSheet, Text} from "react-native";
+import {Button, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 
 export function FormLogin(props) {
@@ -15,9 +15,10 @@ export function FormLogin(props) {
             </Body>
           <Right />
        </Header>
+       <Content style={styles.container}>
         <Form>
-          <Item>
-            <Input
+          <Item rounded style={styles.inputStyle}>
+            <Input 
               name="email"
               value={props.email}
               placeholder="Email" 
@@ -26,13 +27,13 @@ export function FormLogin(props) {
                   email: value
                 }
               )}
-              onEndEditing={(value) => props.checkEmail(value)}
-              />
-          </Item>
-          <Text style={styles.errorMsg}>
+              /> 
+              <Text style={styles.errorMsg}>
               {props.errEmail}
             </Text>
-          <Item>
+          </Item>
+         
+          <Item rounded style={styles.inputStyle}>
             <Input
               name="password"
               value={props.password}
@@ -45,15 +46,19 @@ export function FormLogin(props) {
                 }
               )}
               />
-          </Item>
-          <Text style={styles.errorMsg}>
+              <Text style={styles.errorMsg}>
               {props.errPswd}
             </Text>
+          </Item>
+         
+          <TouchableOpacity style={styles.btnStyle}>
           <Button 
               title="Submit"
               onPress={props.clickedIn}
           />
+          </TouchableOpacity>
     </Form>
+    </Content>
   </Container>
     );
   
@@ -73,9 +78,9 @@ export function  FormSignUp (props) {
         <Right />
       </Header>
 
-          <Content>
+          <Content style={styles.container}>
             <Form>
-              <Item>
+              <Item rounded style={styles.inputStyle}>
                 <Input 
                   placeholder="First Name" 
                   name="first name"
@@ -86,11 +91,14 @@ export function  FormSignUp (props) {
                     }
                   )}
                   />
+                  <Text style={styles.errorMsg}>
+                    {props.nameMsg}
+                  </Text>
               </Item>
-              <Text style={styles.errorMsg}>
+              {/* <Text style={styles.errorMsg}>
               {props.nameMsg}
-            </Text>
-              <Item>
+            </Text> */}
+              <Item rounded style={styles.inputStyle}>
                 <Input 
                   placeholder="Last Name" 
                   name="last name"
@@ -101,12 +109,12 @@ export function  FormSignUp (props) {
                       }
                     )}
                 />
+                <Text style={styles.errorMsg}>
+                  {props.lastNameMsg}
+                </Text>
               </Item>
-              <Text style={styles.errorMsg}>
-              {props.lastNameMsg}
-            </Text>
-              <Item>
-                <Input
+              <Item rounded style={styles.inputStyle}>
+                <Input 
                   placeholder="Email"
                   name="email"
                   value={props.email}
@@ -116,29 +124,29 @@ export function  FormSignUp (props) {
                       }
                     )}
                  />
-                  
+                  <Text style={styles.errorMsg}>
+                    {props.emailMsg}
+                 </Text>
               </Item>
-              <Text style={styles.errorMsg}>
-              {props.emailMsg}
-            </Text>
-              <Item>
+              
+              <Item rounded style={styles.inputStyle}>
                 <Input 
-                  placeholder="Password" 
+                  placeholder="Password"
                   name="password"
                   secureTextEntry= {true}
                   value={props.password}
-                  placeholder="Password"
                   onChangeText={(value) => props.onValueChange(
                     {
                       password: value
                     }
                   )}
                     />
+                     <Text style={styles.errorMsg}>
+                      {props.pswdMsg}
+                    </Text>
               </Item>
-              <Text style={styles.errorMsg}>
-                {props.pswdMsg}
-              </Text>
-              <Item>
+             
+              <Item rounded style={styles.inputStyle}>
                 <Picker 
                   mode="dropdown"
                   iosIcon={<Icon name="arrow-down" />}
@@ -157,7 +165,7 @@ export function  FormSignUp (props) {
                 {props.employMsg}
               </Text>
               </Item>
-              <Item>
+              <Item rounded style={styles.inputStyle}>
                 <Input 
                   placeholder="Your Phone Number" 
                   name="phone number"
@@ -170,12 +178,13 @@ export function  FormSignUp (props) {
                     }
                   )}
                   />
+                   <Text style={styles.errorMsg}>
+                    {props.phoneMsg}
+                  </Text>
               </Item>
-              <Text style={styles.errorMsg}>
-                {props.phoneMsg}
-               </Text>
-              <Item>
-                <Input
+             
+              <Item rounded style={styles.inputStyle}>
+                <Input 
                   placeholder="Emergency Contact"
                   name="emergencyContact"
                   value={props.emergencyContact}
@@ -185,11 +194,12 @@ export function  FormSignUp (props) {
                     }
                   )}
                  />
+                  <Text style={styles.errorMsg}>
+                    {props.emerConMsg}
+                  </Text>
               </Item>
-              <Text style={styles.errorMsg}>
-                {props.emerConMsg}
-               </Text>
-              <Item>
+             
+              <Item rounded style={styles.inputStyle}>
                 <Input
                   placeholder="Emergency Contact Phone Number"
                   name="emergencyContactPhone"
@@ -202,14 +212,17 @@ export function  FormSignUp (props) {
                     }
                   )}
                  />
+                 <Text style={styles.errorMsg}>
+                  {props.emerPhoneMsg}
+                </Text>
               </Item>
-              <Text style={styles.errorMsg}>
-                {props.emerPhoneMsg}
-               </Text>
+
+              <TouchableOpacity style={styles.btnStyle}>
               <Button 
-                title="Submit"
-                onPress={props.clicked}
+                title= "Submit"
+                 onPress={props.clicked}
               />
+              </TouchableOpacity>
             </Form>
           </Content>
     </Container>
@@ -220,6 +233,32 @@ export function  FormSignUp (props) {
 const styles = StyleSheet.create({
   errorMsg:{
     color: "red",
-    textAlign: "center"
+    textAlign: "center",
+    marginRight: 15
+  },
+
+  container:{
+    // flex: 1,
+    backgroundColor: "#d6ad86",
+   
+  },
+
+  inputStyle:{
+    marginTop: 12,
+    marginRight: 5,
+    marginLeft: 5,
+    backgroundColor: "#F0FFFF"
+  },
+
+  btnStyle: {
+    borderRadius: 20,
+    width: 100,
+    marginTop: 5,
+    paddingHorizontal: 13,
+    alignItems: "center",
+    backgroundColor: "#f194ff"
   }
+
+
+
 })
