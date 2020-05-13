@@ -25,7 +25,10 @@ module.exports = (passport, user) => {
                 //if found first name and last then, then allow to create rest 
                 }).then(user => {
                     console.log(user)
-                    if (user) {
+                    if(!user){
+                        console.log("doens't exist")
+                    }
+                   else if (user) {
                         let password=req.body.password
                         console.log(password)
                         let generateHash = password => {
@@ -56,7 +59,7 @@ module.exports = (passport, user) => {
                                 lastname: lastname
                             }
                             }).then(newUser => {
-                                // console.log(newUser)
+                                console.log(newUser)
                                 return done(null);
                             });
 
@@ -102,6 +105,8 @@ module.exports = (passport, user) => {
             });
         }
     ));
+
+    console.log("testing")
 
     // SIGN-IN for existing users
     // passport.use("signin", new LocalStrategy({
