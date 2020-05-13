@@ -257,6 +257,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 13,
     alignItems: "center",
     backgroundColor: "#f194ff"
+  },
+
+  fontStyle: {
+    fontSize: 105,
   }
 
 

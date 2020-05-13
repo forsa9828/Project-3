@@ -61,11 +61,11 @@ class SignUp extends Component {
                 lastNameMsg: "Enter last name"
                 
             })
-        }else if(!checkEmail.test(email)){
-            this.setState({
-                lastNameMsg:"",
-                emailMsg: "Enter valid email"
-            })
+        // }else if(!checkEmail.test(email)){
+        //     this.setState({
+        //         lastNameMsg:"",
+        //         emailMsg: "Enter valid email"
+        //     })
         //  }else if(!passwordRegEx.test(password)){
         //      console.log("no good")
         //     this.setState({
@@ -73,27 +73,27 @@ class SignUp extends Component {
         //         pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character"
 
         //     })
-        }else if(employmentType == ""){
-            console.log(employmentType)
-            this.setState({
-                pswdMsg:"",
-                employMsg: "Please select one"
-            })
-        }else if(phone.length != 10){
-            this.setState({
-                employMsg: "",
-                phoneMsg: "Enter a phone number"
-            })
-        }else if(!inputRegEx.test(emergencyContact)){
-            this.setState({
-                phoneMsg: "",
-                emerConMsg: "Enter Your Emergency Contact"
-            })
-         }else if(emergencyContactPhone.length != 10){
-            this.setState({
-                emerConMsg:"",
-                emerPhoneMsg: "Enter a phone number"
-            })
+        // }else if(employmentType == ""){
+        //     console.log(employmentType)
+        //     this.setState({
+        //         pswdMsg:"",
+        //         employMsg: "Please select one"
+        //     })
+        // }else if(phone.length != 10){
+        //     this.setState({
+        //         employMsg: "",
+        //         phoneMsg: "Enter a phone number"
+        //     })
+        // }else if(!inputRegEx.test(emergencyContact)){
+        //     this.setState({
+        //         phoneMsg: "",
+        //         emerConMsg: "Enter Your Emergency Contact"
+        //     })
+        //  }else if(emergencyContactPhone.length != 10){
+        //     this.setState({
+        //         emerConMsg:"",
+        //         emerPhoneMsg: "Enter a phone number"
+        //     })
         }else{
             console.log("good to go")
             this.setState({
@@ -106,22 +106,20 @@ class SignUp extends Component {
                 phoneMsg: "",
                 emerPhoneMsg: ""
             });
+          
+              API.authUser({
+                firstname,
+                lastname,
+                email,
+                password,
+                employmentType,
+                phone,
+                emergencyContact,
+                emergencyContactPhone
+            })
+            .then(res=> console.log(res.data))
+            .catch(error => console.log(error))
         }
-
-        //     API.authUser({
-        //     firstname,
-        //     lastname,
-        //     email,
-        //    password,
-        //     employmentType,
-        //     phone,
-        //     emergencyContact,
-        //    emergencyContactPhone
-        // })
-        // .then(res=> console.log(res.data))
-        // .catch(error => console.log(error))
-    
-        // }
 }
 
 
