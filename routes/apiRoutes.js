@@ -34,7 +34,7 @@ module.exports = app => {
 			.findAll({
 				where: {
 					pending: true
-				  },
+				},
 				order: [sequelize.col("date")]
 			})
 			.then(dbpto => {
@@ -105,7 +105,7 @@ module.exports = app => {
 			.findAll({
 				where: {
 					status: "active"
-				  },
+				},
 				order: [sequelize.col("lastName")]
 			})
 			.then(dbuser => {
@@ -116,8 +116,7 @@ module.exports = app => {
 	// delete user - this will just update the user info in the login db to status: inactive rather than deleting the entire row of data
 	app.put("/api/user/:id", (req, res) => {
 		db.user
-		console.log(req.params.id)
-			.update({ status: "inactive" }, { where: { id: req.params.id } })
+			.update({ status: 'inactive' }, { where: { id: req.params.id } })
 			.then(dbuser => {
 				res.json(dbuser);
 			});
@@ -126,7 +125,10 @@ module.exports = app => {
 	// Update a PTO request from false to true
 	app.put("/api/requestoff/:id", (req, res) => {
 		db.pto
-			.update({ approved: true, pending: false }, { where: { id: req.params.id }, date: {date: req.params.date} })
+			.update(
+				{ approved: true, pending: false },
+				{ where: { id: req.params.id }, date: { date: req.params.date } }
+			)
 			.then(dbpto => {
 				res.json(dbpto);
 			});

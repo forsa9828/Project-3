@@ -60,7 +60,6 @@ class ManageEmployees extends Component {
 								></TextInput>
 
 								<TouchableHighlight
-									style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
 									onPress={() => {
 										const { firstName, lastName } = this.state;
 										API.createUser({ firstName, lastName })
@@ -71,15 +70,14 @@ class ManageEmployees extends Component {
 											});
 									}}
 								>
-									<Text style={styles.textStyle}>Submit new employee</Text>
+									<Text style={styles.openButton}>Submit new employee</Text>
 								</TouchableHighlight>
 								<TouchableHighlight
-									style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
 									onPress={() => {
 										this.setModalVisible(!modalVisible);
 									}}
 								>
-									<Text style={styles.textStyle}>Cancel</Text>
+									<Text style={styles.openButton}>Cancel</Text>
 								</TouchableHighlight>
 							</View>
 						</View>
@@ -117,11 +115,12 @@ const styles = StyleSheet.create({
 			height: 2
 		},
 		shadowOpacity: 0.25,
-		elevation: 5
+		elevation: 5,
 	},
 	openButton: {
 		backgroundColor: "#d6ad86",
 		padding: 10,
+		margin: 8,
 		elevation: 2
 	},
 	textStyle: {
@@ -131,7 +130,9 @@ const styles = StyleSheet.create({
 	},
 	modalText: {
 		marginBottom: 15,
-		textAlign: "center"
+		textAlign: "center",
+		
+		
 	}
 });
 
