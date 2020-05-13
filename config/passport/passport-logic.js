@@ -53,40 +53,6 @@ module.exports = (passport, user) => {
                         
                 }else{
                     console.log("does not exist")
-                
-//old way
-            // UserDB.user.findOne({
-            //     where: {
-            //         email: email
-            //     }
-            // }).then(user => {
-            //     if (user) {
-            //         return done(null, false, {
-            //             message: "That email is already taken."
-            //         });
-            //if unable to find inforamtion by first name and last name, CANNOT create acct
-                // } else {
-                    // console.log("not in system")
-                    // let userPassword = generateHash(password);
-                    // let data = {
-                    //     email: req.body.email,
-                    //     password: userPassword,
-                    //     firstname: req.body.firstname,
-                    //     lastname: req.body.lastname,
-                    //     employmentType: req.body.employmentType,
-                    //     phone: req.body.phone, 
-                    //     emergencyContact: req.body.emergencyContact,
-                    //     emergencyContactPhone: req.body.emergencyContactPhone
-                    // };
-
-                    //  UserDB.user.create(data).then(newUser => {
-                    //     if (!newUser) {
-                    //         return done(null, false);
-                    //     }
-                    //     if (newUser) {
-                    //         return done(null, newUser);
-                    //     }
-                    // });
 
                 }
             });
@@ -113,26 +79,20 @@ module.exports = (passport, user) => {
 
                 if (!user) {
                     console.log("not user")
-                    return done(null, false, {
-                        message: "Email does not exist."
-                    });
+                    return done(null, false);
                 }
 
                 if (!validPassword) {
                     console.log("incorrect password")
-                    return done(null, false, {
-                        message: "Incorrect Password."
-                    });
+                    return done(null, false);
                 }
 
                 let userInfo = user.get();
-                console.log("soo"+ userInfo);
+                console.log(userInfo);
                 return done(null, userInfo);
 
             }).catch(err => {
-                return done(null, false, {
-                    message: "Sorry! Something weng wrong with your sign in."
-                });
+                return done(null, false);
 
             });
 
@@ -143,7 +103,6 @@ module.exports = (passport, user) => {
     passport.serializeUser((user, done) => {
         console.log("got here")
         done(null, user.id);
-        console.log(user.id)
     });
 
     passport.deserializeUser((id, done) => {

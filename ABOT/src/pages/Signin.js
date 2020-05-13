@@ -13,9 +13,7 @@ class SignIn extends Component {
     }
 
     onValueChange= (value) => {
-        this.setState(value, function(){
-            console.log(this.state)
-        })
+        this.setState(value)
     }
 
 
@@ -45,11 +43,12 @@ class SignIn extends Component {
         }else{
             console.log("good to go!")
             this.setState({pswdMsg: ""});
+
             API.logIn({
             email,
             password
         })
-        .then(res => console.log("successful!" + res.data))
+        .then(res => console.log(res))
         .catch(error=> console.log(error))
         }
     }
