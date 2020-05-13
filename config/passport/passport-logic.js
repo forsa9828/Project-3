@@ -11,11 +11,6 @@ module.exports = (passport, user) => {
             passReqToCallback: true //The purpose of a verify callback is to find the user that possesses a set of credentials.
         },
         (req, firstname, lastname, done) => {
-            // console.log(usernameField, passwordField);
-            // let generateHash = password => {
-            //     return bCrypt.hashSync(password, 8);
-            // };
-            // console.log(password + "testing")
 //need to build it so it looks for first name and last name that is entered by Manager
             UserDB.user.findAll({
                     where: {
@@ -24,11 +19,7 @@ module.exports = (passport, user) => {
                     }
                 //if found first name and last then, then allow to create rest 
                 }).then(user => {
-                    console.log(user)
-                    if(!user){
-                        console.log("doens't exist")
-                    }
-                   else if (user) {
+                    if (user) {
                         let password=req.body.password
                         console.log(password)
                         let generateHash = password => {
@@ -40,15 +31,11 @@ module.exports = (passport, user) => {
                         let data = {
                             email: req.body.email,
                             password: userPassword,
-                            // firstname: req.body.firstname,
-                            // lastname: req.body.lastname,
                             employmentType: req.body.employmentType,
                             phone: req.body.phone, 
                             emergencyContact: req.body.emergencyContact,
                             emergencyContactPhone: req.body.emergencyContactPhone
                         }
-
-            
                         //update method instead of create, list which fields to update w/ its values 
                         //If we don't find a user in the database, that doesn't mean there is an application error,
                    // so we use `null` for the error value, and `false` for the user value
@@ -109,45 +96,48 @@ module.exports = (passport, user) => {
     console.log("testing")
 
     // SIGN-IN for existing users
-    // passport.use("signin", new LocalStrategy({
-    //         usernameField: "email",
-    //         passwordField: "password",
-    //         passReqToCallback: true
-    //     },
-    //     (req, email, password, done) => {
+    passport.use("signin", new LocalStrategy({
+            usernameField: "email",
+            passwordField: "password",
+            passReqToCallback: true
+        },
+        (req, email, password, done) => {
 
-    //         UserDB.user.findOne({
-    //             where: {
-    //                 email: email
-    //             }
-    //         }).then((user, err) => {
+            UserDB.user.findOne({
+                where: {
+                    email: email
+                }
+            }).then((user, err) => {
+                console.log(user)
+                let validPassword = bCrypt.compareSync(password, user.password);
 
-    //             if (!user) {
-    //                 return done(null, false, {
-    //                     message: "Email does not exist."
-    //                 });
-    //             }
-    //             let validPassword = bCrypt.compareSync(password, user.password);
+                if (!user) {
+                    console.log("not user")
+                    return done(null, false, {
+                        message: "Email does not exist."
+                    });
+                }
 
-    //             if (!validPassword) {
-    //                 return done(null, false, {
-    //                     message: "Incorrect Password."
-    //                 });
-    //             }
+                if (!validPassword) {
+                    console.log("incorrect password")
+                    return done(null, false, {
+                        message: "Incorrect Password."
+                    });
+                }
 
-    //             let userInfo = user.get();
-    //             console.log("soo"+ userInfo);
-    //             return done(null, userInfo);
+                let userInfo = user.get();
+                console.log("soo"+ userInfo);
+                return done(null, userInfo);
 
-    //         }).catch(err => {
-    //             return done(null, false, {
-    //                 message: "Sorry! Something weng wrong with your sign in."
-    //             });
+            }).catch(err => {
+                return done(null, false, {
+                    message: "Sorry! Something weng wrong with your sign in."
+                });
 
-    //         });
+            });
 
-    //     }
-    // ));
+        }
+    ));
 
 
     passport.serializeUser((user, done) => {

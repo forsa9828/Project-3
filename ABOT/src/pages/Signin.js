@@ -45,12 +45,12 @@ class SignIn extends Component {
         }else{
             console.log("good to go!")
             this.setState({pswdMsg: ""});
-            // API.renderSignin({
-        //     email,
-        //     password
-        // })
-        // .then(res => console.log("successful!" + res.data))
-        // .catch(error=> console.log(error))
+            API.logIn({
+            email,
+            password
+        })
+        .then(res => console.log("successful!" + res.data))
+        .catch(error=> console.log(error))
         }
     }
 

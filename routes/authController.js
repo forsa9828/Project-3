@@ -8,7 +8,8 @@ module.exports = {
 
 
     signin: (req, res) => {
-        res.render("/loggedin");
+        // res.render("/loggedin");// need to  update to res.redirect. causing a "no default engine message"
+        console.log("hit")
         //res.redirect, redirect to the route for React
         
     },
