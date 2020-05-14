@@ -64,10 +64,11 @@ class ManageEmployees extends Component {
 										const { firstName, lastName } = this.state;
 										API.createUser({ firstName, lastName })
 											.then(this.setModalVisible(!modalVisible))
-											.then(Alert.alert("Employee submitted successfully!"))
+											.then(this.setState())
 											.catch(function(err) {
 												console.log(err);
-											});
+											})
+											.finally(Alert.alert("Employee submitted successfully!"))
 									}}
 								>
 									<Text style={styles.openButton}>Submit new employee</Text>

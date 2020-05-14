@@ -58,7 +58,7 @@ export default {
 	},
 
 	authUser: function(data) {
-		return axios.post("http://192.168.0.10:8080/auth/signup", data);
+		return axios.post("http://192.168.0.6:8080/auth/signup", data);
 	},
 
 	renderSignup: function() {

@@ -8,6 +8,9 @@ function ActionList(props) {
 				<Text>
 					{props.firstName} {props.lastName} {props.date}
 					{props.startTime} {props.endTime}
+					{props.phone}
+					{props.emergencyContact}
+					{props.emergencyContactPhone}
 				</Text>
 			</TouchableHighlight>
 		</View>

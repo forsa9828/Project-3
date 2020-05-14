@@ -107,18 +107,18 @@ class SignUp extends Component {
                 emerPhoneMsg: ""
             });
           
-            //   API.authUser({
-            //     firstname,
-            //     lastname,
-            //     email,
-            //     password,
-            //     employmentType,
-            //     phone,
-            //     emergencyContact,
-            //     emergencyContactPhone
-            // })
-            // .then(res=> console.log(res.data))
-            // .catch(error => console.log(error))
+              API.authUser({
+                firstname,
+                lastname,
+                email,
+                password,
+                employmentType,
+                phone,
+                emergencyContact,
+                emergencyContactPhone
+            })
+            .then(res=> console.log(res.data))
+            .catch(error => console.log(error))
         }
 }
 
