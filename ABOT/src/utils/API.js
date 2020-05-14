@@ -2,51 +2,67 @@ import axios from "axios";
 
 export default {
 	getSchedule: function() {
-		return axios.get("/api/schedule");
+		return axios.get("http://192.168.0.6:8080/api/schedule");
 	},
 
 	getRequests: function() {
-		return axios.get("/api/requestoff");
+		return axios.get("http://192.168.0.6:8080/api/requestoff");
 	},
 
-	createSchedule: function() {
-		return axios.post("/api/schedule")
+	createSchedule: function(data) {
+		return axios.post("http://192.168.0.6:8080/api/schedule", data)
 	},
 
-	postRequests: function() {
-		return axios.post("/api/requestoff");
+	postRequests: function(data) {
+		return axios.post("http://192.168.0.6:8080/api/requestoff", data);
 	},
 
-	postAvail: function() {
-		return axios.post("/api/avail");
+	postAvail: function(data) {
+		return axios.post("http://192.168.0.6:8080/api/avail", data);
 	},
 
 	getAvail: function() {
-		return axios.get("/api/avail");
+		return axios.get("http://192.168.0.10:8080/api/avail");
 	},
 
-	approveReq: function() {
-		return axios.put("/api/requestoff/:id")
+	approveReq: function(key) {
+		return axios.put(`http://192.168.0.6:8080/api/requestoff/${key}`)
 	},
 
-	loggedIn: function(data) {
-		return axios.get("http://192.168.1.72:8080/auth/loggedin",data);
+	denyReq: function(key) {
+		return axios.put(`http://192.168.0.6:8080/api/requestoff/${key}`)
+	},
+
+	createUser: function(data) {
+		return axios.post("http://192.168.0.6:8080/api/user", data)
+	},
+
+	getUser: function() {
+		return axios.get("http://192.168.0.6:8080/api/user");
+	},
+
+	deleteUser: function(key) {
+		return axios.put(`http://192.168.0.6:8080/api/user/${key}`)
+	},
+
+	loggedIn: function() {
+		return axios.get("http://192.168.0.10:8080/auth/loggedin");
 	},
 
 	logOut: function() {
-		return axios.get("/auth/logout");
+		return axios.get("http://192.168.0.10:8080/auth/logout");
 	},
 
 	logIn: function(data) {
-		return axios.post("http://192.168.1.72:8080/auth/signin", data);
+		return axios.post("http://192.168.0.10:8080/auth/signin", data);
 	},
 
 	authUser: function(data) {
-		return axios.post("http://192.168.1.72:8080/auth/signup", data);
+		return axios.post("http://192.168.0.10:8080/auth/signup", data);
 	},
 
 	renderSignup: function() {
-		return axios.get("http://192.168.1.72:8080/auth/signup");
+		return axios.get("http://192.168.0.10:8080/auth/signup");
 	},
 
 	renderSignin: function() {

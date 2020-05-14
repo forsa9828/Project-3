@@ -1,26 +1,27 @@
 import React, { Component } from "react";
-import { Container, List, Body, ListItem, Text } from "native-base";
+import { View, Container, List, Body, ListItem, Text } from "native-base";
 
 function Table(props) {
 	return (
-		<Container>
+		<View>
+
 			<ListItem itemDivider>
 				<Text>{props.date}</Text>
 			</ListItem>
 			<ListItem>
 				<Body>
 					<Text>
-						{props.firstname} {props.lastname}
+						{props.firstName} {props.lastName}
 					</Text>
 					<Text note>
 						{"\n"}
-						{props.starttime}
+						{props.startTime}
 						{" - "}
-						{props.endtime}
+						{props.endTime}
 					</Text>
 				</Body>
 			</ListItem>
-		</Container>
+		</View>
 	);
 }
 

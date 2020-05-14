@@ -32,7 +32,7 @@ require("./routes/apiRoutes")(app);
 require("./routes/authRoutes")(app);
 require("./config/passport/passport-logic")(passport, db.user);
 
-var syncOptions = { force: false};
+var syncOptions = { force: false };
 
 if (process.env.NODE_ENV === "test") {
 	syncOptions.force = true;
