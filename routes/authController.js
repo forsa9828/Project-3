@@ -1,7 +1,8 @@
 module.exports = {
 
     signup: (req, res) => {
-        res.render("/signup");
+        //res.render("/signup");
+        console.log("signup")
         // res.status(200)
         // console.log("success!")
     },

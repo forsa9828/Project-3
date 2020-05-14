@@ -34,7 +34,7 @@ export default {
 	},
 
 	createUser: function(data) {
-		return axios.post("http://192.168.0.6:8080/api/user", data)
+		return axios.post("http://192.168.0.10:8080/api/user", data)
 	},
 
 	getUser: function() {
@@ -54,11 +54,11 @@ export default {
 	},
 
 	logIn: function(data) {
-		return axios.post("http://192.168.0.10:8080/auth/signin", data);
+		return axios.post("http://192.168.1.72:8080/auth/signin", data);
 	},
 
 	authUser: function(data) {
-		return axios.post("http://192.168.0.10:8080/auth/signup", data);
+		return axios.post("http://192.168.1.72:8080/auth/signup", data);
 	},
 
 	renderSignup: function() {

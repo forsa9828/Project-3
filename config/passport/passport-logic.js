@@ -4,22 +4,25 @@ const LocalStrategy = require("passport-local").Strategy;
 
 
 module.exports = (passport, user) => {
-    //SIGN-UP 
+    console.log("hello")
+    //SIGN-UP  
     passport.use("local-signup", new LocalStrategy({
-            usernameField: "firstname",
-            passwordField: "lastname",
+            usernameField: "firstName",
+            passwordField: "lastName",
             passReqToCallback: true //The purpose of a verify callback is to find the user that possesses a set of credentials.
         },
-        (req, firstname, lastname, done) => {
+        (req, firstName, lastName, done) => {
+            console.log("hello")
+            console.log(firstName, lastName)
 //need to build it so it looks for first name and last name that is entered by Manager
             UserDB.user.findAll({
                     where: {
-                        firstname: firstname,
-                        lastname: lastname
+                        firstName: firstName,
+                        lastName: lastName
                     }
                 //if found first name and last then, then allow to create rest 
                 }).then(user => {
-                    
+                    console.log(user)
                     if (user) {
                         console.log(user)
                         let password=req.body.password
@@ -44,17 +47,17 @@ module.exports = (passport, user) => {
                         
                         UserDB.user.update(data, {
                                 where: {
-                                    firstname: firstname,
-                                    lastname: lastname
+                                    firstName: firstName,
+                                    lastName: lastName
                                 }
                                 }).then(newUser => {
-                                    console.log(firstname, lastname)
+                                    
                                     console.log(data)
                                     console.log(newUser)
-                                    return done(null);
+                                    // return done(null);
                                 });
 
-                        
+                    
                      }else{
                         console.log("does not exist")
 

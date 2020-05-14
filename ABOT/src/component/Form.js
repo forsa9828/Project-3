@@ -84,10 +84,10 @@ export function  FormSignUp (props) {
                 <Input 
                   placeholder="First Name" 
                   name="first name"
-                  value={props.firstname}
+                  value={props.firstName}
                   onChangeText={(value) => props.onValueChange(
                     {
-                      firstname: value.trim()
+                      firstName: value.trim()
                     }
                   )}
                   />
@@ -99,10 +99,10 @@ export function  FormSignUp (props) {
                 <Input 
                   placeholder="Last Name" 
                   name="last name"
-                  value={props.lastname}
+                  value={props.lastName}
                   onChangeText={(value) => props.onValueChange(
                       {
-                        lastname: value.trim()
+                        lastName: value.trim()
                       }
                     )}
                 />

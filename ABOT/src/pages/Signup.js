@@ -5,8 +5,8 @@ import {Alert, View} from "react-native";
 
 class SignUp extends Component {
     state= {
-        firstname: "",
-        lastname: "",
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
         employmentType: "",
@@ -31,8 +31,8 @@ class SignUp extends Component {
     signUpSubmit=(event) => {
         event.preventDefault();
         const {
-            firstname,
-            lastname,
+            firstName,
+            lastName,
             email,
             password,
             employmentType,
@@ -40,7 +40,7 @@ class SignUp extends Component {
             emergencyContact,
             emergencyContactPhone
         } = this.state;
-        console.log(password)
+        console.log(firstName, lastName)
 
         const inputRegEx = /^[A-Za-z-\s ]{1,20}$/;
 
@@ -50,12 +50,14 @@ class SignUp extends Component {
         const passwordRegEx=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,10}$/;
         
 
-        if(!inputRegEx.test(firstname)){
+        if(!inputRegEx.test(firstName)){
+            console.log(firstName)
             this.setState({
                 nameMsg: "Enter first name"
             })
         
-       }else if(!inputRegEx.test(lastname)){
+       }else if(!inputRegEx.test(lastName)){
+           console.log(lastName)
             this.setState({
                 nameMsg: "",
                 lastNameMsg: "Enter last name"
@@ -95,7 +97,7 @@ class SignUp extends Component {
         //         emerPhoneMsg: "Enter a valid phone number"
         //     })
         }else{
-           Alert.alert("Successfully Signed Up!")
+           
             this.setState({
                 emailMsg: "",
                 nameMsg: "",
@@ -108,8 +110,8 @@ class SignUp extends Component {
             });
           
               API.authUser({
-                firstname,
-                lastname,
+                firstName,
+                lastName,
                 email,
                 password,
                 employmentType,
@@ -117,10 +119,34 @@ class SignUp extends Component {
                 emergencyContact,
                 emergencyContactPhone
             })
+            //handle the response 
+            .then(response => console.log(response.json()))
+            // .then(response =>{
+            //         if(response == true){
+            //             console.log("true")
+            //         }else{
+            //             console.log("wrong")
+            //         }
+            //     }).done()
+
+                //Alert.alert("Info added!"))
+            // .then(
+            //     this.setState({
+            //         firstname: "",
+            //         lastname: "",
+            //         email: "",
+            //         password: "",
+            //         employmentType: "",
+            //         phone: "",
+            //         emergencyContact: "",
+            //         emergencyContactPhone: "",
+            //     })
+            // )
+            //.catch(error => console.log(error))
             //add here logic if user does not exist 
-            //add .then setState back to null
-            .catch(error => console.log(error))
         }
+            
+           // )}
 }
 
 
@@ -128,8 +154,8 @@ class SignUp extends Component {
       
         return(
             <FormSignUp 
-                firstname={this.state.firstname}
-                lastname={this.state.lastname}
+                firstName={this.state.firstName}
+                lastName={this.state.lastName}
                 email={this.state.email}
                 password={this.state.password}
                 employmentType={this.state.employmentType}

@@ -41,17 +41,17 @@ class SignIn extends Component {
             })
             console.log("nothing here")
         }else{
-        Alert.alert("Successful Login!")
+        Alert.alert("info obtained!")
         //     console.log("good to go!")
-        //     Alert.alert("Successful Login!")
+        
             this.setState({pswdMsg: ""});
 
-        //     API.logIn({
-        //     email,
-        //     password
-        // })
-        // .then(res => console.log(res))
-        // .catch(error=> console.log(error))
+            API.logIn({
+            email,
+            password
+        })
+        .then(res => console.log(res))
+        .catch(error=> console.log(error))
          }
     }
 
