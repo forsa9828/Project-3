@@ -19,7 +19,9 @@ module.exports = (passport, user) => {
                     }
                 //if found first name and last then, then allow to create rest 
                 }).then(user => {
+                    
                     if (user) {
+                        console.log(user)
                         let password=req.body.password
                         console.log(password)
                         let generateHash = password => {
@@ -40,19 +42,21 @@ module.exports = (passport, user) => {
                         //If we don't find a user in the database, that doesn't mean there is an application error,
                    // so we use `null` for the error value, and `false` for the user value
                         
-                    UserDB.user.update(data, {
-                            where: {
-                                firstname: firstname,
-                                lastname: lastname
-                            }
-                            }).then(newUser => {
-                                console.log(newUser)
-                                return done(null);
-                            });
+                        UserDB.user.update(data, {
+                                where: {
+                                    firstname: firstname,
+                                    lastname: lastname
+                                }
+                                }).then(newUser => {
+                                    console.log(firstname, lastname)
+                                    console.log(data)
+                                    console.log(newUser)
+                                    return done(null);
+                                });
 
                         
-                }else{
-                    console.log("does not exist")
+                     }else{
+                        console.log("does not exist")
 
                 }
             });

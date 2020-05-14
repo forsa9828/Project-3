@@ -24,7 +24,7 @@ export function FormLogin(props) {
               placeholder="Email" 
               onChangeText={(value) => props.onValueChange(
                 {
-                  email: value
+                  email: value.trim()
                 }
               )}
               /> 
@@ -87,7 +87,7 @@ export function  FormSignUp (props) {
                   value={props.firstname}
                   onChangeText={(value) => props.onValueChange(
                     {
-                      firstname: value
+                      firstname: value.trim()
                     }
                   )}
                   />
@@ -105,7 +105,7 @@ export function  FormSignUp (props) {
                   value={props.lastname}
                   onChangeText={(value) => props.onValueChange(
                       {
-                        lastname: value
+                        lastname: value.trim()
                       }
                     )}
                 />
@@ -120,7 +120,7 @@ export function  FormSignUp (props) {
                   value={props.email}
                   onChangeText={(value) => props.onValueChange(
                       {
-                        email: value
+                        email: value.trim()
                       }
                     )}
                  />
@@ -176,7 +176,7 @@ export function  FormSignUp (props) {
                   maxLength={10}
                   onChangeText={(value) => props.onValueChange(
                     {
-                      phone: value
+                      phone: value.trim()
                     }
                   )}
                   />
@@ -192,7 +192,7 @@ export function  FormSignUp (props) {
                   value={props.emergencyContact}
                   onChangeText={(value)=> props.onValueChange(
                     {
-                      emergencyContact: value
+                      emergencyContact: value.trim()
                     }
                   )}
                  />
@@ -210,7 +210,7 @@ export function  FormSignUp (props) {
                   value={props.emergencyContactPhone}
                   onChangeText={(value)=> props.onValueChange(
                     {
-                      emergencyContactPhone: value
+                      emergencyContactPhone: value.trim()
                     }
                   )}
                  />
@@ -223,7 +223,6 @@ export function  FormSignUp (props) {
               <Button 
                 title= "Submit"
                  onPress={props.clicked}
-        
               />
               </TouchableOpacity>
               
