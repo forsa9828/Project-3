@@ -1,21 +1,44 @@
 import React from "react";
-// import { StyleSheet, Text, View } from 'react-native';
-// import {FormSignUp, FormLogin} from "./component/Form";
-import SignIn from "./src/pages/Signin";
-import SignUp from "./src/pages/Signup";
+import { StyleSheet, ScrollView, View } from "react-native";
+import { Root } from "native-base";
+import * as Font from 'expo-font';
+// import Table from "./src/component/Table";
+// import RequestOff from "./src/pages/RequestOff";
+// import SchedulePage from "./src/pages/SchedulePage";
+// import FormAvailPto from "./src/component/FormAvailPto";
+// import ActionList from "./src/component/ActionList";
+import ReviewPto from "./src/pages/ReviewPto";
+import SchedulePage from "./src/pages/SchedulePage";
+import RequestOff from "./src/pages/RequestOff";
+import Avail from "./src/pages/Avail";
+import ManageEmployees from "./src/pages/ManageEmployees";
+import EmployeeList from "./src/component/EmployeeList";
+
+
 
 export default function App() {
-  return (
-    // <View style={styles.container}>
-    //   <Text>Open up App.js to start working on your app!</Text>
-    // </View>
-  
-    //  <FormLogin />
-    //  <FormSignUp />
-    // <SignIn /> 
-    <SignUp />
-  
-    // signin will be the landing page 
-  );
+	return (
+<Root>
+
+		<View style={styles.container}>
+			<ScrollView style={styles.scroll}>
+
+			<RequestOff/>
+			</ScrollView>
+		</View>
+</Root>
+
+	);
 }
 
+const styles = StyleSheet.create({
+	container: {
+		flex: 10,
+		backgroundColor: "#fff",
+		alignItems: "stretch",
+		justifyContent: "space-evenly"
+	},
+	scroll: {
+		marginHorizontal: 5
+	}
+});
