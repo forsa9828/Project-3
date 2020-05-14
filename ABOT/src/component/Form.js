@@ -95,9 +95,6 @@ export function  FormSignUp (props) {
                     {props.nameMsg}
                   </Text>
               </Item>
-              {/* <Text style={styles.errorMsg}>
-              {props.nameMsg}
-            </Text> */}
               <Item style={styles.inputStyle}>
                 <Input 
                   placeholder="Last Name" 
