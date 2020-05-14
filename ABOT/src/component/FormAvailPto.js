@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Button, View, Text, StyleSheet } from "react-native";
-import { Form, Item, Input, Label, DatePicker } from "native-base";
+import { View, Text, StyleSheet, Button } from "react-native";
+import { Form, Item, Input, Label } from "native-base";
 
 function FormAvailPto(props) {
 	return (
@@ -23,12 +23,10 @@ function FormAvailPto(props) {
 						onChangeText={value => props.onValueChange({ lastName: value })}
 					/>
 				</Item>
-				<Item>
+				<Item stackedLabel>
 					<Label>Date</Label>
-						<Input
-					   value={props.date}
-						onChangeText={value => props.onValueChange({ date: value })}
-						/>
+					<Button style={styles.dateButton} title="Date"onPress={props.dateOptions}></Button>
+					<Text>{props.date}</Text>
 					</Item>
 				<Item stackedLabel>
 					<Label>Start Time</Label>
@@ -46,7 +44,7 @@ function FormAvailPto(props) {
 						onChangeText={value => props.onValueChange({ endTime: value })}
 					/>
 				</Item>
-				<Button title='Submit' onPress={props.clicked} />
+				<Button style={styles.openButton} title='Submit' onPress={props.clicked} />
 			</Form>
 		</View>
 	);
@@ -57,6 +55,18 @@ const styles = StyleSheet.create({
 		fontSize: 20,
 		fontWeight: "bold",
 		margin: 10
+	},
+	dateButton: {
+		flex: 1,
+		backgroundColor: "#d6ad86",
+		color: "white",
+		
+	},openButton: {
+		backgroundColor: "#d6ad86",
+		padding: 10,
+		margin: 8,
+		elevation: 2,
+		color: "white",
 	}
 });
 export default FormAvailPto;

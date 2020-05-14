@@ -83,14 +83,3 @@ export default class ReviewPto extends Component {
 		});
 	}
 }
-
-//managers only -- handled by the nav bar - do not need to build this logic in
-
-// render from db a list of requests from that table
-// swipe for approve and swipe for deny
-// need to implement in the backend the function to update from denied default to approve
-// in native base the current swipe deletes from the list would then leave the default value of false and would need to update the pending status to false
-// some logic for showing: findAll pending: true
-//pending queue of time off requests only
-//avail of others
-//ascending orders of updated at (the newest change request)
