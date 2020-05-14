@@ -41,20 +41,22 @@ class SignIn extends Component {
             })
             console.log("nothing here")
         }else{
-            console.log("good to go!")
+        Alert.alert("Successful Login!")
+        //     console.log("good to go!")
+        //     Alert.alert("Successful Login!")
             this.setState({pswdMsg: ""});
 
-            API.logIn({
-            email,
-            password
-        })
-        .then(res => console.log(res))
-        .catch(error=> console.log(error))
-        }
+        //     API.logIn({
+        //     email,
+        //     password
+        // })
+        // .then(res => console.log(res))
+        // .catch(error=> console.log(error))
+         }
     }
 
     render() {
-
+      
         return(
             <FormLogin
                 email={this.state.email}

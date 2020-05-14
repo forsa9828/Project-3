@@ -80,7 +80,7 @@ export function  FormSignUp (props) {
 
           <Content style={styles.container}>
             <Form>
-              <Item rounded style={styles.inputStyle}>
+              <Item  style={styles.inputStyle}>
                 <Input 
                   placeholder="First Name" 
                   name="first name"
@@ -98,7 +98,7 @@ export function  FormSignUp (props) {
               {/* <Text style={styles.errorMsg}>
               {props.nameMsg}
             </Text> */}
-              <Item rounded style={styles.inputStyle}>
+              <Item style={styles.inputStyle}>
                 <Input 
                   placeholder="Last Name" 
                   name="last name"
@@ -113,7 +113,7 @@ export function  FormSignUp (props) {
                   {props.lastNameMsg}
                 </Text>
               </Item>
-              <Item rounded style={styles.inputStyle}>
+              <Item style={styles.inputStyle}>
                 <Input 
                   placeholder="Email"
                   name="email"
@@ -129,7 +129,7 @@ export function  FormSignUp (props) {
                  </Text>
               </Item>
               
-              <Item rounded style={styles.inputStyle}>
+              <Item style={styles.inputStyle}>
                 <Input 
                   placeholder="Password"
                   name="password"
@@ -141,12 +141,14 @@ export function  FormSignUp (props) {
                     }
                   )}
                     />
-                     <Text style={styles.errorMsg}>
+                     {/* <Text style={styles.errorMsg}>
+                      {props.pswdMsg}
+                    </Text> */}
+              </Item>
+                   <Text style={styles.errorMsg}>
                       {props.pswdMsg}
                     </Text>
-              </Item>
-             
-              <Item rounded style={styles.inputStyle}>
+              <Item  style={styles.inputStyle}>
                 <Picker 
                   mode="dropdown"
                   iosIcon={<Icon name="arrow-down" />}
@@ -165,7 +167,7 @@ export function  FormSignUp (props) {
                 {props.employMsg}
               </Text>
               </Item>
-              <Item rounded style={styles.inputStyle}>
+              <Item  style={styles.inputStyle}>
                 <Input 
                   placeholder="Your Phone Number" 
                   name="phone number"
@@ -183,7 +185,7 @@ export function  FormSignUp (props) {
                   </Text>
               </Item>
              
-              <Item rounded style={styles.inputStyle}>
+              <Item style={styles.inputStyle}>
                 <Input 
                   placeholder="Emergency Contact"
                   name="emergencyContact"
@@ -199,7 +201,7 @@ export function  FormSignUp (props) {
                   </Text>
               </Item>
              
-              <Item rounded style={styles.inputStyle}>
+              <Item style={styles.inputStyle}>
                 <Input
                   placeholder="Emergency Contact Phone Number"
                   name="emergencyContactPhone"
@@ -221,8 +223,10 @@ export function  FormSignUp (props) {
               <Button 
                 title= "Submit"
                  onPress={props.clicked}
+        
               />
               </TouchableOpacity>
+              
             </Form>
           </Content>
     </Container>
@@ -240,6 +244,7 @@ const styles = StyleSheet.create({
   container:{
     // flex: 1,
     backgroundColor: "#d6ad86",
+  
    
   },
 
@@ -247,21 +252,28 @@ const styles = StyleSheet.create({
     marginTop: 12,
     marginRight: 5,
     marginLeft: 5,
-    backgroundColor: "#F0FFFF"
+    backgroundColor: "#F0FFFF",
+    
+   
+  },
+
+ 
+
+  loginStyle: {
+    flex: 1, 
+    alignItems: 'center',
+    justifyContent: 'center', 
   },
 
   btnStyle: {
-    borderRadius: 20,
+    // borderRadius: 20,
     width: 100,
-    marginTop: 5,
+    marginTop: 10,
     paddingHorizontal: 13,
     alignItems: "center",
-    backgroundColor: "#f194ff"
+    backgroundColor: "#D3D3D3",
+    marginLeft: 140,
   },
-
-  fontStyle: {
-    fontSize: 105,
-  }
 
 
 
