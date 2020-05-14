@@ -1,22 +1,21 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-// import FormAvailPto from "./component/FormAvailPto";
-
-import MyAlert from './component/Modal';
+import React from "react";
+// import { StyleSheet, Text, View } from 'react-native';
+// import {FormSignUp, FormLogin} from "./component/Form";
+import SignIn from "./src/pages/Signin";
+import SignUp from "./src/pages/Signup";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <MyAlert />
-    </View>
+    // <View style={styles.container}>
+    //   <Text>Open up App.js to start working on your app!</Text>
+    // </View>
+  
+    //  <FormLogin />
+    //  <FormSignUp />
+    // <SignIn /> 
+    <SignUp />
+  
+    // signin will be the landing page 
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 10,
-    backgroundColor: '#fff',
-    alignItems: 'stretch',
-    justifyContent: 'space-evenly',
-  },
-});
