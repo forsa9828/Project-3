@@ -23,7 +23,9 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.set("views", "./views");
+// app.set("views", "html"); 
+//can take this out don't need due to not using template engine
+
 
 // Routes
 require("./routes/apiRoutes")(app);

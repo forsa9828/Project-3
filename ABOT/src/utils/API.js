@@ -66,6 +66,6 @@ export default {
 	},
 
 	renderSignin: function() {
-		return axios.get("/auth/signin");
+		return axios.get("http://192.168.1.72:8080/auth/signin");
 	}
 };
