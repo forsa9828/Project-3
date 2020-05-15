@@ -8,7 +8,8 @@ class ForgotPassword extends Component{
     state={
        email:"",
        password: "",
-       emailMsg: ""
+       emailMsg: "",
+       pswdMsg: "",
     }
 
 
@@ -22,23 +23,40 @@ class ForgotPassword extends Component{
         console.log(password, email)
         //check email format first
         const checkEmail=/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/
+        const passwordRegEx=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,10}$/;
+
+        
         if(!checkEmail.test(email)){
            
             this.setState(
                 {
                     emailMsg: "Enter valid email",
-                })
+            })
+        }else if(!passwordRegEx.test(password)){
+            this.setState(
+                {
+                    emailMsg: "",
+                    pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character"
+
+            })
+        
         }else{
             console.log("good to go")
+            this.setState(
+                {
+                    emailMsg: "",
+                    pswdMsg: ""
 
-            API.forgotPassword({
-                email,
-                password
             })
-            .then(res=> console.log(res))
-            //add logic here if email doesn't exist, can't update
-            .catch(error => console.log(error))
-         }
+
+        //     API.forgotPassword({
+        //         email,
+        //         password
+        //     })
+        //     .then(res=> console.log(res))
+        //     //add logic here if email doesn't exist, can't update
+        //     .catch(error => console.log(error))
+        }
         
     }
 
@@ -83,16 +101,17 @@ class ForgotPassword extends Component{
                       name="password"
                       value={this.state.password}
                       placeholder="Enter new password" 
+                      secureTextEntry= {true}
                       onChangeText={(value) => this.onValueChange(
                         {
                           password: value.trim()
                         }
                       )}
                       /> 
-                      {/* <Text style={styles.errorMsg}>
-                      {this.state.emailMsg}
-                    </Text> */}
                   </Item>
+                  <Text style={styles.errorMsg}>
+                      {this.state.pswdMsg}
+                    </Text>
                  
                  
                   <TouchableOpacity style={styles.btnStyle}>

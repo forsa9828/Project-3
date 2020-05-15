@@ -143,12 +143,12 @@ module.exports = (passport, user) => {
                                 
                                 console.log(data)
                                 console.log(newUser)
-                                return done(null);
+                                //return done(null);
                             });
 
                 
                  }else{
-                    console.log("password updated didn't change")
+                    console.log("user does not exist = password change failed")
 
             }
         });
