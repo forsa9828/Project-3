@@ -119,17 +119,15 @@ class SignUp extends Component {
                 emergencyContact,
                 emergencyContactPhone
             })
-            //handle the response 
-            .then(response => console.log(response.json()))
-            // .then(response =>{
-            //         if(response == true){
-            //             console.log("true")
-            //         }else{
-            //             console.log("wrong")
-            //         }
-            //     }).done()
-
-                //Alert.alert("Info added!"))
+            //handle the response
+            .then(res => {
+                if(res){
+                Alert.alert("Info added!")
+                }
+                else{
+                    console.log("can't add info")
+                }
+            }
             // .then(
             //     this.setState({
             //         firstname: "",
@@ -141,12 +139,12 @@ class SignUp extends Component {
             //         emergencyContact: "",
             //         emergencyContactPhone: "",
             //     })
-            // )
-            //.catch(error => console.log(error))
+            )
+            .catch(error => console.log(error))
             //add here logic if user does not exist 
-        }
             
-           // )}
+            
+           }
 }
 
 

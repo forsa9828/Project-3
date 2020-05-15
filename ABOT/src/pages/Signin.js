@@ -16,6 +16,17 @@ class SignIn extends Component {
         this.setState(value)
     }
 
+    //this is method allows to go to forgotPassword screen
+    forgotPassword =() =>{
+        //add route to go to forgotPassword.js
+        //ex: this.props.navigation.navigate('ForgotPassword')
+    }
+
+    //this method will allow to go to sign up screen
+    goToSignUp=() =>{
+        //add route to go to signUp
+        //ex: this.props.navigation.navigate('Signup')
+    }
 
     signInSubmit = (event) => {
         event.preventDefault();  
@@ -41,16 +52,16 @@ class SignIn extends Component {
             })
             console.log("nothing here")
         }else{
-        Alert.alert("info obtained!")
+        //Alert.alert("info obtained!")
         //     console.log("good to go!")
         
             this.setState({pswdMsg: ""});
 
             API.logIn({
-            email,
-            password
+                email,
+                password
         })
-        .then(res => console.log(res))
+        .then(res => console.log(res.data))
         .catch(error=> console.log(error))
          }
     }
@@ -66,6 +77,8 @@ class SignIn extends Component {
                 checkEmail={this.checkEmail}
                 errEmail={this.state.emailMsg}
                 errPswd={this.state.pswdMsg}
+                forgotPassword={this.forgotPassword}
+                goToSignUp={this.goToSignUp}
             />
        
          

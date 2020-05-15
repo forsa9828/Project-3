@@ -4,6 +4,7 @@ import { Root } from "native-base";
 import * as Font from 'expo-font';
 import SignIn from "./src/pages/Signin";
 import SignUp from "./src/pages/Signup";
+import ForgotPassword from "./src/pages/forgotPassword";
 // import Table from "./src/component/Table";
 // import RequestOff from "./src/pages/RequestOff";
 // import SchedulePage from "./src/pages/SchedulePage";
@@ -22,7 +23,8 @@ export default function App() {
 <Root>
 
 		{/* <SignIn /> */}
-			<SignUp />
+			{/* <SignUp /> */}
+			<ForgotPassword />
 		
 </Root>
 

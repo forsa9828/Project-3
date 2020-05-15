@@ -57,6 +57,18 @@ export function FormLogin(props) {
               onPress={props.clickedIn}
           />
           </TouchableOpacity>
+          <TouchableOpacity>
+          <Button 
+              title="Don't have an account? Sign Up"
+              //onPress={props.clickedIn}
+          />
+          </TouchableOpacity>
+          <TouchableOpacity>
+          <Button 
+              title="Forgot Password"
+              //onPress={props.clickedIn}
+          />
+          </TouchableOpacity>
     </Form>
     </Content>
   </Container>
