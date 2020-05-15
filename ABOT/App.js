@@ -1,27 +1,28 @@
-import React from 'react';
+import React from "react";
 import { StyleSheet, Text, View } from 'react-native';
-// import Navbar from '../ABOT/src/component/Navbar';
-// import Sidebar from '../ABOT/src/component/SidebarStyle'
-// import FormAvailPto from "./component/FormAvailPto";
-import RequestOff from '../ABOT/src/pages/RequestOff'
+// import {FormSignUp, FormLogin} from "./component/Form";
+import SignIn from "./src/pages/Signin";
+// import SignUp from "./src/pages/Signup";
+import Navbar from "../ABOT/src/component/Navbar";
+// import {Root} from 'native-base';
+import {createAppContainer} from 'react-navigation';
 
-// import MyAlert from './component/Modal';
+// const AppContainer = createAppContainer(props => WithAuth(_ => <App screenProps={{ ...props }} />));
+
+// export default AppContainer;
 
 export default function App() {
   return (
-    <View style={styles.container}>
-    
-    
-      <SchedulePage/>
-    </View>
+//     // <View>
+//     //   <Text>Open up App.js to start working on your app!</Text>
+//     // </View>
+  
+    <Navbar />  
+ 
+    // <SignUp/>
+  
+    // signin will be the landing page 
+  
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 10,
-    backgroundColor: '#fff',
-    alignItems: 'stretch',
-    justifyContent: 'space-evenly',
-  },
-});

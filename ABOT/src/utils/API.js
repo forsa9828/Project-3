@@ -14,7 +14,7 @@ export default {
 	},
 
 	postRequests: function() {
-		return axios.post("exp://192.168.1.210:19000/api/requestoff");
+		return axios.post("http://192.168.1.210:19000/api/requestoff");
 	},
 
 	postAvail: function() {
@@ -29,27 +29,29 @@ export default {
 		return axios.put("/api/requestoff/:id")
 	},
 
-	loggedIn: function() {
-		return axios.get("/auth/loggedin");
+	loggedIn: function(data) {
+		return axios.get("http://192.168.1.210:8080/auth/loggedin",data);
 	},
 
 	logOut: function() {
 		return axios.get("/auth/logout");
 	},
 
-	logIn: function() {
-		return axios.post("/auth/signin");
+	logIn: function(data) {
+		return axios.post("http://192.168.1.210:8080/auth/signin", data);
 	},
 
-	authUser: function() {
-		return axios.post("/auth/signup");
+	authUser: function(data) {
+		return axios.post("http://192.168.1.210:8080/auth/signup", data);
 	},
 
 	renderSignup: function() {
-		return axios.get("auth/signup");
+		return axios.get("http://192.168.1.210:8080/auth/signup");
 	},
 
 	renderSignin: function() {
-		return axios.get("/auth/signin");
+		return axios.get("http://192.168.1.210:8080/auth/signin");
 	}
 };
+
+
