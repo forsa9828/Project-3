@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import {Button, Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { Container, Header, Content, Form, Item, Input, Picker, Left, Right, Body, Title, Icon} from "native-base";
+import API from "../utils/API";
 
 
 class ForgotPassword extends Component{
     state={
        email:"",
+       password: "",
        emailMsg: ""
     }
 
@@ -16,19 +18,27 @@ class ForgotPassword extends Component{
 
 
     sendEmailSubmit= () => {
-        const {email} = this.state;
+        const {email, password} = this.state;
+        console.log(password, email)
         //check email format first
         const checkEmail=/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/
         if(!checkEmail.test(email)){
-            console.log(email)
+           
             this.setState(
                 {
                     emailMsg: "Enter valid email",
                 })
         }else{
             console.log("good to go")
-            //add logic to send email
-        }
+
+            API.forgotPassword({
+                email,
+                password
+            })
+            .then(res=> console.log(res))
+            //add logic here if email doesn't exist, can't update
+            .catch(error => console.log(error))
+         }
         
     }
 
@@ -46,7 +56,7 @@ class ForgotPassword extends Component{
                 <Header>
                 
                     <Body>
-                      <Title>Forgot Password</Title>
+                      <Title>Forgot Password? Create New One</Title>
                     </Body>
                  
                </Header>
@@ -68,6 +78,21 @@ class ForgotPassword extends Component{
                     </Text>
                   </Item>
                  
+                  <Item rounded style={styles.inputStyle}>
+                    <Input 
+                      name="password"
+                      value={this.state.password}
+                      placeholder="Enter new password" 
+                      onChangeText={(value) => this.onValueChange(
+                        {
+                          password: value.trim()
+                        }
+                      )}
+                      /> 
+                      {/* <Text style={styles.errorMsg}>
+                      {this.state.emailMsg}
+                    </Text> */}
+                  </Item>
                  
                  
                   <TouchableOpacity style={styles.btnStyle}>

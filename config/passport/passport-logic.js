@@ -4,7 +4,6 @@ const LocalStrategy = require("passport-local").Strategy;
 
 
 module.exports = (passport, user) => {
-    console.log("hello")
     //SIGN-UP  
     passport.use("local-signup", new LocalStrategy({
             usernameField: "firstName",
@@ -12,7 +11,6 @@ module.exports = (passport, user) => {
             passReqToCallback: true //The purpose of a verify callback is to find the user that possesses a set of credentials.
         },
         (req, firstName, lastName, done) => {
-            console.log("hello")
             console.log(firstName, lastName)
 //need to build it so it looks for first name and last name that is entered by Manager
             UserDB.user.findAll({
@@ -24,7 +22,6 @@ module.exports = (passport, user) => {
                 }).then(user => {
                     console.log(user)
                     if (user) {
-                        console.log(user)
                         let password=req.body.password
                         console.log(password)
                         let generateHash = password => {
@@ -54,7 +51,7 @@ module.exports = (passport, user) => {
                                     
                                     console.log(data)
                                     console.log(newUser)
-                                    // return done(null);
+                                    return done(null);
                                 });
 
                     
@@ -106,7 +103,59 @@ module.exports = (passport, user) => {
         }
     ));
 
+//forgotPassword
+    passport.use("forgotPassword", new LocalStrategy({
+        usernameField: "email",
+        //passwordField: "lastName",
+        passReqToCallback: true //The purpose of a verify callback is to find the user that possesses a set of credentials.
+    },
+    (req, email, done) => {
+        console.log(email)
+//need to build it so it looks for first name and last name that is entered by Manager
+        UserDB.user.findOne({
+                where: {
+                    email: email
+                }
+            //if found first name and last then, then allow to create rest 
+            }).then(user => {
+                console.log(user)
+                if (user) {
+                    let password=req.body.password
+                    console.log(password)
+                    let generateHash = password => {
+                        return bCrypt.hashSync(password, 8);
+                    };
+                    
+                    let userPassword = generateHash(password);
+                    console.log("new" + userPassword)
+                    let data = {
+                        password: userPassword,   
+                    }
+                    //update method instead of create, list which fields to update w/ its values 
+                    //If we don't find a user in the database, that doesn't mean there is an application error,
+               // so we use `null` for the error value, and `false` for the user value
+                    
+                    UserDB.user.update(data, {
+                            where: {
+                                email: email
+                            }
+                            }).then(newUser => {
+                                
+                                console.log(data)
+                                console.log(newUser)
+                                return done(null);
+                            });
 
+                
+                 }else{
+                    console.log("password updated didn't change")
+
+            }
+        });
+    }
+));
+
+console.log("got here2")
     passport.serializeUser((user, done) => {
         console.log("got here")
         done(null, user.id);

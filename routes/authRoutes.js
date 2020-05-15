@@ -11,7 +11,14 @@ module.exports = app => {
     app.post("/auth/signup", passport.authenticate("local-signup", {
         failureRedirect: "/signup"}), (req,res) => {
             //res.redirect("/loggedin")
-            res.sendStatus(200)
+           console.log("done signup")
+            
+    }),
+    
+    app.post("/auth/forgotpassword", passport.authenticate("forgotPassword", {
+        failureRedirect: "/signup"}), (req,res) => {
+            //res.redirect("/loggedin")
+            console.log("done forgot password")
             
         }
     );

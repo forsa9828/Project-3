@@ -61,6 +61,10 @@ export default {
 		return axios.post("http://192.168.1.72:8080/auth/signup", data);
 	},
 
+	forgotPassword: function(data) {
+		return axios.post("http://192.168.1.72:8080/auth/forgotpassword", data);
+	},
+
 	renderSignup: function() {
 		return axios.get("http://192.168.0.10:8080/auth/signup");
 	},
