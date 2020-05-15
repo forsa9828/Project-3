@@ -23,8 +23,8 @@ export default function App() {
 <Root>
 
 		{/* <SignIn /> */}
-			{/* <SignUp /> */}
-			<ForgotPassword />
+			<SignUp />
+			{/* <ForgotPassword /> */}
 		
 </Root>
 

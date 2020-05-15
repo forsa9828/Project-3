@@ -61,7 +61,7 @@ class SignIn extends Component {
                 email,
                 password
         })
-        .then(res => console.log(res.data))
+        .then(res => console.log(res))
         .catch(error=> console.log(error))
          }
     }

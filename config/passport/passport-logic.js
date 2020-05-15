@@ -10,18 +10,23 @@ module.exports = (passport, user) => {
             passwordField: "lastName",
             passReqToCallback: true //The purpose of a verify callback is to find the user that possesses a set of credentials.
         },
-        (req, firstName, lastName, done) => {
-            console.log(firstName, lastName)
+        (req, firstName,lastName, done) => {
+           // console.log(firstName, lastName)
 //need to build it so it looks for first name and last name that is entered by Manager
             UserDB.user.findAll({
                     where: {
-                        firstName: firstName,
-                        lastName: lastName
+                       firstName: firstName,
+                       lastName: lastName
                     }
                 //if found first name and last then, then allow to create rest 
                 }).then(user => {
-                    console.log(user)
-                    if (user) {
+                    //this to stop from trying to create data of NON matched firstName and lastName
+                   // console.log(user)
+                    if(user == undefined){
+                        console.log("none")
+                        return done;
+                    }
+                    else{
                         let password=req.body.password
                         console.log(password)
                         let generateHash = password => {
@@ -43,22 +48,18 @@ module.exports = (passport, user) => {
                    // so we use `null` for the error value, and `false` for the user value
                         
                         UserDB.user.update(data, {
-                                where: {
-                                    firstName: firstName,
-                                    lastName: lastName
-                                }
-                                }).then(newUser => {
-                                    
-                                    console.log(data)
-                                    console.log(newUser)
-                                    return done(null);
-                                });
-
-                    
-                     }else{
-                        console.log("does not exist")
-
-                }
+                            where: {
+                                firstName: firstName,
+                                lastName: lastName
+                            }
+                            }).then(newUser => {
+                                console.log("new user created!")
+                                console.log(data)
+                               // console.log(newUser)
+                                return done(null);
+                            });
+                     }
+                     
             });
         }
     ));
@@ -116,9 +117,8 @@ module.exports = (passport, user) => {
                 where: {
                     email: email
                 }
-            //if found first name and last then, then allow to create rest 
             }).then(user => {
-                console.log(user)
+                //console.log(user.dataValues)
                 if (user) {
                     let password=req.body.password
                     console.log(password)
@@ -131,18 +131,15 @@ module.exports = (passport, user) => {
                     let data = {
                         password: userPassword,   
                     }
-                    //update method instead of create, list which fields to update w/ its values 
-                    //If we don't find a user in the database, that doesn't mean there is an application error,
-               // so we use `null` for the error value, and `false` for the user value
-                    
+                 
                     UserDB.user.update(data, {
                             where: {
                                 email: email
                             }
                             }).then(newUser => {
                                 
-                                console.log(data)
-                                console.log(newUser)
+                                //console.log(data)
+                              //  console.log(newUser)
                                 //return done(null);
                             });
 

@@ -32,13 +32,13 @@ class ForgotPassword extends Component{
                 {
                     emailMsg: "Enter valid email",
             })
-        }else if(!passwordRegEx.test(password)){
-            this.setState(
-                {
-                    emailMsg: "",
-                    pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character"
+        // }else if(!passwordRegEx.test(password)){
+        //     this.setState(
+        //         {
+        //             emailMsg: "",
+        //             pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character"
 
-            })
+        //     })
         
         }else{
             console.log("good to go")
@@ -49,13 +49,13 @@ class ForgotPassword extends Component{
 
             })
 
-        //     API.forgotPassword({
-        //         email,
-        //         password
-        //     })
-        //     .then(res=> console.log(res))
-        //     //add logic here if email doesn't exist, can't update
-        //     .catch(error => console.log(error))
+            API.forgotPassword({
+                email,
+                password
+            })
+            .then(res=> console.log(res))
+            //add logic here if email doesn't exist, can't update
+            .catch(error => console.log(error))
         }
         
     }

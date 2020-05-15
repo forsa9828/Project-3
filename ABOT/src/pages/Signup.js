@@ -120,13 +120,13 @@ class SignUp extends Component {
                 emergencyContactPhone
             })
             //handle the response
-            .then(res => {
-                if(res){
-                Alert.alert("Info added!")
-                }
-                else{
-                    console.log("can't add info")
-                }
+            .then(res => { console.log(res.json())
+                // if(res){
+                // Alert.alert("Info added!")
+                // }
+                // else{
+                //     console.log("can't add info")
+                // }
             }
             // .then(
             //     this.setState({
