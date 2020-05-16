@@ -97,18 +97,7 @@ class SignUp extends Component {
         //         emerPhoneMsg: "Enter a valid phone number"
         //     })
         }else{
-           
-            this.setState({
-                emailMsg: "",
-                nameMsg: "",
-                lastNameMsg: "",
-                pswdMsg: "",
-                employMsg: "",
-                emerConMsg: "",
-                phoneMsg: "",
-                emerPhoneMsg: ""
-            });
-          
+
               API.authUser({
                 firstName,
                 lastName,

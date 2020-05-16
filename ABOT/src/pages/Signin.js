@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import {FormLogin} from "../component/Form";
 import API from "../utils/API";
 import {Alert, Stylesheet, Text} from "react-native";
+//import navbar 
 
 class SignIn extends Component {
     state = {
@@ -27,6 +28,8 @@ class SignIn extends Component {
         //add route to go to signUp
         //ex: this.props.navigation.navigate('Signup')
     }
+
+
 
     signInSubmit = (event) => {
         event.preventDefault();  
@@ -62,6 +65,9 @@ class SignIn extends Component {
                 password
         })
         .then(res => console.log(res))
+            //if res is sucessful, we need to navigate to schedule page 
+                //ex: this.props.navigation.navigate('SchedulePage')
+            //else if not successful (user acct doesn't exist) alert for now
         .catch(error=> console.log(error))
          }
     }
