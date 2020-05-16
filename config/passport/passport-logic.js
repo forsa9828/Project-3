@@ -15,18 +15,14 @@ module.exports = (passport, user) => {
 //need to build it so it looks for first name and last name that is entered by Manager
             UserDB.user.findAll({
                     where: {
-                       firstName: firstName,
-                       lastName: lastName
+                       firstName: req.body.firstName,
+                       lastName: req.body.lastName
                     }
                 //if found first name and last then, then allow to create rest 
                 }).then(user => {
+                
                     //this to stop from trying to create data of NON matched firstName and lastName
-                   // console.log(user)
-                    if(user == undefined){
-                        console.log("none")
-                        return done;
-                    }
-                    else{
+                    if(user){
                         let password=req.body.password
                         console.log(password)
                         let generateHash = password => {

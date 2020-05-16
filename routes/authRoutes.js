@@ -16,10 +16,10 @@ module.exports = app => {
     }),
     
     app.post("/auth/forgotpassword", passport.authenticate("forgotPassword", {
-        failureRedirect: "/signup"}), (req,res) => {
+        failureRedirect: "/forgotpassword"}), (req,res) => {
             //res.redirect("/loggedin")
-            console.log("done forgot password")
-            
+            console.log(res + "done forgot password")
+            res.sendStatus("done password")
         }
     );
  

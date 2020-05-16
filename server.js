@@ -7,12 +7,10 @@ var app = express();
 var passport = require("passport");
 var session = require("express-session");
 var bodyParser = require("body-parser");
-var cors = require("cors");
 
 var PORT = process.env.PORT || 8080;
 
 // Middleware
-app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -25,23 +23,7 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-//for cors
-app.use(function(req, res, next) {
-	res.setHeader("Access-Control-Allow-Origin", "*");
-	res.setHeader("Access-Control-Allow-Credentials", "true");
-	res.setHeader(
-	"Access-Control-Allow-Methods",
-	"GET,HEAD,OPTIONS,POST,PUT,DELETE"
-	);
-	res.setHeader(
-	"Access-Control-Allow-Headers",
-	"Origin,Cache-Control,Accept,X-Access-Token ,X-Requested-With, Content-Type, Access-Control-Request-Method"
-	);
-	if (req.method === "OPTIONS") {
-	return res.status(200).end();
-	}
-	next();
-	});
+
 
 // app.set("views", "html"); 
 //can take this out don't need due to not using template engine

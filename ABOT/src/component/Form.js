@@ -55,6 +55,7 @@ export function FormLogin(props) {
           <Button 
               title="Submit"
               onPress={props.clickedIn}
+              color="black"
           />
           </TouchableOpacity>
           <TouchableOpacity>
@@ -64,9 +65,9 @@ export function FormLogin(props) {
           />
           </TouchableOpacity>
           <TouchableOpacity>
-          <Button 
+          <Button
               title="Forgot Password"
-              //onPress={props.clickedIn}
+              //onPress={props.forgotPassword}
           />
           </TouchableOpacity>
     </Form>
@@ -92,7 +93,7 @@ export function  FormSignUp (props) {
 
           <Content style={styles.container}>
             <Form>
-              <Item  style={styles.inputStyle}>
+              <Item style={styles.inputStyle}>
                 <Input 
                   placeholder="First Name" 
                   name="first name"
@@ -162,6 +163,7 @@ export function  FormSignUp (props) {
                   mode="dropdown"
                   iosIcon={<Icon name="arrow-down" />}
                   placeholder="Position"
+                  style={{ width: 370 }}
                   selectedValue={props.employmentType}
                   onValueChange={(value) => props.onValueChange(
                       {
@@ -231,6 +233,7 @@ export function  FormSignUp (props) {
               <TouchableOpacity style={styles.btnStyle}>
               <Button 
                 title= "Submit"
+                color="black"
                  onPress={props.clicked}
               />
               </TouchableOpacity>
@@ -252,7 +255,6 @@ const styles = StyleSheet.create({
   container:{
     // flex: 1,
     backgroundColor: "#d6ad86",
-  
    
   },
 
@@ -261,8 +263,6 @@ const styles = StyleSheet.create({
     marginRight: 5,
     marginLeft: 5,
     backgroundColor: "#F0FFFF",
-    
-   
   },
 
  

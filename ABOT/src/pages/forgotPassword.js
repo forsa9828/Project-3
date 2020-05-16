@@ -9,7 +9,8 @@ class ForgotPassword extends Component{
        email:"",
        password: "",
        emailMsg: "",
-       pswdMsg: "",
+       pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character"
+       
     }
 
 
@@ -27,17 +28,15 @@ class ForgotPassword extends Component{
 
         
         if(!checkEmail.test(email)){
-           
             this.setState(
                 {
                     emailMsg: "Enter valid email",
-            })
+        })
         // }else if(!passwordRegEx.test(password)){
         //     this.setState(
         //         {
         //             emailMsg: "",
         //             pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character"
-
         //     })
         
         }else{
@@ -48,15 +47,22 @@ class ForgotPassword extends Component{
                     pswdMsg: ""
 
             })
-
+       
             API.forgotPassword({
                 email,
                 password
             })
-            .then(res=> console.log(res))
+            .then(res=>{
+              
+                console.warn(res.user.email)
+              }
+              // else{
+              //   console.warn("something went wrong. try again")
+              // }
+            //})
             //add logic here if email doesn't exist, can't update
-            .catch(error => console.log(error))
-        }
+           // .catch(error => console.log(error))
+            )}
         
     }
 
@@ -109,6 +115,7 @@ class ForgotPassword extends Component{
                       )}
                       /> 
                   </Item>
+      
                   <Text style={styles.errorMsg}>
                       {this.state.pswdMsg}
                     </Text>
@@ -137,6 +144,9 @@ class ForgotPassword extends Component{
 export default ForgotPassword;
 
 const styles = StyleSheet.create({
+    // pswdStyle: {
+    //   color: "white"
+    // },
     errorMsg:{
       color: "red",
       textAlign: "center",

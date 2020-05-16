@@ -16,7 +16,7 @@ class SignUp extends Component {
         emailMsg: "",
         nameMsg: "",
         lastNameMsg: "",
-        pswdMsg: "",
+        pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character",
         employMsg: "",
         emerConMsg: "",
         phoneMsg: "",
@@ -120,7 +120,7 @@ class SignUp extends Component {
                 emergencyContactPhone
             })
             //handle the response
-            .then(res => { console.log(res.json())
+            .then(res => { 
                 // if(res){
                 // Alert.alert("Info added!")
                 // }
