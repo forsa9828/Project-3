@@ -101,7 +101,6 @@ class Avail extends Component {
 	render() {
 		return (
 			<FormAvailPto
-			title="Submit Availability!"
 				firstName={this.state.firstName}
 				lastName={this.state.lastName}
 				date={this.state.date}

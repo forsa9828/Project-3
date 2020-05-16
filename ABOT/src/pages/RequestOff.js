@@ -106,7 +106,6 @@ class RequestOff extends ValidationComponent {
 		return (
 			<View>
 				<FormAvailPto
-					title='Submit a time off request!'
 					firstName={this.state.firstName}
 					lastName={this.state.lastName}
 					date={this.state.date}
