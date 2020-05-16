@@ -1,30 +1,52 @@
-//open shifts will also be here
-//current schedule
+import React, { Component } from "react";
+import Table from "../component/Table";
+import API from "../utils/API";
 
-// NavigationDrawer//
-import React, { Component } from 'react';
-//import react in our code.
-import { StyleSheet, View, Text } from 'react-native';
-// import all basic components
+class SchedulePage extends Component {
+	_isMounted = false;
+	constructor(props) {
+		super(props);
+		this.state = {
+			schedules: [],
+			error: null,
+			isLoaded: false
+		};
+	}
 
-export default class SchedulePage extends Component {
-  //Screen1 Component
-  render() {
-    return (
-      <View style={styles.MainContainer}>
-          {/* The font color is on the navbar */}
-        <Text style={{ fontSize: 23, }}> SCHEDULE {global.currentScreenIndex + 1}</Text> 
-      </View>
-    );
-  }
+	componentDidMount() {
+		this._isMounted = true;
+		API.getSchedule()
+			.then(response => {
+				let schedules = response.data;
+				this.setState({ schedules });
+			})
+			.catch(error => console.error(error))
+			.finally(() => {
+				this.setState({ isLoaded: false });
+			});
+	}
+
+	componentWillUnmount() {
+		this.setState = (state, callback) => {
+			return;
+		};
+	}
+
+	render() {
+		let { schedules } = this.state;
+		return schedules.map(schedule => {
+			return (
+				<Table
+					key={schedule.id}
+					date={schedule.date}
+					firstName={schedule.firstName}
+					lastName={schedule.lastName}
+					startTime={schedule.startTime}
+					endTime={schedule.endTime}
+				/>
+			);
+		});
+	}
 }
 
-const styles = StyleSheet.create({
-  MainContainer: {
-    flex: 1,
-    paddingTop: 20,
-    alignItems: 'center',
-    marginTop: 50,
-    justifyContent: 'center',
-  },
-});
+export default SchedulePage;

@@ -32,6 +32,9 @@ module.exports = app => {
 	app.get("/api/requestoff", (req, res) => {
 		db.pto
 			.findAll({
+				where: {
+					pending: true
+				},
 				order: [sequelize.col("date")]
 			})
 			.then(dbpto => {
@@ -42,6 +45,7 @@ module.exports = app => {
 	// Create a request off
 	app.post("/api/requestoff", (req, res) => {
 		//this is to be able to add the request off
+		console.log("api route hit");
 		let newRequest = req.body;
 		console.log(newRequest);
 		db.pto
@@ -83,10 +87,59 @@ module.exports = app => {
 			});
 	});
 
+	// create user from manager
+	app.post("/api/user", (req, res) => {
+		db.user
+			.create({
+				firstName: req.body.firstName,
+				lastName: req.body.lastName
+			})
+			.then(dbuser => {
+				res.json(dbuser);
+			});
+	});
+
+	// retrieve user info
+	app.get("/api/user", (req, res) => {
+		db.user
+			.findAll({
+				where: {
+					status: "active"
+				},
+				order: [sequelize.col("lastName")]
+			})
+			.then(dbuser => {
+				res.json(dbuser);
+			});
+	});
+
+	// delete user - this will just update the user info in the login db to status: inactive rather than deleting the entire row of data
+	app.put("/api/user/:id", (req, res) => {
+		db.user
+			.update({ status: 'inactive' }, { where: { id: req.params.id } })
+			.then(dbuser => {
+				res.json(dbuser);
+			});
+	});
+
 	// Update a PTO request from false to true
 	app.put("/api/requestoff/:id", (req, res) => {
 		db.pto
-			.update({ approved: true }, { where: { id: req.params.id } })
+			.update(
+				{ approved: true, pending: false },
+				{ where: { id: req.params.id } }
+			)
+			.then(dbpto => {
+				res.json(dbpto);
+			});
+	});
+
+	app.put("/api/requestoff/:id", (req, res) => {
+		db.pto
+			.update(
+				{ pending: false },
+				{ where: { id: req.params.id } }
+			)
 			.then(dbpto => {
 				res.json(dbpto);
 			});

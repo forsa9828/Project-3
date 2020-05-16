@@ -1,152 +1,184 @@
 import React, { Component } from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
 
+//Import React Navigation
 import {createAppContainer} from 'react-navigation';
-import {createDrawerNavigator} from 'react-navigation-drawer';
+import {createBottomTabNavigator, Dimensions} from 'react-navigation-tabs';
 import {createStackNavigator} from 'react-navigation-stack';
-import SidebarStyle from '../component/SidebarStyle'
-import { enableScreens } from 'react-native-screens';
+import { Button, Image, Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import { Ionicons } from 'react-native-vector-icons';
+
 
 
 //Import external files  
-import SchedulePage from '../pages/SchedulePage';
-import BuildSchedule from '../pages/BuildSchedule';
-import Avail from '../pages/Avail';
-import Review from '../pages/Review';
+import SchedulePageScreen from '../pages/SchedulePage';
+import AvailScreen from '../pages/Avail';
+import ReviewScreen from '../pages/RequestOff';
+import SignInScreen from '../pages/Signin'
 
-global.currentScreenIndex = 0;
 
-//Structure Open & Closes on drawer image
-class NavigationDrawerStructure extends Component {
-  //Structure for the navigatin Drawer
-  toggleDrawer = () => {
-    //Props to open/close the drawer
-    this.props.navigationProps.toggleDrawer();
-  };
-  render() {
-    return (
-     // <StatusBar animated={true}></StatusBar>
-      <View style={{ flexDirection: 'row' }}>
-        <TouchableOpacity onPress={this.toggleDrawer.bind(this)}>
-        
-        </TouchableOpacity>
-      </View>
-  
-    );
+
+const ReviewStack = createStackNavigator(
+  {
+    //Defination of Navigaton from home screen
+    Review: { screen: ReviewScreen },
+    Review: { screen: ReviewScreen, navigationOptions:{tabBarVisible: true, title: 'R E V I E W'} },
+  },
+  {
+    //For React Navigation 2.+ change defaultNavigationOptions->navigationOptions
+    defaultNavigationOptions: {
+      //Header customization of the perticular Screen
+      headerStyle: {
+        backgroundColor: '#d6ab86',
+      },
+      headerTintColor: '#FFFFFF',
+        fontWeight: 'bold',
+      title: 'Review',
+      //Header title
+    },
   }
-}
+);
 
-//SCHEDULE PAGE SCREEN STACK WHAT IS STACK?  -------------------------------------------------------
-const SchedulePage_StackNavigator = createStackNavigator({
-  //All the screen from the Screen1 will be indexed here
-  First: {
-    screen: SchedulePage,
-    navigationOptions: ({ navigation }) => ({
+const AvailStack = createStackNavigator(
+  {
+    //Defination of Navigaton from home screen
+    Avail: { screen: AvailScreen },
+    Avail: { screen: AvailScreen, navigationOptions:{tabBarVisible: true, title: 'A V A I L A B I L I T Y '} },
+  },
+  {
+    //For React Navigation 2.+ change defaultNavigationOptions->navigationOptions
+    defaultNavigationOptions: {
+      //Header customization of the perticular Screen
+      headerStyle: {
+        backgroundColor: '#d6ab86',
+      },
+      headerTintColor: '#FFFFFF',
+      title: 'Avail',
+      //Header titl
+    },
+  }
+);
+
+const SchedulePageStack = createStackNavigator(
+  {
+    //Defination of Navigaton from setting screen
+    SchedulePage: { screen: SchedulePageScreen },
+    SchedulePage: { screen: SchedulePageScreen, navigationOptions:{tabBarVisible: true, title: 'S C H E D U L E'} },
+  },
+  {
+    //For React Navigation 2.+ change defaultNavigationOptions->navigationOptions
+    defaultNavigationOptions: {
+      //Header customization of the perticular Screen
+      headerStyle: {
+        backgroundColor: '#d6ab86',
+      },
+      headerTintColor: '#FFFFFF',
       title: 'Schedule',
-      headerLeft: ()=> <NavigationDrawerStructure navigationProps={navigation} />,
-      headerStyle: {
-        backgroundColor: '#d6ad86', //Peachy 
-      },
-      headerTintColor: '#fff',
-    }),
-  },
-});
-
-const BuildSchedule_StackNavigator = createStackNavigator({
-  //All the screen from the Screen2 will be indexed here
-  Second: {
-    screen: BuildSchedule,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Build Schedule',
-      headerLeft: ()=> <NavigationDrawerStructure navigationProps={navigation} />,
-      headerStyle: {
-        backgroundColor: '#d6ad86',
-      },
-      headerTintColor: '#fff',
-    }),
-  },
-});
-
-const Avail_StackNavigator = createStackNavigator({
-  //All the screen from the Screen3 will be indexed here
-  Third: {
-    screen: Avail,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Availability',
-      headerLeft: ()=> <NavigationDrawerStructure navigationProps={navigation} />,
-      headerStyle: {
-        backgroundColor: '##d6ad86',
-      },
-      headerTintColor: '#fff',
-    }),
-  },
-});
-
-const Review_StackNavigator = createStackNavigator({
-    //All the screen from the Screen3 will be indexed here
-    Fourth: {
-      screen: Review,
-      navigationOptions: ({ navigation }) => ({
-        title: 'Review Review',
-        headerLeft: ()=> <NavigationDrawerStructure navigationProps={navigation} />,
-        headerStyle: {
-          backgroundColor: '##d6ad86',
-        },
-        headerTintColor: '#fff',
-      }),
+      //Header title
     },
-  });
-  
+  }
+);
 
-//NAVAGATION DRAWER--------------------------------------------------------------------
-const DrawerNavigator = createDrawerNavigator({
-  //Drawer Optons and indexing
-  FirstScreen: {
-    screen: props => <First rootNavigator={props.navigation} screenProps={{ ...props.screenProps }} />,
-    navigationOptions: {
-      drawerLabel: ' ',
-    },
+const SignInStack = createStackNavigator(
+  {
+    //Defination of Navigaton from setting screen
+    SignIn: { screen: SignInScreen },
+    SignIn: { screen: SignInScreen, navigationOptions:{tabBarVisible: true, title: 'ABOT'} },
   },
-}, { initialRouteName: 'FirstScreen' });
-
-
-// const AppContainer = createAppContainer(App);
-//   SchedulePage: {
-//     //Title
-//     screen: SchedulePage_StackNavigator,
-//     navigationOptions: {
-//       drawerLabel: 'Schedule',
-//     },
-//   },
-//   BuildSchedule: {
-//     //Title
-//     screen: BuildSchedule_StackNavigator,
-//     navigationOptions: {
-//       drawerLabel: 'Build Schedule',
-//     },
-//   },
+  {
+    //For React Navigation 2.+ change defaultNavigationOptions->navigationOptions
+    defaultNavigationOptions: {
+      //Header customization of the perticular Screen
+      headerStyle: {
+        backgroundColor: '#d6ab86',
+        fontSize: 20,
+      },
+      headerTintColor: '#FFFFFF',
   
-//   Avail: {
-//     //Title
-//     screen: Avail_StackNavigator,
-//     navigationOptions: {
-//       drawerLabel: 'Availability',
-//     },
-//   },
+      //Header title
+    },
+  }
+);
 
-//   Review: {
-//     //Title
-//     screen: Review_StackNavigator,
-//     navigationOptions: {
-//       drawerLabel: 'Review Requests',
-//     },
-//   },
-// },
-// {
-//   //For the Custom sidebar menu we have to provide our CustomSidebarMenu
-//   contentComponent: SidebarStyle,
-//   //Sidebar width
-// //   drawerWidth: Dimensions.get('window').width - 130,
-// }
-// );
-export default createAppContainer(NavigationDrawerStructure);
+SchedulePageStack.navigationOptions = ReviewStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+
+  return {
+    tabBarVisible,
+  };
+};
+
+const NavBar = createBottomTabNavigator(
+  {
+    SchedulePage: { 
+      screen: SchedulePageStack,
+      navigationOptions: {
+        tabBarLabel: 'SchedulePage',
+        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-calendar" size={25} color={tintColor} />
+      }
+    },
+    //Defination of Navigaton bottom options
+    ReviewScreen: { 
+      screen: ReviewStack,
+      navigationOptions: {
+        tabBarLabel: 'Review',
+        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-book" size={25} color={tintColor} />
+      }
+    },
+    Avail: { 
+      screen: AvailStack,
+      navigationOptions: {
+        tabBarLabel: 'Avail',
+        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-time" size={25} color={tintColor} />
+      }
+    },
+
+    SignIn: {
+      screen: SignInStack,
+      navigationOptions:{
+        tabBarLabel: 'Logout',
+        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-log-out" size={25} color={tintColor} />
+      }
+    }
+  },
+  {
+    //For React Navigation 2.+ change defaultNavigationOptions->navigationOptions
+    initialRouteName: 'ReviewScreen',
+    defaultNavigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+        const { routeName } = navigation.state;
+        let IconComponent = Ionicons;
+        let iconName;
+        if (routeName === 'Review'){
+          iconName = `ios-home${focused ? '' : '-outline'}`;
+          // Sometimes we want to add badges to some icons.
+          // You can check the implementation below.
+        } else if (routeName === 'SchedulePage') {
+          iconName = `ios-options${focused ? '' : '-outline'}`;
+        } else if (routeName === 'Avail') {
+          iconName = `ios-list${focused ? '' : '-outline'}`;
+        } else if (routeName === 'SignIn')
+          iconName = `ios-logout${focused ? '' : '-outline'}`;
+
+        // You can return any component that you like here!
+        return <IconComponent name={iconName} size={25} color={tintColor} />;
+      },
+    }),
+    tabBarOptions: {
+      activeTintColor: '#fff',
+      //activeTintColor: '#42f44b',
+      inactiveTintColor: 'gray',
+      
+    },
+  }
+);
+
+
+//For React Navigation 2.+ need to export App only
+//export default App;
+//For React Navigation 3.+
+export default createAppContainer(NavBar);
+
+

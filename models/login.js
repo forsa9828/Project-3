@@ -6,12 +6,12 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.INTEGER
     },
 
-    firstname: {
+    firstName: {
       type: DataTypes.STRING,
       notEmpty: true
     },
 
-    lastname: {
+    lastName: {
       type: DataTypes.STRING,
       notEmpty: true
     },
