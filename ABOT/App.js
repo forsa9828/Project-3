@@ -35,7 +35,7 @@ export default function App() {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-			<ReviewPto/>
+			<ManageEmployees/>
 			</ScrollView>
 			  </SafeAreaView>
 		</View>

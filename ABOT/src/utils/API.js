@@ -46,7 +46,7 @@ export default {
 	},
 
 	deleteUser: function(key) {
-		return axios.put(`http://192.168.0.6:8080/api/user/${key}`)
+		return axios.delete(`http://192.168.0.6:8080/api/user/${key}`)
 	},
 
 	loggedIn: function() {

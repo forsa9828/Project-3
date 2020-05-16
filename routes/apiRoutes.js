@@ -126,10 +126,10 @@ module.exports = app => {
 			});
 	});
 
-	// delete user - this will just update the user info in the login db to status: inactive rather than deleting the entire row of data
-	app.put("/api/user/:id", (req, res) => {
+	// deleting user from db
+	app.delete("/api/user/:id", (req, res) => {
 		db.user
-			.update({ status: 'inactive' }, { where: { id: req.params.id } })
+			.destroy({ where: { id: req.params.id } })
 			.then(dbuser => {
 				res.json(dbuser);
 			});
