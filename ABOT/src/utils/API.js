@@ -22,7 +22,7 @@ export default {
 	},
 
 	postAvail: function(data) {
-		return axios.post("http://192.168.0.6:8080/api/avail", data);
+		return axios.post("http://192.168.0.6:8080/api/schedule", data);
 	},
 
 	getAvail: function() {

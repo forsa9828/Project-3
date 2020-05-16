@@ -10,22 +10,20 @@ function FormAvailPto(props) {
 				<Item stackedLabel>
 					<Label>First Name</Label>
 					<Input
-						placeholder='First'
 						value={props.firstName}
 						onChangeText={value => props.onValueChange({ firstName: value })}
-					/>
+						/>
 				</Item>
 				<Item stackedLabel>
 					<Label>Last Name</Label>
 					<Input
-						placeholder='Last'
 						value={props.lastName}
 						onChangeText={value => props.onValueChange({ lastName: value })}
-					/>
+						/>
 				</Item>
 				<Item stackedLabel>
-					<Label>Date</Label>
-					<Button style={styles.dateButton} title="Date"onPress={props.dateOptions}></Button>
+					<Button color="#d6ad86" title="Select date" onPress={props.dateOptions} >
+					</Button>
 					<Text>{props.date}</Text>
 					</Item>
 				<Item stackedLabel>
@@ -44,7 +42,7 @@ function FormAvailPto(props) {
 						onChangeText={value => props.onValueChange({ endTime: value })}
 					/>
 				</Item>
-				<Button style={styles.openButton} title='Submit' onPress={props.clicked} />
+				<Button color="#d6ad86" title='Submit' onPress={props.clicked} />
 			</Form>
 		</View>
 	);
@@ -59,14 +57,13 @@ const styles = StyleSheet.create({
 	dateButton: {
 		flex: 1,
 		backgroundColor: "#d6ad86",
-		color: "white",
+		color: "#d6ad86",
 		
 	},openButton: {
 		backgroundColor: "#d6ad86",
 		padding: 10,
 		margin: 8,
-		elevation: 2,
-		color: "white",
+		elevation: 2
 	}
 });
 export default FormAvailPto;

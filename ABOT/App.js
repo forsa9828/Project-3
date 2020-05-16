@@ -10,34 +10,20 @@ import ManageEmployees from "./src/pages/ManageEmployees";
 import EmployeeList from "./src/component/EmployeeList";
 import Signup from "./src/pages/Signup"
 
-function wait(timeout) {
-	return new Promise(resolve => {
-	  setTimeout(resolve, timeout);
-	});
-  }
+
   
 export default function App() {
-	const [refreshing, setRefreshing] = React.useState(false);
 
-  const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-
-    wait(2000).then(() => setRefreshing(false));
-  }, [refreshing]);
 	return (
 <Root>
 
 		<View style={styles.container}>
-		<SafeAreaView style={styles.container}>
       <ScrollView
         contentContainerStyle={styles.scrollView}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }
-      >
-			<ManageEmployees/>
-			</ScrollView>
-			  </SafeAreaView>
+		>
+
+		<ReviewPto/>
+			 </ScrollView>
 		</View>
 </Root>
 
