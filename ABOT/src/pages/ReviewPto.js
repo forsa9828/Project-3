@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Alert, Text } from "react-native";
+import { Alert, Text, Button } from "react-native";
 import { ActionSheet } from "native-base";
 import ActionList from "../component/ActionList";
 import API from "../utils/API";
@@ -21,9 +21,11 @@ export default class ReviewPto extends Component {
 			.then(response => {
 				let ptoRequests = response.data;
 				this.setState({ ptoRequests });
-				!ptoRequests === []
-					? <Text>There are no requests to review!</Text>
-					: this.render;
+				!ptoRequests === [] ? (
+					<Text>There are no requests to review!</Text>
+				) : (
+					this.render
+				);
 			})
 			.catch(error => console.log(error))
 			.finally(() => {
@@ -37,7 +39,7 @@ export default class ReviewPto extends Component {
 		};
 	}
 
-	handleClick = (key) => {
+	handleClick = key => {
 		const BUTTONS = ["Approve", "Deny", "Cancel"];
 		const DESTRUCTIVE_INDEX = 1;
 		const CANCEL_INDEX = 2;
@@ -50,14 +52,13 @@ export default class ReviewPto extends Component {
 			},
 			buttonIndex => {
 				if (buttonIndex === 1) {
-					API.denyReq(key)
-					.then(Alert.alert("Request denied"));
+					API.denyReq(key).then(Alert.alert("Request denied"));
 				} else if (buttonIndex === 0) {
 					API.approveReq(key)
-					.then(!err ? Alert.alert("Request approved") : null)
-					.catch(function(err) {
-						console.log(err);
-					});
+						.then(!err ? Alert.alert("Request approved") : null)
+						.catch(function(err) {
+							console.log(err);
+						});
 				} else {
 					ActionSheet.hide();
 				}
@@ -66,20 +67,23 @@ export default class ReviewPto extends Component {
 	};
 
 	render() {
-		let { ptoRequests } = this.state;
+			let { ptoRequests } = this.state;
+			return ptoRequests.map(ptoRequest => {
+				return (
+						<ActionList
+							key={ptoRequest.id}
+							firstName={ptoRequest.firstName}
+							lastName={ptoRequest.lastName}
+							date={"\n" + ptoRequest.date}
+							startTime={"\n" + ptoRequest.startTime + " -"}
+							endTime={ptoRequest.endTime}
+							pending={"\n"+"Pending: " + ptoRequest.pending}
+							approved={"\n"+"Approved: " + ptoRequest.approved}
+							clicked={() => this.handleClick(ptoRequest.id, ptoRequest.date)}
+						/>
 
-		return ptoRequests.map(ptoRequest => {
-			return (
-				<ActionList
-					key={ptoRequest.id}
-					firstName={ptoRequest.firstName}
-					lastName={ptoRequest.lastName}
-					date={"\n"+ptoRequest.date}
-					startTime={"\n"+ptoRequest.startTime + " -"}
-					endTime={ptoRequest.endTime}
-					clicked={() => this.handleClick(ptoRequest.id, ptoRequest.date)}
-				/>
-			);
-		});
+				);
+
+			});
 	}
 }

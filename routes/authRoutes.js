@@ -8,7 +8,8 @@ module.exports = app => {
 
     app.get("/auth/signin", authController.signin);
  
-    app.post("/auth/signup", passport.authenticate("local-signup", {
+    app.post("/auth/signup", passport.authenticate("local-signup",
+    {
         failureRedirect: "/signup"}), (req,res) => {
             res.redirect("/loggedin")
             

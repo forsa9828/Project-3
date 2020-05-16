@@ -8,6 +8,7 @@ function ActionList(props) {
 				<Text>
 					{props.firstName} {props.lastName} {props.date}
 					{props.startTime} {props.endTime}
+					{props.pending}{props.approved}
 					{props.phone}
 					{props.emergencyContact}
 					{props.emergencyContactPhone}

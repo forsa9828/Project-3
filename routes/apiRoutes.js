@@ -29,13 +29,23 @@ module.exports = app => {
 	});
 
 	// show the data submitted in the below post that exists in current db
-	app.get("/api/requestoff", (req, res) => {
+	app.get("/api/pendingrequest", (req, res) => {
 		db.pto
 			.findAll({
 				where: {
 					pending: true
 				},
 				order: [sequelize.col("date")]
+			})
+			.then(dbpto => {
+				res.json(dbpto);
+			});
+	});
+
+	app.get("/api/requestoff", (req, res) => {
+		db.pto
+			.findAll({
+				order: [[sequelize.col("date"), 'DESC']]
 			})
 			.then(dbpto => {
 				res.json(dbpto);
@@ -92,7 +102,10 @@ module.exports = app => {
 		db.user
 			.create({
 				firstName: req.body.firstName,
-				lastName: req.body.lastName
+				lastName: req.body.lastName,
+				phone: "",
+				emergencyContact: "",
+				emergencyContactPhone: ""
 			})
 			.then(dbuser => {
 				res.json(dbuser);

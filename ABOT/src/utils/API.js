@@ -9,6 +9,10 @@ export default {
 		return axios.get("http://192.168.0.6:8080/api/requestoff");
 	},
 
+	getPending: function() {
+		return axios.get("http://192.168.0.6:8080/api/pendingrequest");
+	},
+
 	createSchedule: function(data) {
 		return axios.post("http://192.168.0.6:8080/api/schedule", data)
 	},

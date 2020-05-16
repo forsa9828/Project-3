@@ -27,7 +27,7 @@ export default function App() {
 	return (
 <Root>
 
-		{/* <View style={styles.container}> */}
+		<View style={styles.container}>
 		<SafeAreaView style={styles.container}>
       <ScrollView
         contentContainerStyle={styles.scrollView}
@@ -35,10 +35,10 @@ export default function App() {
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
       >
-			<ManageEmployees/>
+			<ReviewPto/>
 			</ScrollView>
-			</SafeAreaView>
-		{/* </View> */}
+			  </SafeAreaView>
+		</View>
 </Root>
 
 	);
