@@ -1,11 +1,11 @@
 import React, { Component, useState } from "react";
-import { Alert, Text, Button, ScrollView, RefreshControl } from "react-native";
+import { Alert, Text, Button, ScrollView, View, StyleSheet } from "react-native";
 import { ActionSheet } from "native-base";
-import ActionList from "../component/ActionList";
+import ActionList from "./ActionList";
 import API from "../utils/API";
 
-export default class ReviewPto extends Component {
 
+export default class ReviewPto extends Component {
 	_isMounted = false;
 	constructor(props) {
 		super(props);
@@ -16,8 +16,7 @@ export default class ReviewPto extends Component {
 			refreshing: false,
 			setRefreshing: false
 		};
-	};
-	
+	}
 
 	componentDidMount() {
 		this._isMounted = true;
@@ -60,7 +59,7 @@ export default class ReviewPto extends Component {
 						.catch(function(err) {
 							console.log(err);
 						})
-						.then(Alert.alert("Request denied"))
+						.then(Alert.alert("Request denied"));
 				} else if (buttonIndex === 0) {
 					API.approveReq(key)
 						.catch(function(err) {
@@ -79,20 +78,19 @@ export default class ReviewPto extends Component {
 
 		return ptoRequests.map(ptoRequest => {
 			return (
-
-				<ActionList
-					key={ptoRequest.id}
-					firstName={ptoRequest.firstName}
-					lastName={ptoRequest.lastName}
-					date={"\n" + ptoRequest.date}
-					startTime={"\n" + ptoRequest.startTime + " -"}
-					endTime={ptoRequest.endTime}
-					pending={"\n" + "Pending: " + ptoRequest.pending}
-					approved={"\n" + "Approved: " + ptoRequest.approved}
-					clicked={() => this.handleClick(ptoRequest.id, ptoRequest.date)}
-				/>
-
+			
+					<ActionList
+						key={ptoRequest.id}
+						firstName={ptoRequest.firstName}
+						lastName={ptoRequest.lastName}
+						date={"\n" + ptoRequest.date}
+						startTime={"\n" + ptoRequest.startTime + " -"}
+						endTime={ptoRequest.endTime}
+						pending={"\n" + "Pending: " + ptoRequest.pending}
+						approved={"\n" + "Approved: " + ptoRequest.approved}
+						clicked={() => this.handleClick(ptoRequest.id, ptoRequest.date)}
+					/>
 			);
 		});
 	}
-	}
+}

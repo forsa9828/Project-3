@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Alert } from "react-native";
+import { Alert, ScrollView } from "react-native";
 import FormAvailPto from "../component/FormAvailPto";
 import { ActionSheet } from "native-base";
 import API from "../utils/API";
@@ -100,6 +100,8 @@ class Avail extends Component {
 
 	render() {
 		return (
+			<ScrollView>
+
 			<FormAvailPto
 				firstName={this.state.firstName}
 				lastName={this.state.lastName}
@@ -109,7 +111,8 @@ class Avail extends Component {
 				endTime={this.state.endTime}
 				onValueChange={this.onValueChange}
 				clicked={this.handleFormSubmit}
-			/>
+				/>
+				</ScrollView>
 		);
 	}
 }

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { StyleSheet, View, TouchableHighlight, Text } from "react-native";
 
+
 function ActionList(props) {
 	return (
-		<View>
 			<TouchableHighlight style={styles.button} onPress={props.clicked}>
 				<Text>
 					{props.firstName} {props.lastName} {props.date}
@@ -14,7 +14,6 @@ function ActionList(props) {
 					{props.emergencyContactPhone}
 				</Text>
 			</TouchableHighlight>
-		</View>
 	);
 }
 

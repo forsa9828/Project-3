@@ -23,7 +23,7 @@ class SignIn extends Component {
             email,
             password
         } = this.state;
-        // console.log(this.state)
+        console.log(this.state)
 
         //validation here
         const checkEmail=/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/
@@ -42,16 +42,16 @@ class SignIn extends Component {
             console.log("nothing here")
         }else{
         Alert.alert("Successful Login!")
-        //     console.log("good to go!")
-        //     Alert.alert("Successful Login!")
+            console.log("good to go!")
+            Alert.alert("Successful Login!")
             this.setState({pswdMsg: ""});
 
-        //     API.logIn({
-        //     email,
-        //     password
-        // })
-        // .then(res => console.log(res))
-        // .catch(error=> console.log(error))
+            API.logIn({
+            email,
+            password
+        })
+        .then(res => console.log(res))
+        .catch(error=> console.log(error))
          }
     }
 

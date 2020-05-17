@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Alert, View, Text } from "react-native";
+import { Alert, View, ScrollView } from "react-native";
 import FormAvailPto from "../component/FormAvailPto";
 import API from "../utils/API";
 import ValidationComponent from "react-native-form-validator";
@@ -104,7 +104,7 @@ class RequestOff extends ValidationComponent {
 
 	render() {
 		return (
-			<View>
+			<ScrollView>
 				<FormAvailPto
 					firstName={this.state.firstName}
 					lastName={this.state.lastName}
@@ -115,7 +115,7 @@ class RequestOff extends ValidationComponent {
 					onValueChange={this.onValueChange}
 					clicked={this.handleFormSubmit}
 				/>
-			</View>
+			</ScrollView>
 		);
 	}
 }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ActionList from "./ActionList";
-import { Alert, Text } from "react-native";
+import { Alert, Text, ScrollView, StyleSheet } from "react-native";
 import { ActionSheet } from "native-base";
 import API from "../utils/API";
 
@@ -63,6 +63,7 @@ class EmployeeList extends Component {
 					}
 					clicked={() => this.handleClick(user.id)}
 				/>
+			
 			);
 		});
 	}

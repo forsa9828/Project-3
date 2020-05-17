@@ -1,30 +1,34 @@
-import React from "react";
-import { StyleSheet, ScrollView, View, ImageBackground } from "react-native";
-import { Root } from "native-base";
+import React, { Component } from "react";
+import { StyleSheet, Container, ScrollView } from "react-native";
+import { Root, View } from "native-base";
 import * as Font from "expo-font";
-import ReviewPto from "./src/pages/ReviewPto";
+import ReviewPto from "./src/component/ReviewPto";
+// import SchedulePage from "./src/pages/SchedulePage";
+// import RequestOff from "./src/pages/RequestOff";
+import Avail from "./src/pages/Avail";
+// import ManageEmployees from "./src/pages/ManageEmployees";
+// import EmployeeList from "./src/component/EmployeeList";
+import { NavBar } from "./src/component/Navbar";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import ManageEmployees from "./src/pages/ManageEmployees";
 import SchedulePage from "./src/pages/SchedulePage";
 import RequestOff from "./src/pages/RequestOff";
-import Avail from "./src/pages/Avail";
-import ManageEmployees from "./src/pages/ManageEmployees";
-import EmployeeList from "./src/component/EmployeeList";
-import Signup from "./src/pages/Signup";
+import Review from "./src/pages/Review";
 
-// const image = {require('/assets/marble.jpg')};
 
 export default function App() {
-	return (
-		<Root>
-			<View style={styles.container}>
-				<ScrollView contentContainerStyle={styles.scrollView}>
-					<ImageBackground source={require('./assets/marble.jpg')} style={styles.image}>
-						<Avail />
-					</ImageBackground>
-				</ScrollView>
-			</View>
-		</Root>
-	);
+  return (
+	  <Root>
+<View style={styles.container}>
+
+<SchedulePage/>
+
+</View>
+	  </Root>
+  );
 }
+
 
 const styles = StyleSheet.create({
 	container: {
@@ -35,9 +39,5 @@ const styles = StyleSheet.create({
 	},
 	scroll: {
 		marginHorizontal: 5
-	},
-	image: {
-		flex: 1,
-		resizeMode: 'cover'
 	}
 });

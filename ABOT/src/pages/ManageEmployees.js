@@ -6,7 +6,8 @@ import {
 	TouchableHighlight,
 	View,
 	TextInput,
-	Alert
+	Alert,
+	ScrollView
 } from "react-native";
 import API from "../utils/API";
 import EmployeeList from "../component/EmployeeList";
@@ -32,8 +33,9 @@ class ManageEmployees extends Component {
 		const { modalVisible } = this.state;
 		return (
 			<View>
+				<ScrollView>
 				<EmployeeList />
-
+				</ScrollView>
 				<View style={styles.centeredView}>
 					<Modal
 						animationType='slide'
@@ -92,6 +94,7 @@ class ManageEmployees extends Component {
 					>
 						<Text style={styles.textStyle}>Add a new employee</Text>
 					</TouchableHighlight>
+					
 				</View>
 			</View>
 		);
