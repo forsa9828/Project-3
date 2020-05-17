@@ -18,7 +18,7 @@ export default function App() {
 			<View style={styles.container}>
 				<ScrollView contentContainerStyle={styles.scrollView}>
 					<ImageBackground source={require('./assets/marble.jpg')} style={styles.image}>
-						<RequestOff />
+						<Avail />
 					</ImageBackground>
 				</ScrollView>
 			</View>
