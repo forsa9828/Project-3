@@ -9,8 +9,8 @@ module.exports = {
 
 
     signin: (req, res) => {
-        res.redirect("SchedulePage");// need to  update to res.redirect. causing a "no default engine message"
         //res.redirect, redirect to the route for React
+       console.log("signin")
         
     },
 

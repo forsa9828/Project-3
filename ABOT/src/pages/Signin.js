@@ -3,8 +3,10 @@ import React, { Component } from "react";
 import {FormLogin} from "../component/Form";
 import API from "../utils/API";
 import {Alert, Stylesheet, Text} from "react-native";
-//import navbar 
-import axios from "axios";
+import { createStackNavigator } from '@react-navigation/stack';
+import SchedulePage from "./SchedulePage";
+import { NavigationContainer } from "@react-navigation/native";
+import { useNavigation } from '@react-navigation/native';
 
 class SignIn extends Component {
     state = {
@@ -12,7 +14,8 @@ class SignIn extends Component {
         password: "",
         emailMsg: "",
         pswdMsg:"",
-        signedIn: false
+        isLoggedIn: false,
+        userToken: ""
     }
 
     onValueChange= (value) => {
@@ -32,14 +35,16 @@ class SignIn extends Component {
     }
 
 
-
     signInSubmit = (event) => {
+       
+        //this.props.navigation.navigate('SignIn')
+
         event.preventDefault();  
         const {
             email,
-            password
+            password,
+            isLoggedIn
         } = this.state;
-        // console.log(this.state)
 
         //validation here
         const checkEmail=/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/
@@ -65,22 +70,46 @@ class SignIn extends Component {
             API.logIn({
                 email,
                 password
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '
+            }
         })
-       .then(console.log("done!")
-        // this.props.navigation.navigate('SchedulePage')
+    //     //have if for if user name and password matches db
 
-       )
-            //if res is sucessful, we need to navigate to schedule page 
-                //ex: this.props.navigation.navigate('SchedulePage')
-                //changed signedIn state to TRUE
-            //else if not successful (user acct doesn't exist) alert for now
-      .catch(error=> console.log(error))
+    //     //then changed loggedin to true then go to nav page  
+    //    //.then(//need token here 
+        .then((response) => { //res from server
+            //if passport take us to next route = successful
+             if(!response){
+                console.log("none")
+            }
+            else{
+                console.log("good to go")
+                let isLoggedIn = true;
+                this.setState({isLoggedIn})
+                console.log(isLoggedIn)
+            }
+           
+        }) //will show a catch error if user doesn't exist in db
+         .catch((error) => {
+         console.log(error)
+         Alert.alert("Oh no! Something went wrong. If you believe this is an error, reach out to your manager.")
+         })  
          }
+
+
+         //now need to get user info and pass it 
+         
     }
 
+
+
     render() {
-      
+     
         return(
+      
             <FormLogin
                 email={this.state.email}
                 password={this.state.password}
@@ -91,12 +120,16 @@ class SignIn extends Component {
                 errPswd={this.state.pswdMsg}
                 forgotPassword={this.forgotPassword}
                 goToSignUp={this.goToSignUp}
-            />
-       
-         
-        )
-    }
-}
+           />
 
+           
+        )}
+}
 export default SignIn;
+
+// export default function(props) {
+//     const navigation = useNavigation();
+  
+//     return <SignIn {...props} navigation={navigation} />;
+//   }
 

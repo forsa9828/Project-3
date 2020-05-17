@@ -7,49 +7,48 @@ import SignIn from "./src/pages/Signin";
 import SignUp from "./src/pages/Signup";
 import ForgotPassword from "./src/pages/ForgotPassword";
 // import Table from "./src/component/Table";
-// import RequestOff from "./src/pages/RequestOff";
+import RequestOff from "./src/pages/RequestOff";
 // import SchedulePage from "./src/pages/SchedulePage";
 // import FormAvailPto from "./src/component/FormAvailPto";
 // import ActionList from "./src/component/ActionList";
-import ReviewPto from "./src/pages/ReviewPto";
-import SchedulePage from "./src/pages/SchedulePage";
-import RequestOff from "./src/pages/RequestOff";
-import Avail from "./src/pages/Avail";
-import ManageEmployees from "./src/pages/ManageEmployees";
-import EmployeeList from "./src/component/EmployeeList";
 import NavBar from "./src/component/Navbar";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button, Image, TouchableOpacity } from 'react-native';
-import {AppContainer} from "./src/component/AuthNavigation";
 
 
-export default function App() {
+function App() {
   return (
-	// <Container style={styles.container}>
-    // <NavigationContainer>
-    //   <NavBar />
-    // </NavigationContainer>
-	// </Container>
+	
+		// <ScrollView>
+			// <NavigationContainer>
+			// 	<NavBar />
+			// </NavigationContainer>
+		
+		/* </ScrollView> */
+
+
 	<Root>
-		{/* <ForgotPassword /> */}
-		{/* <AppContainer /> */}
+	{/* // 	/* //  <ForgotPassword /> 
+	// 	//  <AppContainer />   */}
 		<SignIn />
-	</Root>
+	{/* <RequestOff /> */}
+	 </Root>
   );
 }
 
+export default App;
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 10,
-		backgroundColor: "#fff",
-		alignItems: "stretch",
-		justifyContent: "space-evenly"
-	},
-	scroll: {
-		marginHorizontal: 5
-	},
+{/* // const styles = StyleSheet.create({ */}
+// 	container: {
+// 		flex: 10,
+// 		backgroundColor: "#fff",
+// 		alignItems: "stretch",
+// 		justifyContent: "space-evenly"
+// 	},
+// 	scroll: {
+// 		marginHorizontal: 5
+// 	},
 
-	  });
+// 	  });
 

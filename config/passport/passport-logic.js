@@ -69,13 +69,13 @@ module.exports = (passport, user) => {
             passReqToCallback: true
         },
         (req, email, password, done) => {
-            console.log(email)
+            console.log(email, password)
             UserDB.user.findOne({
                 where: {
                     email: email
                 }
             }).then((user, err) => {
-                console.log(user)
+               console.log(user) //showing null if user email doesn't exist
                 let validPassword = bCrypt.compareSync(password, user.password);
 
                 if (!user) {
@@ -89,6 +89,7 @@ module.exports = (passport, user) => {
                 }
 
                 let userInfo = user.get();
+                console.log(userInfo)
                 console.log("correct user!");
                 return done(null, userInfo);
 
