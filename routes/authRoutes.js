@@ -9,7 +9,7 @@ module.exports = app => {
     app.get("/auth/signin", authController.signin);
       
     app.post("/auth/signup", passport.authenticate("local-signup", {
-        failureRedirect: "/signup"}), (req,res) => {
+        failureRedirect: "Signup"}), (req,res) => {
             //res.redirect("/loggedin")
            console.log("done signup")
             
@@ -17,9 +17,9 @@ module.exports = app => {
     
     app.post("/auth/forgotpassword", passport.authenticate("forgotPassword", {
         failureRedirect: "/forgotpassword"}), (req,res) => {
-            //res.redirect("/loggedin")
+            res.redirect("SignIn")
             console.log(res + "done forgot password")
-            res.sendStatus("done password")
+          
         }
     );
  
@@ -35,10 +35,27 @@ module.exports = app => {
  
     app.get("/auth/logout", authController.logout);
 
-    app.post("/auth/signin", passport.authenticate("signin",{
-            successRedirect: "/loggedin",
-            failureRedirect: "/signin"})
-    );
+    app.post("/auth/signin", passport.authenticate("signin", {
+        failureRedirect: "SignIn"}), (req,res) => {
+            res.redirect("SchedulePage")
+            console.log(res)
+          
+        }
+
+      );
+    
+    // (req, res) =>
+    // {
+    //     //res.redirect("SchedulePage")
+    //     console.log(req);
+    //     console.log(res)
+    //     console.log("testing")
+    //    // console.log(req.isAuthenticated());
+    //       //successRedirect: 'SchedulePage',
+    //        // failureRedirect: "SignIn"
+    //    }
+     //  )
+   // ));
 
  
  

@@ -69,7 +69,7 @@ module.exports = (passport, user) => {
             passReqToCallback: true
         },
         (req, email, password, done) => {
-
+            console.log(email)
             UserDB.user.findOne({
                 where: {
                     email: email
@@ -89,7 +89,7 @@ module.exports = (passport, user) => {
                 }
 
                 let userInfo = user.get();
-                console.log(userInfo);
+                console.log("correct user!");
                 return done(null, userInfo);
 
             }).catch(err => {

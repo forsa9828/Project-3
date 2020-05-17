@@ -5,7 +5,7 @@ import { Root, Container } from "native-base";
 import * as Font from 'expo-font';
 import SignIn from "./src/pages/Signin";
 import SignUp from "./src/pages/Signup";
-import ForgotPassword from "./src/pages/forgotPassword";
+import ForgotPassword from "./src/pages/ForgotPassword";
 // import Table from "./src/component/Table";
 // import RequestOff from "./src/pages/RequestOff";
 // import SchedulePage from "./src/pages/SchedulePage";
@@ -21,16 +21,21 @@ import NavBar from "./src/component/Navbar";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button, Image, TouchableOpacity } from 'react-native';
-
+import {AppContainer} from "./src/component/AuthNavigation";
 
 
 export default function App() {
   return (
-	<Container style={styles.container}>
-    <NavigationContainer>
-      <NavBar />
-    </NavigationContainer>
-	</Container>
+	// <Container style={styles.container}>
+    // <NavigationContainer>
+    //   <NavBar />
+    // </NavigationContainer>
+	// </Container>
+	<Root>
+		{/* <ForgotPassword /> */}
+		{/* <AppContainer /> */}
+		<SignIn />
+	</Root>
   );
 }
 

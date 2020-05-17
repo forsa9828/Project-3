@@ -1,7 +1,7 @@
 module.exports = {
 
     signup: (req, res) => {
-        //res.render("/signup");
+        res.redirect("SignUp");
         console.log("signup")
         // res.status(200)
         // console.log("success!")
@@ -9,20 +9,19 @@ module.exports = {
 
 
     signin: (req, res) => {
-        // res.render("/loggedin");// need to  update to res.redirect. causing a "no default engine message"
-        console.log("hit")
+        res.redirect("SchedulePage");// need to  update to res.redirect. causing a "no default engine message"
         //res.redirect, redirect to the route for React
         
     },
 
     index: (req, res) => {
-        res.render("/loggedin");
+        res.render("SchedulePage");
 
     },
 
     logout: (req, res) => {
         req.session.destroy((err) => {
-            res.redirect('/');
+            res.redirect('SignIn');
         
         });
         

@@ -4,13 +4,15 @@ import {FormLogin} from "../component/Form";
 import API from "../utils/API";
 import {Alert, Stylesheet, Text} from "react-native";
 //import navbar 
+import axios from "axios";
 
 class SignIn extends Component {
     state = {
         email: "",
         password: "",
         emailMsg: "",
-        pswdMsg:""
+        pswdMsg:"",
+        signedIn: false
     }
 
     onValueChange= (value) => {
@@ -64,11 +66,15 @@ class SignIn extends Component {
                 email,
                 password
         })
-        .then(res => console.log(res))
+       .then(console.log("done!")
+        // this.props.navigation.navigate('SchedulePage')
+
+       )
             //if res is sucessful, we need to navigate to schedule page 
                 //ex: this.props.navigation.navigate('SchedulePage')
+                //changed signedIn state to TRUE
             //else if not successful (user acct doesn't exist) alert for now
-        .catch(error=> console.log(error))
+      .catch(error=> console.log(error))
          }
     }
 

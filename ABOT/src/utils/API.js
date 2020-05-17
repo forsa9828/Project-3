@@ -58,11 +58,7 @@ export default {
 	},
 
 	authUser: function(data) {
-		return axios.post("http://192.168.1.72:8080/auth/signup", data, {
-			headers: {
-			  'Content-Type': 'application/json',
-			}
-		});
+		return axios.post("http://192.168.1.72:8080/auth/signup", data);
 	},
 
 	forgotPassword: function(data) {
