@@ -17,6 +17,7 @@ class SchedulePage extends Component {
 		this._isMounted = true;
 		API.getSchedule()
 			.then(response => {
+				console.log(response.data)
 				let schedules = response.data;
 				this.setState({ schedules });
 			})

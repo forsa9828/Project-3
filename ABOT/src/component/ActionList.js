@@ -1,16 +1,19 @@
 import React, { Component } from "react";
 import { StyleSheet, View, TouchableHighlight, Text } from "react-native";
 
+
 function ActionList(props) {
 	return (
-		<View>
 			<TouchableHighlight style={styles.button} onPress={props.clicked}>
 				<Text>
 					{props.firstName} {props.lastName} {props.date}
 					{props.startTime} {props.endTime}
+					{props.pending}{props.approved}
+					{props.phone}
+					{props.emergencyContact}
+					{props.emergencyContactPhone}
 				</Text>
 			</TouchableHighlight>
-		</View>
 	);
 }
 

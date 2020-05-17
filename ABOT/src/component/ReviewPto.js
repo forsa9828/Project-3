@@ -1,8 +1,9 @@
-import React, { Component } from "react";
-import { Alert, Text } from "react-native";
+import React, { Component, useState } from "react";
+import { Alert, Text, Button, ScrollView, View, StyleSheet } from "react-native";
 import { ActionSheet } from "native-base";
-import ActionList from "../component/ActionList";
+import ActionList from "./ActionList";
 import API from "../utils/API";
+
 
 export default class ReviewPto extends Component {
 	_isMounted = false;
@@ -11,7 +12,9 @@ export default class ReviewPto extends Component {
 		this.state = {
 			ptoRequests: [],
 			error: null,
-			isLoaded: false
+			isLoaded: false,
+			refreshing: false,
+			setRefreshing: false
 		};
 	}
 
@@ -21,9 +24,11 @@ export default class ReviewPto extends Component {
 			.then(response => {
 				let ptoRequests = response.data;
 				this.setState({ ptoRequests });
-				!ptoRequests === []
-					? <Text>There are no requests to review!</Text>
-					: this.render;
+				!ptoRequests === [] ? (
+					<Text>There are no requests to review!</Text>
+				) : (
+					this.render
+				);
 			})
 			.catch(error => console.log(error))
 			.finally(() => {
@@ -37,7 +42,7 @@ export default class ReviewPto extends Component {
 		};
 	}
 
-	handleClick = (key) => {
+	handleClick = key => {
 		const BUTTONS = ["Approve", "Deny", "Cancel"];
 		const DESTRUCTIVE_INDEX = 1;
 		const CANCEL_INDEX = 2;
@@ -51,13 +56,16 @@ export default class ReviewPto extends Component {
 			buttonIndex => {
 				if (buttonIndex === 1) {
 					API.denyReq(key)
-					.then(Alert.alert("Request denied"));
+						.catch(function(err) {
+							console.log(err);
+						})
+						.then(Alert.alert("Request denied"));
 				} else if (buttonIndex === 0) {
 					API.approveReq(key)
-					.then(!err ? Alert.alert("Request approved") : null)
-					.catch(function(err) {
-						console.log(err);
-					});
+						.catch(function(err) {
+							console.log(err);
+						})
+						.then(Alert.alert("Request approved"));
 				} else {
 					ActionSheet.hide();
 				}
@@ -70,15 +78,18 @@ export default class ReviewPto extends Component {
 
 		return ptoRequests.map(ptoRequest => {
 			return (
-				<ActionList
-					key={ptoRequest.id}
-					firstName={ptoRequest.firstName}
-					lastName={ptoRequest.lastName}
-					date={"\n"+ptoRequest.date}
-					startTime={"\n"+ptoRequest.startTime + " -"}
-					endTime={ptoRequest.endTime}
-					clicked={() => this.handleClick(ptoRequest.id, ptoRequest.date)}
-				/>
+			
+					<ActionList
+						key={ptoRequest.id}
+						firstName={ptoRequest.firstName}
+						lastName={ptoRequest.lastName}
+						date={"\n" + ptoRequest.date}
+						startTime={"\n" + ptoRequest.startTime + " -"}
+						endTime={ptoRequest.endTime}
+						pending={"\n" + "Pending: " + ptoRequest.pending}
+						approved={"\n" + "Approved: " + ptoRequest.approved}
+						clicked={() => this.handleClick(ptoRequest.id, ptoRequest.date)}
+					/>
 			);
 		});
 	}

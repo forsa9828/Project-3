@@ -4,7 +4,6 @@ import { View, Container, List, Body, ListItem, Text } from "native-base";
 function Table(props) {
 	return (
 		<View>
-
 			<ListItem itemDivider>
 				<Text>{props.date}</Text>
 			</ListItem>

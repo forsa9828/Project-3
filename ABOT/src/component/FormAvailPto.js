@@ -5,31 +5,30 @@ import { Form, Item, Input, Label } from "native-base";
 function FormAvailPto(props) {
 	return (
 		<View>
-			<Text style={styles.titleText}>{props.title}</Text>
-			<Form>
+			<Text style={styles.inputText}>{props.title}</Text>
+			<Form style={styles.formBody}>
 				<Item stackedLabel>
-					<Label>First Name</Label>
+					<Label style={styles.inputText}>First Name</Label>
 					<Input
-						placeholder='First'
 						value={props.firstName}
 						onChangeText={value => props.onValueChange({ firstName: value })}
-					/>
+						/>
 				</Item>
-				<Item stackedLabel>
-					<Label>Last Name</Label>
+				<Item stackedLabel >
+					<Label style={styles.inputText}>Last Name</Label>
 					<Input
-						placeholder='Last'
+					style={styles.fixToText}
 						value={props.lastName}
 						onChangeText={value => props.onValueChange({ lastName: value })}
-					/>
+						/>
 				</Item>
-				<Item stackedLabel>
-					<Label>Date</Label>
-					<Button style={styles.dateButton} title="Date"onPress={props.dateOptions}></Button>
-					<Text>{props.date}</Text>
+				<Item stackedLabel style={styles.fixToText}>
+					<Button color="#d6ad86" title="Select date" onPress={props.dateOptions} >
+					</Button>
+					<Text style={styles.date}>{props.date}</Text>
 					</Item>
 				<Item stackedLabel>
-					<Label>Start Time</Label>
+					<Label style={styles.inputText}>Start Time</Label>
 					<Input
 						value={props.startTime}
 						placeholder='08:00am'
@@ -37,36 +36,47 @@ function FormAvailPto(props) {
 					/>
 				</Item>
 				<Item stackedLabel>
-					<Label>End Time</Label>
+					<Label style={styles.inputText}>End Time</Label>
 					<Input
 						value={props.endTime}
 						placeholder='12:00pm'
 						onChangeText={value => props.onValueChange({ endTime: value })}
 					/>
 				</Item>
-				<Button style={styles.openButton} title='Submit' onPress={props.clicked} />
+				<View style={styles.openButton}>
+				<Button color= "#d6ad86" title='Submit' onPress={props.clicked} />
+				</View>
 			</Form>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
-	titleText: {
-		fontSize: 20,
+	inputText: {
 		fontWeight: "bold",
-		margin: 10
+		
 	},
 	dateButton: {
 		flex: 1,
 		backgroundColor: "#d6ad86",
-		color: "white",
+		color: "#d6ad86",
 		
 	},openButton: {
-		backgroundColor: "#d6ad86",
 		padding: 10,
-		margin: 8,
-		elevation: 2,
-		color: "white",
-	}
+		flexDirection: 'row',
+		marginTop:5,
+		marginLeft: 5
+	},
+	fixToText: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+	  },
+	  date: {
+		marginRight: 25,
+		fontSize: 16
+	  },
+	  formBody: {
+		  marginVertical: 50
+	  }
 });
 export default FormAvailPto;

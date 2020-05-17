@@ -1,33 +1,31 @@
-import 'react-native-gesture-handler';
-import React, {Component} from "react";
-import { StyleSheet, ScrollView, View, Text } from "react-native";
-import { Root, Container } from "native-base";
-import * as Font from 'expo-font';
-// import Table from "./src/component/Table";
-// import RequestOff from "./src/pages/RequestOff";
+import React, { Component } from "react";
+import { StyleSheet, Container, ScrollView } from "react-native";
+import { Root, View } from "native-base";
+import * as Font from "expo-font";
+import ReviewPto from "./src/component/ReviewPto";
 // import SchedulePage from "./src/pages/SchedulePage";
-// import FormAvailPto from "./src/component/FormAvailPto";
-// import ActionList from "./src/component/ActionList";
-import ReviewPto from "./src/pages/ReviewPto";
-import SchedulePage from "./src/pages/SchedulePage";
-import RequestOff from "./src/pages/RequestOff";
+// import RequestOff from "./src/pages/RequestOff";
 import Avail from "./src/pages/Avail";
-import ManageEmployees from "./src/pages/ManageEmployees";
-import EmployeeList from "./src/component/EmployeeList";
-import NavBar from "./src/component/Navbar";
+// import ManageEmployees from "./src/pages/ManageEmployees";
+// import EmployeeList from "./src/component/EmployeeList";
+import { NavBar } from "./src/component/Navbar";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Button, Image, TouchableOpacity } from 'react-native';
-
+import ManageEmployees from "./src/pages/ManageEmployees";
+import SchedulePage from "./src/pages/SchedulePage";
+import RequestOff from "./src/pages/RequestOff";
+import Review from "./src/pages/Review";
 
 
 export default function App() {
   return (
-	<Container style={styles.container}>
-    <NavigationContainer>
-      <NavBar />
-    </NavigationContainer>
-	</Container>
+	  <Root>
+<View style={styles.container}>
+
+<SchedulePage/>
+
+</View>
+	  </Root>
   );
 }
 
@@ -41,7 +39,5 @@ const styles = StyleSheet.create({
 	},
 	scroll: {
 		marginHorizontal: 5
-	},
-
-	  });
-
+	}
+});

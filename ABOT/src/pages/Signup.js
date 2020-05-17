@@ -117,8 +117,8 @@ class SignUp extends Component {
                 emergencyContact,
                 emergencyContactPhone
             })
-        //     .then(res=> console.log(res.data))
-        //     .catch(error => console.log(error))
+            .then(res=> console.log(res.data))
+            .catch(error => console.log(error))
         }
 }
 
