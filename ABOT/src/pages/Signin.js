@@ -24,21 +24,20 @@ class SignIn extends Component {
 
     //this is method allows to go to forgotPassword screen
     forgotPassword =() =>{
-        //add route to go to forgotPassword.js
-        //ex: this.props.navigation.navigate('ForgotPassword')
+        this.props.navigation.navigate("ForgotPassword")
     }
 
     //this method will allow to go to sign up screen
     goToSignUp=() =>{
-        //add route to go to signUp
-        //ex: this.props.navigation.navigate('Signup')
+        this.props.navigation.navigate("Signup")
     }
 
+    
 
     signInSubmit = (event) => {
        
-        //this.props.navigation.navigate('SignIn')
-
+        //this.props.navigation.navigate('SchedulePage')
+        
         event.preventDefault();  
         const {
             email,
@@ -90,16 +89,21 @@ class SignIn extends Component {
                 let isLoggedIn = true;
                 this.setState({isLoggedIn})
                 console.log(isLoggedIn)
+
+                // goToSchedulePage =({navigation})=>{
+                //     navigation.navigate("SchedulePage")
+                // }
+            
             }
            
         }) //will show a catch error if user doesn't exist in db
          .catch((error) => {
          console.log(error)
-         Alert.alert("Oh no! Something went wrong. If you believe this is an error, reach out to your manager.")
+         //Alert.alert("Oh no! Something went wrong. If you believe this is an error, reach out to your manager.")
          })  
          }
 
-
+        
          //now need to get user info and pass it 
          
     }
@@ -127,9 +131,4 @@ class SignIn extends Component {
 }
 export default SignIn;
 
-// export default function(props) {
-//     const navigation = useNavigation();
-  
-//     return <SignIn {...props} navigation={navigation} />;
-//   }
 

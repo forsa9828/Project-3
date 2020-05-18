@@ -2,10 +2,12 @@
 import React, { Component } from "react";
 import { Container, Header, Content, Form, Item, Input, Picker, Left, Right, Body, Title, Icon} from "native-base";
 import {Button, StyleSheet, Text, TouchableOpacity } from "react-native";
+//import { useNavigation } from "@react-navigation/native";
 
 
 export function FormLogin(props) {
-  
+  //const navigation = useNavigation();
+
   return (
     <Container>
         <Header>
@@ -15,6 +17,7 @@ export function FormLogin(props) {
             </Body>
           <Right />
        </Header>
+
        <Content style={styles.container}>
         <Form>
           <Item rounded style={styles.inputStyle}>
@@ -61,13 +64,13 @@ export function FormLogin(props) {
           <TouchableOpacity>
           <Button 
               title="Don't have an account? Sign Up"
-              //onPress={props.clickedIn}
+              onPress={()=> props.goToSignUp()}
           />
           </TouchableOpacity>
           <TouchableOpacity>
           <Button
               title="Forgot Password"
-              //onPress={props.forgotPassword}
+              onPress={() => props.forgotPassword()}
           />
           </TouchableOpacity>
     </Form>
@@ -76,6 +79,13 @@ export function FormLogin(props) {
     );
   
   }
+
+  // export default function(props) {
+//     const navigation = useNavigation();
+  
+//     return <SignIn {...props} navigation={navigation} />;
+//   }
+
 
  
 
@@ -235,6 +245,13 @@ export function  FormSignUp (props) {
                 title= "Submit"
                 color="black"
                  onPress={props.clicked}
+              />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.btnStyle}>
+              <Button 
+                title= "Go Back"
+                color="black"
+                onPress={() => props.goBack()}
               />
               </TouchableOpacity>
               

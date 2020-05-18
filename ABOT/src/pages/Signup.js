@@ -27,6 +27,10 @@ class SignUp extends Component {
         this.setState(value)
     }
 
+    goBack =() => {
+        this.props.navigation.navigate("Signin")
+    }
+
     
     signUpSubmit=(event) => {
         event.preventDefault();
@@ -159,6 +163,7 @@ class SignUp extends Component {
                 employMsg={this.state.employMsg}
                 onValueChange={this.onValueChange}
                 clicked={this.signUpSubmit}
+                goBack={this.goBack}
             />
           
         )

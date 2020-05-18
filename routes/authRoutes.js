@@ -45,11 +45,11 @@ module.exports = app => {
     // })
 
 
-    app.post("/signin", passport.authenticate("signin"));
-    //  {
-    //            successRedirect: "SchedulePage",
-    //             failureRedirect: "SignIn"
-    //     }
+    app.post("/signin", passport.authenticate("signin",
+     {
+               successRedirect: "SchedulePage",
+                failureRedirect: "SignIn"
+        }
     
     
     // (req, res) => {
@@ -73,7 +73,7 @@ module.exports = app => {
 
         //     }
 
-//   ));
+    ));
 
 
 }

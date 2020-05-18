@@ -15,7 +15,7 @@ import NavBar from "./src/component/Navbar";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button, Image, TouchableOpacity } from 'react-native';
-
+import {AppContainer} from "./src/component/AuthNav";
 
 function App() {
   return (
@@ -27,13 +27,15 @@ function App() {
 		
 		/* </ScrollView> */
 
-
 	<Root>
-	{/* // 	/* //  <ForgotPassword /> 
-	// 	//  <AppContainer />   */}
-		<SignIn />
-	{/* <RequestOff /> */}
-	 </Root>
+	 {/* /* <ForgotPassword />  */
+	
+	 <AppContainer />  
+	 //have to render this to get the nav to work from signup
+	//   <SignIn /> 
+	 /* <RequestOff /> /*/}
+
+	</Root> 
   );
 }
 

@@ -68,8 +68,7 @@ class ForgotPassword extends Component{
 
     //this method will allow to go to sign IN screen
     goToSignIn=() =>{
-        //add route to go to signIN
-        //ex: this.props.navigation.navigate('Signin')
+        this.props.navigation.navigate('Signin')
     }
 
 
@@ -130,7 +129,7 @@ class ForgotPassword extends Component{
                   <TouchableOpacity>
                   <Button 
                       title="Go Back to Login"
-                      //onPress={this.goToSignIn}
+                      onPress={()=> this.goToSignIn("Signin")}
                   />
                   </TouchableOpacity>
                
