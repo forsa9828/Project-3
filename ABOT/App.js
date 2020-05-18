@@ -1,43 +1,57 @@
-import React, { Component } from "react";
-import { StyleSheet, Container, ScrollView } from "react-native";
-import { Root, View } from "native-base";
-import * as Font from "expo-font";
-import ReviewPto from "./src/component/ReviewPto";
-// import SchedulePage from "./src/pages/SchedulePage";
-// import RequestOff from "./src/pages/RequestOff";
-import Avail from "./src/pages/Avail";
-// import ManageEmployees from "./src/pages/ManageEmployees";
-// import EmployeeList from "./src/component/EmployeeList";
-import { NavBar } from "./src/component/Navbar";
+import 'react-native-gesture-handler';
+import React, {Component} from "react";
+import { StyleSheet, ScrollView, View, Text } from "react-native";
+import { Root, Container } from "native-base";
+import * as Font from 'expo-font';
+import SignIn from "./src/pages/Signin";
+import SignUp from "./src/pages/Signup";
+import ForgotPassword from "./src/pages/ForgotPassword";
+// import Table from "./src/component/Table";
+import RequestOff from "./src/pages/RequestOff";
+import SchedulePage from "./src/pages/SchedulePage";
+// import FormAvailPto from "./src/component/FormAvailPto";
+// import ActionList from "./src/component/ActionList";
+import NavBar from "./src/component/Navbar";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import ManageEmployees from "./src/pages/ManageEmployees";
-import SchedulePage from "./src/pages/SchedulePage";
-import RequestOff from "./src/pages/RequestOff";
-import Review from "./src/pages/Review";
+import { Button, Image, TouchableOpacity } from 'react-native';
+import {AppContainer} from "./src/component/AuthNav";
 
-
-export default function App() {
+function App() {
   return (
-	  <Root>
-<View style={styles.container}>
+	
+		// <ScrollView>
+			// <NavigationContainer>
+			// 	<NavBar />
+			// </NavigationContainer>
+		
+		/* </ScrollView> */
 
-<SchedulePage/>
+	 <Root>
+	  {/* /* /* <ForgotPassword />   */ }
+	
+	  <AppContainer />
+	  
+	 {/* /* <SchedulePage /> */ }
+	 
+	 {/* /* <SignIn />  */}
 
-</View>
-	  </Root>
+	 </Root>   
   );
 }
 
+export default App;
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 10,
-		backgroundColor: "#fff",
-		alignItems: "stretch",
-		justifyContent: "space-evenly"
-	},
-	scroll: {
-		marginHorizontal: 5
-	}
-});
+{/* // const styles = StyleSheet.create({ */}
+// 	container: {
+// 		flex: 10,
+// 		backgroundColor: "#fff",
+// 		alignItems: "stretch",
+// 		justifyContent: "space-evenly"
+// 	},
+// 	scroll: {
+// 		marginHorizontal: 5
+// 	},
+
+// 	  });
+

@@ -5,8 +5,8 @@ import {Alert, View} from "react-native";
 
 class SignUp extends Component {
     state= {
-        firstname: "",
-        lastname: "",
+        firstName: "",
+        lastName: "",
         email: "",
         password: "",
         employmentType: "",
@@ -16,7 +16,7 @@ class SignUp extends Component {
         emailMsg: "",
         nameMsg: "",
         lastNameMsg: "",
-        pswdMsg: "",
+        pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character",
         employMsg: "",
         emerConMsg: "",
         phoneMsg: "",
@@ -27,12 +27,16 @@ class SignUp extends Component {
         this.setState(value)
     }
 
+    goBack =() => {
+        this.props.navigation.navigate("Signin")
+    }
+
     
     signUpSubmit=(event) => {
         event.preventDefault();
         const {
-            firstname,
-            lastname,
+            firstName,
+            lastName,
             email,
             password,
             employmentType,
@@ -40,7 +44,7 @@ class SignUp extends Component {
             emergencyContact,
             emergencyContactPhone
         } = this.state;
-        console.log(password)
+        console.log(firstName, lastName)
 
         const inputRegEx = /^[A-Za-z-\s ]{1,20}$/;
 
@@ -50,12 +54,14 @@ class SignUp extends Component {
         const passwordRegEx=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,10}$/;
         
 
-        if(!inputRegEx.test(firstname)){
+        if(!inputRegEx.test(firstName)){
+            console.log(firstName)
             this.setState({
                 nameMsg: "Enter first name"
             })
         
-       }else if(!inputRegEx.test(lastname)){
+       }else if(!inputRegEx.test(lastName)){
+           console.log(lastName)
             this.setState({
                 nameMsg: "",
                 lastNameMsg: "Enter last name"
@@ -95,40 +101,45 @@ class SignUp extends Component {
                 emerPhoneMsg: "Enter a valid phone number"
             })
         }else{
-           Alert.alert("Successfully Signed Up!")
-            this.setState({
-                emailMsg: "",
-                nameMsg: "",
-                lastNameMsg: "",
-                pswdMsg: "",
-                employMsg: "",
-                emerConMsg: "",
-                phoneMsg: "",
-                emerPhoneMsg: ""
-            });
-          
+
               API.authUser({
-                firstname,
-                lastname,
+                firstName,
+                lastName,
                 email,
                 password,
                 employmentType,
                 phone,
                 emergencyContact,
                 emergencyContactPhone
+            },{ //headers are to check network errors if any
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer '
+                }
             })
-            .then(res=> console.log(res.data))
+            //handle the response still needs work
+            .then(response => { 
+                if(!response){
+                    console.log("no response")
+                }else{
+                    console.log("success! created.")
+                   // this.props.navigation.navigate("NavBar")
+                   //check query db to check for specific user 
+                }
+            })
             .catch(error => console.log(error))
-        }
+            
+            
+           }
 }
 
 
     render() {
-        
+      
         return(
             <FormSignUp 
-                firstname={this.state.firstname}
-                lastname={this.state.lastname}
+                firstName={this.state.firstName}
+                lastName={this.state.lastName}
                 email={this.state.email}
                 password={this.state.password}
                 employmentType={this.state.employmentType}
@@ -145,6 +156,7 @@ class SignUp extends Component {
                 employMsg={this.state.employMsg}
                 onValueChange={this.onValueChange}
                 clicked={this.signUpSubmit}
+                goBack={this.goBack}
             />
           
         )
