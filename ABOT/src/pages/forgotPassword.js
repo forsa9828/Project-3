@@ -31,12 +31,12 @@ class ForgotPassword extends Component{
                 {
                   emailMsg: "Enter valid email",
                 })
-        }else if(!passwordRegEx.test(password)){
-            this.setState(
-                {
-                    emailMsg: "",
-                    pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character"
-            })
+       // }else if(!passwordRegEx.test(password)){
+        //     this.setState(
+        //         {
+        //             emailMsg: "",
+        //             pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character"
+        //     })
         
         }else{
             console.log("good to go")
@@ -60,11 +60,12 @@ class ForgotPassword extends Component{
                 console.log("no response")
             } else{
               console.log("good to go")
+              this.props.navigation.navigate("NavBar")
               // let isLoggedIn = true;
               // this.setState({isLoggedIn})
               // console.log(isLoggedIn)
               // Alert.alert("Welcome Back!")
-              // this.props.navigation.navigate("NavBar")
+               //this.props.navigation.navigate("NavBar")
           }
                 
             })
