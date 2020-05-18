@@ -59,7 +59,7 @@ export default {
 	},
 
 	authUser: function(data) {
-		return axios.post("http://192.168.1.72:8080/signup", data);
+		return axios.post("http://192.168.1.72:8080/auth/signup", data);
 	},
 
 	forgotPassword: function(data) {
@@ -67,7 +67,7 @@ export default {
 	},
 
 	renderSignup: function() {
-		return axios.get("http://192.168.0.10:8080/signup");
+		return axios.get("http://192.168.0.10:8080/auth/signup");
 	},
 
 	renderSignin: function() {

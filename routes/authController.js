@@ -1,7 +1,7 @@
 module.exports = {
 
     signup: (req, res) => {
-        res.redirect("/Signup");
+        res.redirect("/SchedulePage");
         console.log("signup")
         // res.status(200)
         // console.log("success!")

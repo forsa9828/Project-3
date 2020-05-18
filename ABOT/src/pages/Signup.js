@@ -118,9 +118,8 @@ class SignUp extends Component {
                 }
             })
             //handle the response
-            .then(response => { console.log('response',response.data)
+            .then(response => { 
                 if(!response){
-                    
                     console.log("no response")
                 }else{
                     console.log("success! created.")
@@ -137,7 +136,7 @@ class SignUp extends Component {
                    // this.props.navigation.navigate("NavBar")
                 }
             })
-            .catch(error => console.log(error.response))
+            .catch(error => console.log(error))
             
             
            }

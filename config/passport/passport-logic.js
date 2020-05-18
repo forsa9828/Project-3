@@ -16,12 +16,18 @@ module.exports = (passport, user) => {
             UserDB.user.findAll({
                     where: {
                        firstName: req.body.firstName,
-                       lastName: req.body.lastName
+                       lastName: req.body.lastName,
                     }
                 //if found first name and last then, then allow to create rest 
                 }).then(user => {
                     console.log(firstName, lastName)
-                    if(user){
+                    console.log([user] == "")
+                     if([user] == ""){
+                         console.log("no user info in db")
+                         return done(null);
+                     }
+                     else if([user] != ""){
+                    //if(user){
                         let password=req.body.password
                         console.log(password)
                         let generateHash = password => {
@@ -41,17 +47,17 @@ module.exports = (passport, user) => {
                      
                         UserDB.user.update(data, {
                             where: {
-                                firstName: firstName,
-                                lastName: lastName
+                                firstName: req.body.firstName,
+                                lastName: req.body.lastName
                             }
                             }).then(newUser => {
                                 console.log("new user created!")
-                                console.log(data)
+                               // console.log(data)
                                // console.log(newUser)
                                 return done(null);
                             });
                      }else{
-                         console.log("no user inital info in db")
+                         console.log("nothing else to do")
                      }
                      
             });

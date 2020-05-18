@@ -6,12 +6,12 @@ const path = require("path");
 module.exports = app => {
     app.get("/auth/signup", authController.signup);
 
-    app.get("/signin", authController.signin);
+    app.get("/auth/signin", authController.signin);
 
     app.get("/forgotpassword", authController.signin)
 
 
-    app.post("/signup", passport.authenticate("local-signup", {
+    app.post("/auth/signup", passport.authenticate("local-signup", {
                 successRedirect: "/SchedulePage",
                 failureRedirect: "/Signup"
             })
@@ -37,7 +37,7 @@ module.exports = app => {
 
     app.post("/signin", passport.authenticate("signin",{
                successRedirect: "/SchedulePage",
-                failureRedirect: "/SignIn"
+                failureRedirect: "/Signin"
             })
         );
 
