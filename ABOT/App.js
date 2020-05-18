@@ -8,7 +8,7 @@ import SignUp from "./src/pages/Signup";
 import ForgotPassword from "./src/pages/ForgotPassword";
 // import Table from "./src/component/Table";
 import RequestOff from "./src/pages/RequestOff";
-// import SchedulePage from "./src/pages/SchedulePage";
+import SchedulePage from "./src/pages/SchedulePage";
 // import FormAvailPto from "./src/component/FormAvailPto";
 // import ActionList from "./src/component/ActionList";
 import NavBar from "./src/component/Navbar";
@@ -27,15 +27,16 @@ function App() {
 		
 		/* </ScrollView> */
 
-	<Root>
-	 {/* /* <ForgotPassword />  */
+	 <Root>
+	  {/* /* /* <ForgotPassword />   */ }
 	
-	 <AppContainer />  
-	 //have to render this to get the nav to work from signup
-	//   <SignIn /> 
-	 /* <RequestOff /> /*/}
+	  <AppContainer /> 
+	 {/* /* <SchedulePage /> */ }
+	 
+	 {/* /* <SignIn />  */
+	 /* /* <RequestOff /> /*/ }
 
-	</Root> 
+	 </Root>   
   );
 }
 

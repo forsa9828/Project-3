@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import Table from "../component/Table";
 import API from "../utils/API";
+// import NavBar from "../component/Navbar";
+// import { NavigationContainer } from '@react-navigation/native';
+// import {Text} from "react-native";
+
 
 class SchedulePage extends Component {
 	_isMounted = false;
@@ -13,18 +17,18 @@ class SchedulePage extends Component {
 		};
 	}
 
-	componentDidMount() {
-		this._isMounted = true;
-		API.getSchedule()
-			.then(response => {
-				let schedules = response.data;
-				this.setState({ schedules });
-			})
-			.catch(error => console.error(error))
-			.finally(() => {
-				this.setState({ isLoaded: false });
-			});
-	}
+	// componentDidMount() {
+	// 	this._isMounted = true;
+	// 	API.getSchedule()
+	// 		.then(response => {
+	// 			let schedules = response.data;
+	// 			this.setState({ schedules });
+	// 		})
+	// 		.catch(error => console.error(error))
+	// 		.finally(() => {
+	// 			this.setState({ isLoaded: false });
+	// 		});
+	// }
 
 	componentWillUnmount() {
 		this.setState = (state, callback) => {
@@ -34,6 +38,8 @@ class SchedulePage extends Component {
 
 	render() {
 		let { schedules } = this.state;
+		
+	
 		return schedules.map(schedule => {
 			return (
 				<Table
@@ -46,6 +52,9 @@ class SchedulePage extends Component {
 				/>
 			);
 		});
+		
+
+
 	}
 }
 

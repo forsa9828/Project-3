@@ -78,26 +78,26 @@ const SchedulePageStack = createStackNavigator(
   }
 );
 
-const SignInStack = createStackNavigator(
-  {
-    //Defination of Navigaton from setting screen
-    SignIn: { screen: SignInScreen },
-    SignIn: { screen: SignInScreen, navigationOptions:{tabBarVisible: true, title: 'ABOT'} },
-  },
-  {
-    //For React Navigation 2.+ change defaultNavigationOptions->navigationOptions
-    defaultNavigationOptions: {
-      //Header customization of the perticular Screen
-      headerStyle: {
-        backgroundColor: '#d6ab86',
-        fontSize: 20,
-      },
-      headerTintColor: '#FFFFFF',
+// const SignInStack = createStackNavigator(
+//   {
+//     //Defination of Navigaton from setting screen
+//     SignIn: { screen: SignInScreen },
+//     SignIn: { screen: SignInScreen, navigationOptions:{tabBarVisible: true, title: 'ABOT'} },
+//   },
+//   {
+//     //For React Navigation 2.+ change defaultNavigationOptions->navigationOptions
+//     defaultNavigationOptions: {
+//       //Header customization of the perticular Screen
+//       headerStyle: {
+//         backgroundColor: '#d6ab86',
+//         fontSize: 20,
+//       },
+//       headerTintColor: '#FFFFFF',
   
-      //Header title
-    },
-  }
-);
+//       //Header title
+//     },
+//   }
+// );
 
 SchedulePageStack.navigationOptions = ReviewStack.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
@@ -135,13 +135,13 @@ const NavBar = createBottomTabNavigator(
       }
     },
 
-    SignIn: {
-      screen: SignInStack,
-      navigationOptions:{
-        tabBarLabel: 'Logout',
-        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-log-out" size={25} color={tintColor} />
-      }
-    }
+    // SignIn: {
+    //   screen: SignInStack,
+    //   navigationOptions:{
+    //     tabBarLabel: 'Logout',
+    //     tabBarIcon: ({ tintColor }) => <Ionicons name="ios-log-out" size={25} color={tintColor} />
+    //   }
+    // }
   },
   {
     //For React Navigation 2.+ change defaultNavigationOptions->navigationOptions
@@ -155,11 +155,15 @@ const NavBar = createBottomTabNavigator(
           iconName = `ios-home${focused ? '' : '-outline'}`;
           // Sometimes we want to add badges to some icons.
           // You can check the implementation below.
-        } else if (routeName === 'SchedulePage') {
+        }
+         else if (routeName === 'SchedulePage') {
           iconName = `ios-options${focused ? '' : '-outline'}`;
-        } else if (routeName === 'Avail') {
+        } 
+        else if (routeName === 'Avail') {
           iconName = `ios-list${focused ? '' : '-outline'}`;
-        } else if (routeName === 'SignIn')
+       } 
+        
+        else if (routeName === 'SignIn')
           iconName = `ios-logout${focused ? '' : '-outline'}`;
 
         // You can return any component that you like here!

@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import SchedulePage from "./SchedulePage";
 import { NavigationContainer } from "@react-navigation/native";
 import { useNavigation } from '@react-navigation/native';
+import Navbar from "../component/Navbar";
 
 class SignIn extends Component {
     state = {
@@ -34,10 +35,9 @@ class SignIn extends Component {
 
     
 
-    signInSubmit = (event) => {
-       
-        //this.props.navigation.navigate('SchedulePage')
-        
+    signInSubmit = async (event) => {
+     
+
         event.preventDefault();  
         const {
             email,
@@ -45,8 +45,8 @@ class SignIn extends Component {
             isLoggedIn
         } = this.state;
 
-        //validation here
-        const checkEmail=/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/
+        // //validation here
+     const checkEmail=/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/
 
         if(!checkEmail.test(email)){
             this.setState(
@@ -61,9 +61,6 @@ class SignIn extends Component {
             })
             console.log("nothing here")
         }else{
-        //Alert.alert("info obtained!")
-        //     console.log("good to go!")
-        
             this.setState({pswdMsg: ""});
 
             API.logIn({
@@ -75,12 +72,8 @@ class SignIn extends Component {
                 'Authorization': 'Bearer '
             }
         })
-    //     //have if for if user name and password matches db
-
-    //     //then changed loggedin to true then go to nav page  
-    //    //.then(//need token here 
         .then((response) => { //res from server
-            //if passport take us to next route = successful
+        //     //if passport take us to next route = successful
              if(!response){
                 console.log("none")
             }
@@ -89,19 +82,19 @@ class SignIn extends Component {
                 let isLoggedIn = true;
                 this.setState({isLoggedIn})
                 console.log(isLoggedIn)
-
-                // goToSchedulePage =({navigation})=>{
-                //     navigation.navigate("SchedulePage")
-                // }
-            
+                this.props.navigation.navigate("NavBar")
+               
             }
-           
-        }) //will show a catch error if user doesn't exist in db
-         .catch((error) => {
-         console.log(error)
-         //Alert.alert("Oh no! Something went wrong. If you believe this is an error, reach out to your manager.")
-         })  
-         }
+         }) //will show a catch error if user doesn't exist in db
+        .catch((error) => {
+        console.log(error)
+        // //Alert.alert("Oh no! Something went wrong. If you believe this is an error, reach out to your manager.")
+        })  
+
+    
+        }
+
+
 
         
          //now need to get user info and pass it 
@@ -111,9 +104,8 @@ class SignIn extends Component {
 
 
     render() {
-     
         return(
-      
+        
             <FormLogin
                 email={this.state.email}
                 password={this.state.password}
@@ -125,9 +117,8 @@ class SignIn extends Component {
                 forgotPassword={this.forgotPassword}
                 goToSignUp={this.goToSignUp}
            />
-
-           
         )}
+
 }
 export default SignIn;
 

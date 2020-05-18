@@ -54,14 +54,14 @@ class ForgotPassword extends Component{
             })
             .then(res=>{
               
-                console.warn(res.user.email)
+                console.warn(res)
               }
               // else{
               //   console.warn("something went wrong. try again")
               // }
-            //})
+           // })
             //add logic here if email doesn't exist, can't update
-           // .catch(error => console.log(error))
+          //  .catch(error => console.log(error))
             )}
         
     }

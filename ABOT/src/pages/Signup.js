@@ -136,7 +136,7 @@ class SignUp extends Component {
             .catch(error => console.log(error))
             //add here logic if user does not exist 
             
-            
+            this.props.navigation.navigate("NavBar")
            }
 }
 
