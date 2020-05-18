@@ -54,7 +54,8 @@ class ForgotPassword extends Component{
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer '
                 }
-            }).then(response=>{console.log(response)
+            }).then(response=>{
+              console.log(response)
               if(!response){
                 console.log("no response")
             } else{
@@ -68,7 +69,7 @@ class ForgotPassword extends Component{
                 
             })
             //add logic here if email doesn't exist, can't update
-           .catch(error => console.log(error))
+           .catch(error => console.log(error.response))
       }
         
     }

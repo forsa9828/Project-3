@@ -118,25 +118,26 @@ class SignUp extends Component {
                 }
             })
             //handle the response
-            .then(response => { 
+            .then(response => { console.log('response',response.data)
                 if(!response){
+                    
                     console.log("no response")
                 }else{
                     console.log("success! created.")
                     // this.setState({
-            //         firstname: "",
-            //         lastname: "",
-            //         email: "",
-            //         password: "",
-            //         employmentType: "",
-            //         phone: "",
-            //         emergencyContact: "",
-            //         emergencyContactPhone: "",
-            //     })
-                    this.props.navigation.navigate("NavBar")
+                //     firstname: "",
+                //     lastname: "",
+                //     email: "",
+                //     password: "",
+                //     employmentType: "",""
+                //     phone: "",
+                //     emergencyContact: "",
+                //     emergencyContactPhone: "",
+                // })
+                   // this.props.navigation.navigate("NavBar")
                 }
             })
-            .catch(error => console.log(error))
+            .catch(error => console.log(error.response))
             
             
            }
