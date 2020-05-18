@@ -16,7 +16,6 @@ class SignIn extends Component {
         emailMsg: "",
         pswdMsg:"",
         isLoggedIn: false,
-        userToken: ""
     }
 
     onValueChange= (value) => {
@@ -66,37 +65,37 @@ class SignIn extends Component {
             API.logIn({
                 email,
                 password
-        }, {
+        }, { //headers are to check network errors if any
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer '
             }
         })
         .then((response) => { //res from server
-        //     //if passport take us to next route = successful
-             if(!response){
-                console.log("none")
+            if(!response){
+                console.log("no response")
+            }
+            // else if(managerLoggedIn == true){
+            //     console.log("manager in")
+            //     //add route to manager navbar 
+            // }
+            else if(response == null){
+                console.log("no such user")
             }
             else{
                 console.log("good to go")
                 let isLoggedIn = true;
                 this.setState({isLoggedIn})
                 console.log(isLoggedIn)
+                Alert.alert("Welcome!")
                 this.props.navigation.navigate("NavBar")
-               
             }
          }) //will show a catch error if user doesn't exist in db
         .catch((error) => {
         console.log(error)
-        // //Alert.alert("Oh no! Something went wrong. If you believe this is an error, reach out to your manager.")
+        Alert.alert("Oh no! Something went wrong. Please try again later.")
         })  
-
-    
         }
-
-
-
-        
          //now need to get user info and pass it 
          
     }

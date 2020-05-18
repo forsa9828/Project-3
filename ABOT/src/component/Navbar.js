@@ -13,7 +13,7 @@ import { Ionicons } from 'react-native-vector-icons';
 import SchedulePageScreen from '../pages/SchedulePage';
 import AvailScreen from '../pages/Avail';
 import ReviewScreen from '../pages/RequestOff';
-import SignInScreen from '../pages/Signin'
+// import SignInScreen from '../pages/Signin'
 
 
 
@@ -163,8 +163,8 @@ const NavBar = createBottomTabNavigator(
           iconName = `ios-list${focused ? '' : '-outline'}`;
        } 
         
-        else if (routeName === 'SignIn')
-          iconName = `ios-logout${focused ? '' : '-outline'}`;
+        // else if (routeName === 'SignIn')
+        //   iconName = `ios-logout${focused ? '' : '-outline'}`;
 
         // You can return any component that you like here!
         return <IconComponent name={iconName} size={25} color={tintColor} />;

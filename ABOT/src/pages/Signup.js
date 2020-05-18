@@ -111,18 +111,19 @@ class SignUp extends Component {
                 phone,
                 emergencyContact,
                 emergencyContactPhone
+            },{ //headers are to check network errors if any
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer '
+                }
             })
             //handle the response
-            .then(res => { 
-                // if(res){
-                // Alert.alert("Info added!")
-                // }
-                // else{
-                //     console.log("can't add info")
-                // }
-            }
-            // .then(
-            //     this.setState({
+            .then(response => { 
+                if(!response){
+                    console.log("no response")
+                }else{
+                    console.log("success! created.")
+                    // this.setState({
             //         firstname: "",
             //         lastname: "",
             //         email: "",
@@ -132,11 +133,12 @@ class SignUp extends Component {
             //         emergencyContact: "",
             //         emergencyContactPhone: "",
             //     })
-            )
+                    this.props.navigation.navigate("NavBar")
+                }
+            })
             .catch(error => console.log(error))
-            //add here logic if user does not exist 
             
-            this.props.navigation.navigate("NavBar")
+            
            }
 }
 

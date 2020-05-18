@@ -1,7 +1,7 @@
 module.exports = {
 
     signup: (req, res) => {
-        res.redirect("SignUp");
+        res.redirect("/Signup");
         console.log("signup")
         // res.status(200)
         // console.log("success!")
@@ -10,18 +10,19 @@ module.exports = {
 
     signin: (req, res) => {
         //res.redirect, redirect to the route for React
-       console.log("signin")
+       console.log("trying to go to signin")
+       res.redirect("/SchedulePage");
         
     },
 
     index: (req, res) => {
-        res.render("SchedulePage");
+        res.render("/SchedulePage");
 
     },
 
     logout: (req, res) => {
         req.session.destroy((err) => {
-            res.redirect('SignIn');
+            res.redirect("/Signin");
         
         });
         

@@ -9,10 +9,9 @@ class ForgotPassword extends Component{
        email:"",
        password: "",
        emailMsg: "",
-       pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character"
-       
+       pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character",
+       isLoggedIn: false
     }
-
 
     onValueChange= (value) => {
         this.setState(value)
@@ -30,8 +29,8 @@ class ForgotPassword extends Component{
         if(!checkEmail.test(email)){
             this.setState(
                 {
-                    emailMsg: "Enter valid email",
-        })
+                  emailMsg: "Enter valid email",
+                })
         // }else if(!passwordRegEx.test(password)){
         //     this.setState(
         //         {
@@ -45,24 +44,32 @@ class ForgotPassword extends Component{
                 {
                     emailMsg: "",
                     pswdMsg: ""
-
-            })
+                })
        
             API.forgotPassword({
                 email,
                 password
+            }, {//headers are to check network errors if any
+                 headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '
+                }
+            }).then(response=>{console.log(response)
+              if(!response){
+                console.log("no response")
+            } else{
+              console.log("good to go")
+              // let isLoggedIn = true;
+              // this.setState({isLoggedIn})
+              // console.log(isLoggedIn)
+              // Alert.alert("Welcome Back!")
+              // this.props.navigation.navigate("NavBar")
+          }
+                
             })
-            .then(res=>{
-              
-                console.warn(res)
-              }
-              // else{
-              //   console.warn("something went wrong. try again")
-              // }
-           // })
             //add logic here if email doesn't exist, can't update
-          //  .catch(error => console.log(error))
-            )}
+           .catch(error => console.log(error))
+      }
         
     }
 

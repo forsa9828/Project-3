@@ -8,7 +8,7 @@ module.exports = (passport, user) => {
     passport.use("local-signup", new LocalStrategy({
             usernameField: "firstName",
             passwordField: "lastName",
-            passReqToCallback: true //The purpose of a verify callback is to find the user that possesses a set of credentials.
+            passReqToCallback: true 
         },
         (req, firstName,lastName, done) => {
            // console.log(firstName, lastName)
@@ -20,8 +20,7 @@ module.exports = (passport, user) => {
                     }
                 //if found first name and last then, then allow to create rest 
                 }).then(user => {
-                
-                    //this to stop from trying to create data of NON matched firstName and lastName
+                    console.log(firstName, lastName)
                     if(user){
                         let password=req.body.password
                         console.log(password)
@@ -39,10 +38,7 @@ module.exports = (passport, user) => {
                             emergencyContact: req.body.emergencyContact,
                             emergencyContactPhone: req.body.emergencyContactPhone
                         }
-                        //update method instead of create, list which fields to update w/ its values 
-                        //If we don't find a user in the database, that doesn't mean there is an application error,
-                   // so we use `null` for the error value, and `false` for the user value
-                        
+                     
                         UserDB.user.update(data, {
                             where: {
                                 firstName: firstName,
@@ -54,6 +50,8 @@ module.exports = (passport, user) => {
                                // console.log(newUser)
                                 return done(null);
                             });
+                     }else{
+                         console.log("no user inital info in db")
                      }
                      
             });

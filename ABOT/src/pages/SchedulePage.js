@@ -17,18 +17,18 @@ class SchedulePage extends Component {
 		};
 	}
 
-	// componentDidMount() {
-	// 	this._isMounted = true;
-	// 	API.getSchedule()
-	// 		.then(response => {
-	// 			let schedules = response.data;
-	// 			this.setState({ schedules });
-	// 		})
-	// 		.catch(error => console.error(error))
-	// 		.finally(() => {
-	// 			this.setState({ isLoaded: false });
-	// 		});
-	// }
+	componentDidMount() {
+		this._isMounted = true;
+		API.getSchedule()
+			.then(response => {
+				let schedules = response.data;
+				this.setState({ schedules });
+			})
+			.catch(error => console.error(error))
+			.finally(() => {
+				this.setState({ isLoaded: false });
+			});
+	}
 
 	componentWillUnmount() {
 		this.setState = (state, callback) => {
@@ -38,8 +38,6 @@ class SchedulePage extends Component {
 
 	render() {
 		let { schedules } = this.state;
-		
-	
 		return schedules.map(schedule => {
 			return (
 				<Table
