@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ActionList from "./ActionList";
-import { Alert, Text } from "react-native";
+import { Alert, Text, ScrollView, StyleSheet } from "react-native";
 import { ActionSheet } from "native-base";
 import API from "../utils/API";
 
@@ -27,8 +27,6 @@ class EmployeeList extends Component {
 	}
 
 	handleClick = key => {
-		// event.preventDefault();
-		console.log(key)
 		const BUTTONS = ["Delete", "Cancel"];
 		const DESTRUCTIVE_INDEX = 0;
 		const CANCEL_INDEX = 1;
@@ -41,9 +39,8 @@ class EmployeeList extends Component {
 			},
 			buttonIndex => {
 				if (buttonIndex === 0) {
-					
-					API.deleteUser(key)
-					.then(Alert.alert("Employee has been deleted"))
+					API.deleteUser(key).then(Alert.alert("Employee has been deleted"))
+					.then(this.setState());
 				} else {
 					ActionSheet.hide();
 				}
@@ -59,8 +56,14 @@ class EmployeeList extends Component {
 					key={user.id}
 					firstName={user.firstName}
 					lastName={user.lastName}
+					phone={"\nPhone: " + user.phone}
+					emergencyContact={"\nEmergency Contact: " + user.emergencyContact}
+					emergencyContactPhone={
+						"\nContact Phone: " + user.emergencyContactPhone
+					}
 					clicked={() => this.handleClick(user.id)}
 				/>
+			
 			);
 		});
 	}

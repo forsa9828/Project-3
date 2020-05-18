@@ -9,6 +9,10 @@ export default {
 		return axios.get("http://192.168.0.6:8080/api/requestoff");
 	},
 
+	getPending: function() {
+		return axios.get("http://192.168.0.6:8080/api/pendingrequest");
+	},
+
 	createSchedule: function(data) {
 		return axios.post("http://192.168.0.6:8080/api/schedule", data)
 	},
@@ -18,7 +22,7 @@ export default {
 	},
 
 	postAvail: function(data) {
-		return axios.post("http://192.168.0.6:8080/api/avail", data);
+		return axios.post("http://192.168.0.6:8080/api/schedule", data);
 	},
 
 	getAvail: function() {
@@ -43,7 +47,7 @@ export default {
 	},
 
 	deleteUser: function(key) {
-		return axios.put(`http://192.168.0.6:8080/api/user/${key}`)
+		return axios.delete(`http://192.168.0.6:8080/api/user/${key}`)
 	},
 
 	loggedIn: function() {

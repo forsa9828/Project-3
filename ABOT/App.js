@@ -30,7 +30,7 @@ function App() {
 	 <Root>
 	  {/* /* /* <ForgotPassword />   */ }
 	
-	  <AppContainer /> 
+	  <AppContainer /> {/* AppContainer this holds the flow of the navbar for application */}
 	 {/* /* <SchedulePage /> */ }
 	 
 	 {/* /* <SignIn />  */

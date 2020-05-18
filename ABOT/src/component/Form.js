@@ -1,8 +1,20 @@
-//form for sign up and login 
+//form for sign up and login
 import React, { Component } from "react";
-import { Container, Header, Content, Form, Item, Input, Picker, Left, Right, Body, Title, Icon} from "native-base";
-import {Button, StyleSheet, Text, TouchableOpacity } from "react-native";
-
+import {
+	Container,
+	Header,
+	Content,
+	Form,
+	Item,
+	Input,
+	Picker,
+	Left,
+	Right,
+	Body,
+	Title,
+	Icon
+} from "native-base";
+import { Button, StyleSheet, Text, TouchableOpacity } from "react-native";
 
 
 export function FormLogin(props) {
@@ -80,14 +92,6 @@ export function FormLogin(props) {
   
   }
 
-  // export default function(props) {
-//     const navigation = useNavigation();
-  
-//     return <SignIn {...props} navigation={navigation} />;
-//   }
-
-
- 
 
 export function  FormSignUp (props) {
   return (
