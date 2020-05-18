@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Alert, ScrollView } from "react-native";
 import FormAvailPto from "../component/FormAvailPto";
-import { ActionSheet } from "native-base";
+import { ActionSheet, Root } from "native-base";
 import API from "../utils/API";
 import moment from "moment";
 
