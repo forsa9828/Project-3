@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import {Button, Text, View, TouchableOpacity, StyleSheet } from "react-native";
-import { Container, Header, Content, Form, Item, Input, Picker, Left, Right, Body, Title, Icon} from "native-base";
+import {Button, Text, View, StyleSheet, ImageBackground, Image } from "react-native";
+import { Container, Header, Root, Form, Item, Input, Picker, Left, Right, Body, Title, Icon} from "native-base";
 import API from "../utils/API";
 
 
@@ -84,17 +84,38 @@ class ForgotPassword extends Component{
 
     render(){
         return (
-            <Container>
-                <Header>
-                
-                    <Body>
-                      <Title>Forgot Password? Create New One</Title>
-                    </Body>
-                 
-               </Header>
-               <Content style={styles.container}>
-                <Form>
-                  <Item rounded style={styles.inputStyle}>
+          <Root>
+			<Container>
+				<ImageBackground
+					style={{
+						resizeMode: "cover",
+						height: "100%",
+						width: "100%"
+					}}
+					source={require("../images/marble.jpg")}
+				>
+					<Header transparent androidStatusBarColor='transparent'>
+						<Body>
+							<Left>
+								<Image source={require("../images/logo.png")} />
+							</Left>
+						</Body>
+					</Header>
+          <Text>{"\n"}</Text>
+          <Text>{"\n"}</Text>
+					<View>
+						<Title
+							style={{
+								textAlign: "center",
+								marginRight: 20,
+								padding: 10,
+								color: "#000000"
+							}}
+						>
+							Forgot password?
+						</Title>
+                <Form style={{ textAlign: "center", margin: 5, padding: 15 }}>
+                  <Item style={styles.inputStyle}>
                     <Input 
                       name="email"
                       value={this.state.email}
@@ -110,7 +131,7 @@ class ForgotPassword extends Component{
                     </Text>
                   </Item>
                  
-                  <Item rounded style={styles.inputStyle}>
+                  <Item style={styles.inputStyle}>
                     <Input 
                       name="password"
                       value={this.state.password}
@@ -128,23 +149,26 @@ class ForgotPassword extends Component{
                       {this.state.pswdMsg}
                     </Text>
                  
-                 
-                  <TouchableOpacity style={styles.btnStyle}>
+                
+                  <View style={styles.myBtn}>
                   <Button 
+                  color='#d6ad86'
                       title="Submit"
                       onPress={this.sendEmailSubmit}
                   />
-                  </TouchableOpacity>
-                  <TouchableOpacity>
+                  </View>
+                  <View style={styles.myBtn}>
                   <Button 
+                  color='#d6ad86'
                       title="Go Back to Login"
                       onPress={()=> this.goToSignIn("Signin")}
                   />
-                  </TouchableOpacity>
-               
+                  </View>
             </Form>
-            </Content>
-          </Container>
+            </View>
+            </ImageBackground>
+            </Container>
+            </Root>
         );
     }
 }
@@ -161,9 +185,11 @@ const styles = StyleSheet.create({
       marginRight: 15
     },
     container:{
-        // flex: 1,
-        backgroundColor: "#d6ad86",
-       
+      flex: 1,
+      justifyContent: "space-between",
+      backgroundColor: "#D6AB86",
+      padding: 20,
+      margin: 10
     },
 
     inputStyle:{
@@ -182,5 +208,10 @@ const styles = StyleSheet.create({
         backgroundColor: "#D3D3D3",
         marginLeft: 140,
       },
+      myBtn: {
+        padding: 10,
+        marginTop: 5,
+        marginHorizontal: 25
+      }
     
 })
