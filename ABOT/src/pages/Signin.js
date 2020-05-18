@@ -36,7 +36,6 @@ class SignIn extends Component {
 
     signInSubmit = async (event) => {
      
-
         event.preventDefault();  
         const {
             email,
@@ -71,15 +70,15 @@ class SignIn extends Component {
                 'Authorization': 'Bearer '
             }
         })
-        .then((response) => { //res from server
+        .then((response) => { //res from server- still needs work
             if(!response){
                 console.log("no response")
-            }
+            }//maybe add below?
             // else if(managerLoggedIn == true){
             //     console.log("manager in")
             //     //add route to manager navbar 
             // }
-            else if(response == null){
+            else if(response === null){
                 console.log("no such user")
             }
             else{
@@ -87,7 +86,7 @@ class SignIn extends Component {
                 let isLoggedIn = true;
                 this.setState({isLoggedIn})
                 console.log(isLoggedIn)
-                Alert.alert("Welcome!")
+                Alert.alert("Welcome Back!")
                 this.props.navigation.navigate("NavBar")
             }
          }) //will show a catch error if user doesn't exist in db

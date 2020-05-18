@@ -54,7 +54,7 @@ class ForgotPassword extends Component{
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer '
                 }
-            }).then(response=>{
+            }).then(response=>{ //still needs work
               console.log(response)
               if(!response){
                 console.log("no response")

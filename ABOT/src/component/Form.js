@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { Container, Header, Content, Form, Item, Input, Picker, Left, Right, Body, Title, Icon} from "native-base";
 import {Button, StyleSheet, Text, TouchableOpacity } from "react-native";
-//import { useNavigation } from "@react-navigation/native";
+
 
 
 export function FormLogin(props) {

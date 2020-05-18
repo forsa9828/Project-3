@@ -23,13 +23,13 @@ module.exports = app => {
             })
         );
 
-    // isLoggedIn = (req, res, next) => {
+    isLoggedIn = (req, res, next) => {
 
-    //     if (req.isAuthenticated())
-    //         return next();
-    //     res.redirect("/signin");
+        if (req.isAuthenticated())
+            return next();
+        res.redirect("/signin");
 
-    // }
+    }
 
     app.get("/auth/loggedin", authController.index);
 
@@ -40,14 +40,6 @@ module.exports = app => {
                 failureRedirect: "/Signin"
             })
         );
-
-
-    // (req, res) => {
-//        // console.log("authentication done")
-//        // console.log(res) //-this works
-//         //console.log(res.) //-this works
-//     })
-
 
 
 

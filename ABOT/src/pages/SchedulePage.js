@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import Table from "../component/Table";
 import API from "../utils/API";
-// import NavBar from "../component/Navbar";
-// import { NavigationContainer } from '@react-navigation/native';
-// import {Text} from "react-native";
-
 
 class SchedulePage extends Component {
 	_isMounted = false;

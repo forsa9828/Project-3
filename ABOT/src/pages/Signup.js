@@ -67,39 +67,39 @@ class SignUp extends Component {
                 lastNameMsg: "Enter last name"
                 
             })
-        // }else if(!checkEmail.test(email)){
-        //     this.setState({
-        //         lastNameMsg:"",
-        //         emailMsg: "Enter valid email"
-        //     })
-        //  }else if(!passwordRegEx.test(password)){
-        //      console.log("no good")
-        //     this.setState({
-        //         emailMsg: "",
-        //         pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character"
+        }else if(!checkEmail.test(email)){
+            this.setState({
+                lastNameMsg:"",
+                emailMsg: "Enter valid email"
+            })
+         }else if(!passwordRegEx.test(password)){
+             console.log("no good")
+            this.setState({
+                emailMsg: "",
+                pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character"
 
-        //     })
-        // }else if(employmentType == ""){
-        //     console.log(employmentType)
-        //     this.setState({
-        //         pswdMsg:"",
-        //         employMsg: "Please select one"
-        //     })
-        // }else if(phone.length != 10){
-        //     this.setState({
-        //         employMsg: "",
-        //         phoneMsg: "Enter a valid phone number"
-        //     })
-        // }else if(!inputRegEx.test(emergencyContact)){
-        //     this.setState({
-        //         phoneMsg: "",
-        //         emerConMsg: "Enter Your Emergency Contact"
-        //     })
-        //  }else if(emergencyContactPhone.length != 10){
-        //     this.setState({
-        //         emerConMsg:"",
-        //         emerPhoneMsg: "Enter a valid phone number"
-        //     })
+            })
+        }else if(employmentType == ""){
+            console.log(employmentType)
+            this.setState({
+                pswdMsg:"",
+                employMsg: "Please select one"
+            })
+        }else if(phone.length != 10){
+            this.setState({
+                employMsg: "",
+                phoneMsg: "Enter a valid phone number"
+            })
+        }else if(!inputRegEx.test(emergencyContact)){
+            this.setState({
+                phoneMsg: "",
+                emerConMsg: "Enter Your Emergency Contact"
+            })
+         }else if(emergencyContactPhone.length != 10){
+            this.setState({
+                emerConMsg:"",
+                emerPhoneMsg: "Enter a valid phone number"
+            })
         }else{
 
               API.authUser({
@@ -117,23 +117,14 @@ class SignUp extends Component {
                     'Authorization': 'Bearer '
                 }
             })
-            //handle the response
+            //handle the response still needs work
             .then(response => { 
                 if(!response){
                     console.log("no response")
                 }else{
                     console.log("success! created.")
-                    // this.setState({
-                //     firstname: "",
-                //     lastname: "",
-                //     email: "",
-                //     password: "",
-                //     employmentType: "",""
-                //     phone: "",
-                //     emergencyContact: "",
-                //     emergencyContactPhone: "",
-                // })
                    // this.props.navigation.navigate("NavBar")
+                   //check query db to check for specific user 
                 }
             })
             .catch(error => console.log(error))
