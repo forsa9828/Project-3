@@ -1,38 +1,45 @@
 import 'react-native-gesture-handler';
 import React, {Component} from "react";
 import { StyleSheet, ScrollView, View, Text } from "react-native";
-import { Root, Container, Form } from "native-base";
+import { Root, Container } from "native-base";
 import * as Font from 'expo-font';
-import Avail from "./src/pages/Avail";
-import ManageEmployees from "./src/pages/ManageEmployees";
-import EmployeeList from "./src/component/EmployeeList";
+import SignIn from "./src/pages/Signin";
+import SignUp from "./src/pages/Signup";
+import ForgotPassword from "./src/pages/ForgotPassword";
+// import Table from "./src/component/Table";
+import RequestOff from "./src/pages/RequestOff";
+import SchedulePage from "./src/pages/SchedulePage";
+// import FormAvailPto from "./src/component/FormAvailPto";
+// import ActionList from "./src/component/ActionList";
 import NavBar from "./src/component/Navbar";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import SignIn from './src/pages/Signin';
-import MyHeader from "./src/component/MyHeader"
-import SignUp from './src/pages/Signup';
-
-
+import { Button, Image, TouchableOpacity } from 'react-native';
+import {AppContainer} from "./src/component/AuthNav";
+import Avail from './src/pages/Avail';
 
 export default function App() {
   return (
 	  <Root>
-	<NavigationContainer style={styles.container}>
-<SignUp/>
-	</NavigationContainer>
+
+<AppContainer />
+
 	  </Root>
 
   );
 }
 
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ 
 	container: {
-		flex: 10,
-	},
-	scroll: {
+ 		flex: 10,
+ 		backgroundColor: "#fff",
+ 		alignItems: "stretch",
+ 		justifyContent: "space-evenly"
+ 	},
+ 	scroll: {
 		marginHorizontal: 5
 	},
 
-	  });
+  });
+

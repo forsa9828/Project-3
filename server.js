@@ -23,6 +23,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+
 // app.set("views", "html"); 
 //can take this out don't need due to not using template engine
 
@@ -31,6 +33,7 @@ app.use(passport.session());
 require("./routes/apiRoutes")(app);
 require("./routes/authRoutes")(app);
 require("./config/passport/passport-logic")(passport, db.user);
+require("./routes/frontEndRoutes")(app);
 
 var syncOptions = { force: false };
 

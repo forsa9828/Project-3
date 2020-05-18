@@ -3,27 +3,41 @@ import React, { Component } from "react";
 import { Root } from "native-base";
 import { FormLogin } from "../component/Form";
 import API from "../utils/API";
-import { Alert, Stylesheet, Text, ScrollView } from "react-native";
-import MyHeader from "../component/MyHeader";
+import { Alert, Stylesheet, Text } from "react-native";
+import { createStackNavigator } from "@react-navigation/stack";
+import SchedulePage from "./SchedulePage";
+import { NavigationContainer } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
+import Navbar from "../component/Navbar";
 
 class SignIn extends Component {
 	state = {
 		email: "",
 		password: "",
 		emailMsg: "",
-		pswdMsg: ""
+		pswdMsg: "",
+		isLoggedIn: false
 	};
 
 	onValueChange = value => {
 		this.setState(value);
 	};
 
-	signInSubmit = event => {
-		event.preventDefault();
-		const { email, password } = this.state;
-		console.log(this.state);
+	//this is method allows to go to forgotPassword screen
+	forgotPassword = () => {
+		this.props.navigation.navigate("ForgotPassword");
+	};
 
-		//validation here
+	//this method will allow to go to sign up screen
+	goToSignUp = () => {
+		this.props.navigation.navigate("Signup");
+	};
+
+	signInSubmit = async event => {
+		event.preventDefault();
+		const { email, password, isLoggedIn } = this.state;
+
+		// //validation here
 		const checkEmail = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/;
 
 		if (!checkEmail.test(email)) {
@@ -37,18 +51,47 @@ class SignIn extends Component {
 			});
 			console.log("nothing here");
 		} else {
-			Alert.alert("Successful Login!");
-			console.log("good to go!");
-			Alert.alert("Successful Login!");
 			this.setState({ pswdMsg: "" });
 
-			API.logIn({
-				email,
-				password
-			})
-				.then(res => console.log(res))
-				.catch(error => console.log(error));
+			API.logIn(
+				{
+					email,
+					password
+				},
+				{
+					//headers are to check network errors if any
+					headers: {
+						"Content-Type": "application/json",
+						Authorization: "Bearer "
+					}
+				}
+			)
+				.then(response => {
+					//res from server- still needs work
+					if (!response) {
+						console.log("no response");
+					} //maybe add below?
+					// else if(managerLoggedIn == true){
+					//     console.log("manager in")
+					//     //add route to manager navbar
+					// }
+					else if (response === null) {
+						console.log("no such user");
+					} else {
+						console.log("good to go");
+						let isLoggedIn = true;
+						this.setState({ isLoggedIn });
+						console.log(isLoggedIn);
+						Alert.alert("Welcome Back!");
+						this.props.navigation.navigate("NavBar");
+					}
+				}) //will show a catch error if user doesn't exist in db
+				.catch(error => {
+					console.log(error);
+					Alert.alert("Oh no! Something went wrong. Please try again later.");
+				});
 		}
+		//now need to get user info and pass it
 	};
 
 	render() {
@@ -61,9 +104,10 @@ class SignIn extends Component {
 				checkEmail={this.checkEmail}
 				errEmail={this.state.emailMsg}
 				errPswd={this.state.pswdMsg}
+				forgotPassword={this.forgotPassword}
+				goToSignUp={this.goToSignUp}
 			/>
 		);
 	}
 }
-
 export default SignIn;
