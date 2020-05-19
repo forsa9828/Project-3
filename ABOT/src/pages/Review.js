@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { StyleSheet, View, ScrollView } from "react-native";
+import { StyleSheet, View, ScrollView, AsyncStorage } from "react-native";
 import ReviewPto from "../component/ReviewPto";
 
-function Review() {
+function Review({ route, navigation }) {
+	
 	return (
 		<View>
 <ScrollView contentContainerStyle = {styles.ScrollView}>

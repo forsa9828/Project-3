@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Alert, View, ScrollView } from "react-native";
+import { Alert, View, ScrollView, Text } from "react-native";
 import FormAvailPto from "../component/FormAvailPto";
 import API from "../utils/API";
 import ValidationComponent from "react-native-form-validator";
@@ -9,12 +9,14 @@ import moment from "moment";
 class RequestOff extends ValidationComponent {
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			firstName: null,
 			lastName: null,
 			date: null,
 			startTime: null,
-			endTime: null
+			endTime: null,
+			// userName: userValues
 		};
 	}
 
@@ -102,9 +104,16 @@ class RequestOff extends ValidationComponent {
 					});
 	};
 
-	render() {
+	render( ) {
+		// const userName = this.state.userName;
+		// console.log(userName)
+		// const {navigation} = this.props;
+		// const {userValues} = navigation.getParam("users", "No user info");
+		// console.log(userValues)
+		// const { userName } = this.props.route.params;
 		return (
 			<ScrollView>
+				{/* <Text>Welcome {JSON.stringify(this.props.navigation.state.params.route.userName)}</Text> */}
 				<FormAvailPto
 					firstName={this.state.firstName}
 					lastName={this.state.lastName}

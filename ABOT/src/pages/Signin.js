@@ -11,13 +11,17 @@ import { useNavigation } from "@react-navigation/native";
 import Navbar from "../component/Navbar";
 
 class SignIn extends Component {
-	state = {
+constructor(props){
+	super(props)
+	this.state = {
 		email: "",
 		password: "",
 		emailMsg: "",
 		pswdMsg: "",
-		isLoggedIn: false
+		isLoggedIn: false,
+		users: {}
 	};
+}
 
 	onValueChange = value => {
 		this.setState(value);
@@ -36,7 +40,6 @@ class SignIn extends Component {
 	signInSubmit = async event => {
 		event.preventDefault();
 		const { email, password, isLoggedIn } = this.state;
-
 		// //validation here
 		const checkEmail = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/;
 
@@ -82,13 +85,37 @@ class SignIn extends Component {
 						let isLoggedIn = true;
 						this.setState({ isLoggedIn });
 						console.log(isLoggedIn);
-						Alert.alert("Welcome Back!");
-						this.props.navigation.navigate("NavBar");
+						// Alert.alert("Welcome Back!");
 					}
-				}) //will show a catch error if user doesn't exist in db
+				})
+				.then(
+					isLoggedIn => {
+					if(!isLoggedIn) {
+						
+						Alert.alert("Oh no! Something went wrong. Please try again later.");
+						
+					} else {
+						
+						API.getCurrentUser(email)
+						.then(response => {
+							let users = response.data[0];
+							this.setState({ users })
+							let type = this.state.users.employmentType
+							console.log(userName, userLastName, type)
+							if(type === "Employee"){
+
+							this.props.navigation.navigate('NavBar');
+							} else {
+								this.props.navigation.navigate('NavBarManager');
+							}
+						})
+					}
+					
+				}
+				) 
+					//will show a catch error if user doesn't exist in db
 				.catch(error => {
 					console.log(error);
-					Alert.alert("Oh no! Something went wrong. Please try again later.");
 				});
 		}
 		//now need to get user info and pass it

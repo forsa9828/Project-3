@@ -157,4 +157,18 @@ module.exports = app => {
 				res.json(dbpto);
 			});
 	});
+
+	app.get("/api/user/:email", (req, res) => {
+		db.user
+			.findAll({
+				where: {
+					email: req.params.email
+				}
+			})
+			.then(dbuser => {
+				res.json(dbuser)
+				console.log(dbuser);
+			});
+	});
+
 };
