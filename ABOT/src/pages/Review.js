@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, View, ScrollView, ImageBackground } from "react-native";
+import { Text, ScrollView, ImageBackground } from "react-native";
 import {Root} from "native-base";
 import ReviewPto from "../component/ReviewPto";
 
@@ -7,7 +7,6 @@ function Review() {
 	
 	return (
 		<Root>
-		<ScrollView>
 		<ImageBackground
 			style={{
 				resizeMode: "cover",
@@ -15,28 +14,16 @@ function Review() {
 				width: "100%"
 			}}
 			source={require("../images/marble.jpg")}
-		>
+			>
+			<ScrollView>
+			<Text>{"\n"}</Text>
 <ReviewPto />
-</ImageBackground>
+
 </ScrollView>
+</ImageBackground>
 		</Root>
 	);
 }
 
-const styles = StyleSheet.create({
-	container: {
-		flex: 10,
-		backgroundColor: "#fff",
-		alignItems: "stretch",
-		justifyContent: "space-evenly"
-	},
-	scroll: {
-		marginHorizontal: 5
-	},
-	image: {
-		flex: 1,
-		resizeMode: 'cover'
-	}
-});
 
 export default Review;
