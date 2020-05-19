@@ -7,10 +7,13 @@ import {
 	View,
 	TextInput,
 	Alert,
-	ScrollView
+	ScrollView,
+	ImageBackground,
+	Item
 } from "react-native";
 import API from "../utils/API";
 import EmployeeList from "../component/EmployeeList";
+import { Root, Header, Title, Body, Left } from "native-base";
 
 class ManageEmployees extends Component {
 	_isMounted = false;
@@ -32,78 +35,111 @@ class ManageEmployees extends Component {
 	render() {
 		const { modalVisible } = this.state;
 		return (
-			<View>
+			<Root>
 				<ScrollView>
-					<EmployeeList />
-				</ScrollView>
-				<View style={styles.centeredView}>
-					<Modal
-						animationType='slide'
-						transparent={true}
-						visible={modalVisible}
-					>
-						<View style={styles.centeredView}>
-							<View style={styles.modalView}>
-								<TextInput
-									style={styles.modalText}
-									placeholder='Employee first name'
-									value={this.state.firstName}
-									onChangeText={value =>
-										this.onValueChange({ firstName: value })
-									}
-								></TextInput>
-								<TextInput
-									style={styles.modalText}
-									placeholder='Employee last name'
-									value={this.state.lastName}
-									onChangeText={value =>
-										this.onValueChange({ lastName: value })
-									}
-								></TextInput>
-								<TextInput
-									style={styles.modalText}
-									placeholder='Employee email'
-									value={this.state.email}
-									onChangeText={value =>
-										this.onValueChange({ email: value })
-									}
-								></TextInput>
-
-								<TouchableHighlight
-									onPress={() => {
-										const { firstName, lastName, email } = this.state;
-										API.createUser({ firstName, lastName, email })
-											.then(this.setModalVisible(!modalVisible))
-											.then(this.setState())
-											.catch(function(err) {
-												console.log(err);
-											})
-											.finally(Alert.alert("Employee submitted successfully!"));
-									}}
-								>
-									<Text style={styles.openButton}>Submit new employee</Text>
-								</TouchableHighlight>
-								<TouchableHighlight
-									onPress={() => {
-										this.setModalVisible(!modalVisible);
-									}}
-								>
-									<Text style={styles.openButton}>Cancel</Text>
-								</TouchableHighlight>
-							</View>
-						</View>
-					</Modal>
-
-					<TouchableHighlight
-						style={styles.openButton}
-						onPress={() => {
-							this.setModalVisible(true);
+					<ImageBackground
+						style={{
+							resizeMode: "cover",
+							height: "100%",
+							width: "100%"
 						}}
+						source={require("../images/marble.jpg")}
 					>
-						<Text style={styles.textStyle}>Add a new employee</Text>
-					</TouchableHighlight>
-				</View>
-			</View>
+						<Text>{"\n"}</Text>
+						<Text>{"\n"}</Text>
+						<Text
+							style={{
+								textAlign: "left",
+								margin: 5,
+								fontSize: 20,
+								padding: 10,
+								color: "#000000",
+								width: "100%"
+							}}
+						>
+							M A N A G E E M P L O Y E E S
+						</Text>
+						<Text>{"\n"}</Text>
+						<Text style={styles.infoText}>
+							Adding new employees below will give them access to sign up for an
+							ABOT account, view the schedule, submit availability, and submit
+							time off requests to you. You may delete employee access by
+							selecting their information below and choosing the delete option.
+						</Text>
+
+						<View style={styles.centeredView}>
+							<Modal
+								animationType='slide'
+								transparent={true}
+								visible={modalVisible}
+							>
+								<View style={styles.centeredView}>
+									<View style={styles.modalView}>
+										<TextInput
+											style={styles.modalText}
+											placeholder='Employee first name'
+											value={this.state.firstName}
+											onChangeText={value =>
+												this.onValueChange({ firstName: value })
+											}
+										></TextInput>
+										<TextInput
+											style={styles.modalText}
+											placeholder='Employee last name'
+											value={this.state.lastName}
+											onChangeText={value =>
+												this.onValueChange({ lastName: value })
+											}
+										></TextInput>
+										<TextInput
+											style={styles.modalText}
+											placeholder='Employee email'
+											value={this.state.email}
+											onChangeText={value =>
+												this.onValueChange({ email: value })
+											}
+										></TextInput>
+
+										<TouchableHighlight
+											onPress={() => {
+												const { firstName, lastName, email } = this.state;
+												API.createUser({ firstName, lastName, email })
+													.then(this.setModalVisible(!modalVisible))
+													.then(this.setState())
+													.catch(function(err) {
+														console.log(err);
+													})
+													.finally(
+														Alert.alert("Employee submitted successfully!")
+													);
+											}}
+										>
+											<Text style={styles.openButton}>Submit new employee</Text>
+										</TouchableHighlight>
+										<TouchableHighlight
+											onPress={() => {
+												this.setModalVisible(!modalVisible);
+											}}
+										>
+											<Text style={styles.openButton}>Cancel</Text>
+										</TouchableHighlight>
+									</View>
+								</View>
+							</Modal>
+
+							<TouchableHighlight
+								style={styles.openButton}
+								onPress={() => {
+									this.setModalVisible(true);
+								}}
+							>
+								<Text style={styles.textStyle}>Add a new employee</Text>
+							</TouchableHighlight>
+						</View>
+						<EmployeeList />
+					</ImageBackground>
+				</ScrollView>
+			</Root>
 		);
 	}
 }
@@ -142,6 +178,9 @@ const styles = StyleSheet.create({
 	modalText: {
 		marginBottom: 15,
 		textAlign: "center"
+	},
+	infoText: {
+		marginHorizontal: 15
 	}
 });
 

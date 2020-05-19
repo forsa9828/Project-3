@@ -1,7 +1,6 @@
 import 'react-native-gesture-handler';
 import React, {Component} from "react";
-import { StyleSheet, ScrollView, View, Text } from "react-native";
-import { Root, Container } from "native-base";
+import { Root } from 'native-base';
 import * as Font from 'expo-font';
 import SignIn from "./src/pages/Signin";
 import SignUp from "./src/pages/Signup";
@@ -15,32 +14,36 @@ import SchedulePage from "./src/pages/SchedulePage";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button, Image, TouchableOpacity } from 'react-native';
+import { AppLoading } from 'expo';
 import {AppContainer} from "./src/component/AuthNav";
 
 
-
-export default function App() {
-  return (
-	  <Root>
-
-<AppContainer />
-
-	  </Root>
-
-  );
-}
-
-
-const styles = StyleSheet.create({ 
-	container: {
- 		flex: 10,
- 		backgroundColor: "#fff",
- 		alignItems: "stretch",
- 		justifyContent: "space-evenly"
- 	},
- 	scroll: {
-		marginHorizontal: 5
-	},
-
-  });
+export default class App extends Component {
+	constructor(props) {
+	  super(props);
+	  this.state = { loading: true };
+	}
+  async componentDidMount() {
+	  await Font.loadAsync({
+		Roboto: require('native-base/Fonts/Roboto.ttf'),
+		Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+	  });
+	  this.setState({ loading: false });
+	}
+  render() {
+	  if (this.state.loading) {
+		return (
+		  <Root>
+			<AppLoading />
+		  </Root>
+		);
+	  } else {
+		return (
+		  <Root>
+			<AppContainer />
+		  </Root>
+		);
+	  }
+	}
+  };
 
