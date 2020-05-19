@@ -1,7 +1,7 @@
-import React, {Component} from "react";
-import {FormSignUp} from "../component/Form";
+import React, { Component } from "react";
+import { FormSignUp } from "../component/Form";
 import API from "../utils/API";
-import {Alert, View} from "react-native";
+import { Alert, View } from "react-native";
 
 class SignUp extends Component {
     state= {

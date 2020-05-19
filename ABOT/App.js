@@ -15,43 +15,32 @@ import SchedulePage from "./src/pages/SchedulePage";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button, Image, TouchableOpacity } from 'react-native';
-// import {AppContainer} from "./src/component/AuthNav";
+import {AppContainer} from "./src/component/AuthNav";
 
-function App() {
+
+
+export default function App() {
   return (
-	
-		// <ScrollView>
-			// <NavigationContainer>
-			// 	<NavBar />
-			// </NavigationContainer>
-		
-		/* </ScrollView> */
+	  <Root>
 
-	 <Root>
-	   {/* <ForgotPassword />    */}
-	
-	{/* /* <AppContainer /> */}
-	   
-	 {/* /* /* <SchedulePage /> */}
-	 
-	 <SignUp />   
+<AppContainer />
 
-	 </Root>   
+	  </Root>
+
   );
 }
 
-export default App;
 
-{/* // const styles = StyleSheet.create({ */}
-// 	container: {
-// 		flex: 10,
-// 		backgroundColor: "#fff",
-// 		alignItems: "stretch",
-// 		justifyContent: "space-evenly"
-// 	},
-// 	scroll: {
-// 		marginHorizontal: 5
-// 	},
+const styles = StyleSheet.create({ 
+	container: {
+ 		flex: 10,
+ 		backgroundColor: "#fff",
+ 		alignItems: "stretch",
+ 		justifyContent: "space-evenly"
+ 	},
+ 	scroll: {
+		marginHorizontal: 5
+	},
 
-// 	  });
+  });
 
