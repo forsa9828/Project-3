@@ -89,12 +89,12 @@ constructor(props){
 					}
 				})
 				.then(
-					isLoggedIn => {
-					if(!isLoggedIn) {
+					// isLoggedIn => {
+					// if(!isLoggedIn) {
 						
-						Alert.alert("Oh no! Something went wrong. Please try again later.");
+					// 	Alert.alert("Oh no! Something went wrong. Please try again later.");
 						
-					} else {
+					// } else {
 						
 						API.getCurrentUser(email)
 						.then(response => {
@@ -109,9 +109,9 @@ constructor(props){
 								this.props.navigation.navigate('NavBarManager');
 							}
 						})
-					}
+					// }
 					
-				}
+				// }
 				) 
 					//will show a catch error if user doesn't exist in db
 				.catch(error => {
