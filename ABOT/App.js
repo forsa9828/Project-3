@@ -16,6 +16,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button, Image, TouchableOpacity } from 'react-native';
 import {AppContainer} from "./src/component/AuthNav";
+import ManageEmployees from './src/pages/ManageEmployees';
 
 
 

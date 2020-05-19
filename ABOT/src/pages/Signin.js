@@ -101,7 +101,6 @@ constructor(props){
 							let users = response.data[0];
 							this.setState({ users })
 							let type = this.state.users.employmentType
-							console.log(userName, userLastName, type)
 							if(type === "Employee"){
 
 							this.props.navigation.navigate('NavBar');

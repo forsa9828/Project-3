@@ -1,15 +1,25 @@
 import React, { Component } from "react";
-import { StyleSheet, View, ScrollView, AsyncStorage } from "react-native";
+import { StyleSheet, View, ScrollView, ImageBackground } from "react-native";
+import {Root} from "native-base";
 import ReviewPto from "../component/ReviewPto";
 
-function Review({ route, navigation }) {
+function Review() {
 	
 	return (
-		<View>
-<ScrollView contentContainerStyle = {styles.ScrollView}>
+		<Root>
+		<ScrollView>
+		<ImageBackground
+			style={{
+				resizeMode: "cover",
+				height: "100%",
+				width: "100%"
+			}}
+			source={require("../images/marble.jpg")}
+		>
 <ReviewPto />
+</ImageBackground>
 </ScrollView>
-		</View>
+		</Root>
 	);
 }
 
