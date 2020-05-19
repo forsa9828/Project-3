@@ -55,12 +55,12 @@ class ForgotPassword extends Component{
                 'Authorization': 'Bearer '
                 }
             }).then(response=>{ //still needs work
-              console.log(response)
+              console.log(response.data)
               if(!response){
-                console.log("no response")
-            } else{
-              console.log("good to go")
-              this.props.navigation.navigate("NavBar")
+                (console.log("no response"))
+              }
+              else{
+              console.log("got a response")
               // let isLoggedIn = true;
               // this.setState({isLoggedIn})
               // console.log(isLoggedIn)
@@ -71,6 +71,8 @@ class ForgotPassword extends Component{
             })
             //add logic here if email doesn't exist, can't update
            .catch(error => console.log(error.response))
+
+           
       }
         
     }

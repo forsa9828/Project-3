@@ -76,13 +76,13 @@ export function FormLogin(props) {
           <TouchableOpacity>
           <Button 
               title="Don't have an account? Sign Up"
-              onPress={()=> props.goToSignUp()}
+              // onPress={()=> props.goToSignUp()}
           />
           </TouchableOpacity>
           <TouchableOpacity>
           <Button
               title="Forgot Password"
-              onPress={() => props.forgotPassword()}
+              // onPress={() => props.forgotPassword()}
           />
           </TouchableOpacity>
     </Form>
@@ -255,7 +255,7 @@ export function  FormSignUp (props) {
               <Button 
                 title= "Go Back"
                 color="black"
-                onPress={() => props.goBack()}
+                // onPress={() => props.goBack()}
               />
               </TouchableOpacity>
               

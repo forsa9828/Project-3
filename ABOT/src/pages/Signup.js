@@ -27,12 +27,12 @@ class SignUp extends Component {
         this.setState(value)
     }
 
-    goBack =() => {
-        this.props.navigation.navigate("Signin")
-    }
+    // goBack =() => {
+    //     this.props.navigation.navigate("Signin")
+    // }
 
     
-    signUpSubmit=(event) => {
+    signUpSubmit=async (event) => {
         event.preventDefault();
         const {
             firstName,
@@ -44,7 +44,8 @@ class SignUp extends Component {
             emergencyContact,
             emergencyContactPhone
         } = this.state;
-        console.log(firstName, lastName)
+        console.log(firstName, lastName, email, password, employmentType, phone, emergencyContact, emergencyContactPhone)
+
 
         const inputRegEx = /^[A-Za-z-\s ]{1,20}$/;
 
@@ -72,34 +73,34 @@ class SignUp extends Component {
                 lastNameMsg:"",
                 emailMsg: "Enter valid email"
             })
-         }else if(!passwordRegEx.test(password)){
-             console.log("no good")
-            this.setState({
-                emailMsg: "",
-                pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character"
+        //  }else if(!passwordRegEx.test(password)){
+        //      console.log("no good")
+        //     this.setState({
+        //         emailMsg: "",
+        //         pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character"
 
-            })
-        }else if(employmentType == ""){
-            console.log(employmentType)
-            this.setState({
-                pswdMsg:"",
-                employMsg: "Please select one"
-            })
-        }else if(phone.length != 10){
-            this.setState({
-                employMsg: "",
-                phoneMsg: "Enter a valid phone number"
-            })
-        }else if(!inputRegEx.test(emergencyContact)){
-            this.setState({
-                phoneMsg: "",
-                emerConMsg: "Enter Your Emergency Contact"
-            })
-         }else if(emergencyContactPhone.length != 10){
-            this.setState({
-                emerConMsg:"",
-                emerPhoneMsg: "Enter a valid phone number"
-            })
+        //     })
+        // }else if(employmentType == ""){
+        //     console.log(employmentType)
+        //     this.setState({
+        //         pswdMsg:"",
+        //         employMsg: "Please select one"
+        //     })
+        // }else if(phone.length != 10){
+        //     this.setState({
+        //         employMsg: "",
+        //         phoneMsg: "Enter a valid phone number"
+        //     })
+        // }else if(!inputRegEx.test(emergencyContact)){
+        //     this.setState({
+        //         phoneMsg: "",
+        //         emerConMsg: "Enter Your Emergency Contact"
+        //     })
+        //  }else if(emergencyContactPhone.length != 10){
+        //     this.setState({
+        //         emerConMsg:"",
+        //         emerPhoneMsg: "Enter a valid phone number"
+        //     })
         }else{
 
               API.authUser({
@@ -118,16 +119,27 @@ class SignUp extends Component {
                 }
             })
             //handle the response still needs work
-            .then(response => { 
+            .then(response => { console.log(response.data)
+                
                 if(!response){
                     console.log("no response")
                 }else{
-                    console.log("success! created.")
+                    console.log("getting a response")
                    // this.props.navigation.navigate("NavBar")
                    //check query db to check for specific user 
+                   //redirect user back to sign to sign in  b/c sign in works 
+                //     let user = {
+                //         firstName: firstName,
+                //         lastName: lastName
+                //     }
+                //    // console.log(user)
+                //     API.checkName(user)
+                //     .then(res => console.log(res.data[0]))
+
+                   }
                 }
-            })
-            .catch(error => console.log(error))
+            )
+            .catch(error => console.log(error.response))
             
             
            }

@@ -13,7 +13,7 @@ import { Ionicons } from 'react-native-vector-icons';
 import SchedulePageScreen from '../pages/SchedulePage';
 import AvailScreen from '../pages/Avail';
 import ReviewScreen from '../pages/RequestOff';
-// import SignInScreen from '../pages/Signin'
+ import SignInScreen from '../pages/Signin';
 
 
 
@@ -78,26 +78,26 @@ const SchedulePageStack = createStackNavigator(
   }
 );
 
-// const SignInStack = createStackNavigator(
-//   {
-//     //Defination of Navigaton from setting screen
-//     SignIn: { screen: SignInScreen },
-//     SignIn: { screen: SignInScreen, navigationOptions:{tabBarVisible: true, title: 'ABOT'} },
-//   },
-//   {
-//     //For React Navigation 2.+ change defaultNavigationOptions->navigationOptions
-//     defaultNavigationOptions: {
-//       //Header customization of the perticular Screen
-//       headerStyle: {
-//         backgroundColor: '#d6ab86',
-//         fontSize: 20,
-//       },
-//       headerTintColor: '#FFFFFF',
+const SignInStack = createStackNavigator(
+  {
+    //Defination of Navigaton from setting screen
+    SignIn: { screen: SignInScreen },
+    SignIn: { screen: SignInScreen, navigationOptions:{tabBarVisible: true, title: 'ABOT'} },
+  },
+  {
+    //For React Navigation 2.+ change defaultNavigationOptions->navigationOptions
+    defaultNavigationOptions: {
+      //Header customization of the perticular Screen
+      headerStyle: {
+        backgroundColor: '#d6ab86',
+        fontSize: 20,
+      },
+      headerTintColor: '#FFFFFF',
   
-//       //Header title
-//     },
-//   }
-// );
+      //Header title
+    },
+  }
+);
 
 SchedulePageStack.navigationOptions = ReviewStack.navigationOptions = ({ navigation }) => {
   let tabBarVisible = true;
@@ -135,16 +135,17 @@ const NavBar = createBottomTabNavigator(
       }
     },
 
-    // SignIn: {
-    //   screen: SignInStack,
-    //   navigationOptions:{
-    //     tabBarLabel: 'Logout',
-    //     tabBarIcon: ({ tintColor }) => <Ionicons name="ios-log-out" size={25} color={tintColor} />
-    //   }
-    // }
+    SignIn: {
+      screen: SignInStack,
+      navigationOptions:{
+        tabBarLabel: 'Logout',
+        tabBarIcon: ({ tintColor }) => <Ionicons name="ios-log-out" size={25} color={tintColor} />
+      }
+    }
   },
   {
     //For React Navigation 2.+ change defaultNavigationOptions->navigationOptions
+    
     initialRouteName: 'ReviewScreen',
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
@@ -163,8 +164,8 @@ const NavBar = createBottomTabNavigator(
           iconName = `ios-list${focused ? '' : '-outline'}`;
        } 
         
-        // else if (routeName === 'SignIn')
-        //   iconName = `ios-logout${focused ? '' : '-outline'}`;
+        else if (routeName === 'SignIn')
+          iconName = `ios-logout${focused ? '' : '-outline'}`;
 
         // You can return any component that you like here!
         return <IconComponent name={iconName} size={25} color={tintColor} />;

@@ -13,7 +13,7 @@ const AuthNavigation = createStackNavigator(
       Signin: { screen: Signin },
       Signup: { screen: Signup },
       ForgotPassword: {screen: ForgotPassword},
-      NavBar: {screen: NavBar}
+      //NavBar: {screen: NavBar}
     },
     {
       initialRouteName: "Signin",

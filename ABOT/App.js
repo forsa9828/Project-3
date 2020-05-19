@@ -11,11 +11,11 @@ import RequestOff from "./src/pages/RequestOff";
 import SchedulePage from "./src/pages/SchedulePage";
 // import FormAvailPto from "./src/component/FormAvailPto";
 // import ActionList from "./src/component/ActionList";
-import NavBar from "./src/component/Navbar";
+// import NavBar from "./src/component/Navbar";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button, Image, TouchableOpacity } from 'react-native';
-import {AppContainer} from "./src/component/AuthNav";
+// import {AppContainer} from "./src/component/AuthNav";
 
 function App() {
   return (
@@ -28,13 +28,13 @@ function App() {
 		/* </ScrollView> */
 
 	 <Root>
-	  {/* /* /* <ForgotPassword />   */ }
+	   {/* <ForgotPassword />    */}
 	
-	  <AppContainer />
-	  
-	 {/* /* <SchedulePage /> */ }
+	{/* /* <AppContainer /> */}
+	   
+	 {/* /* /* <SchedulePage /> */}
 	 
-	 {/* /* <SignIn />  */}
+	 <SignUp />   
 
 	 </Root>   
   );

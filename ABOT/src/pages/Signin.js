@@ -3,11 +3,11 @@ import React, { Component } from "react";
 import {FormLogin} from "../component/Form";
 import API from "../utils/API";
 import {Alert, Stylesheet, Text} from "react-native";
-import { createStackNavigator } from '@react-navigation/stack';
-import SchedulePage from "./SchedulePage";
-import { NavigationContainer } from "@react-navigation/native";
-import { useNavigation } from '@react-navigation/native';
-import Navbar from "../component/Navbar";
+// import { createStackNavigator } from '@react-navigation/stack';
+// import SchedulePage from "./SchedulePage";
+// import { NavigationContainer } from "@react-navigation/native";
+// import { useNavigation } from '@react-navigation/native';
+// import Navbar from "../component/Navbar";
 
 class SignIn extends Component {
     state = {
@@ -23,14 +23,14 @@ class SignIn extends Component {
     }
 
     //this is method allows to go to forgotPassword screen
-    forgotPassword =() =>{
-        this.props.navigation.navigate("ForgotPassword")
-    }
+    // forgotPassword =() =>{
+    //     this.props.navigation.navigate("ForgotPassword")
+    // }
 
     //this method will allow to go to sign up screen
-    goToSignUp=() =>{
-        this.props.navigation.navigate("Signup")
-    }
+    // goToSignUp=() =>{
+    //     this.props.navigation.navigate("Signup")
+    // }
 
     
 
@@ -112,8 +112,8 @@ class SignIn extends Component {
                 checkEmail={this.checkEmail}
                 errEmail={this.state.emailMsg}
                 errPswd={this.state.pswdMsg}
-                forgotPassword={this.forgotPassword}
-                goToSignUp={this.goToSignUp}
+                // forgotPassword={this.forgotPassword}
+                // goToSignUp={this.goToSignUp}
            />
         )}
 
