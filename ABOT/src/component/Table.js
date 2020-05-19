@@ -1,18 +1,19 @@
 import React, { Component } from "react";
-import { View, Container, List, Body, ListItem, Text } from "native-base";
+import { View, Body, ListItem, Text } from "native-base";
+import { StyleSheet } from "react-native";
 
 function Table(props) {
 	return (
 		<View>
-			<ListItem itemDivider>
-				<Text>{props.date}</Text>
+			<ListItem itemDivider style = {styles.dateField}>
+				<Text >{props.date}</Text>
 			</ListItem>
 			<ListItem>
 				<Body>
 					<Text>
 						{props.firstName} {props.lastName}
 					</Text>
-					<Text note>
+					<Text >
 						{"\n"}
 						{props.startTime}
 						{" - "}
@@ -20,8 +21,17 @@ function Table(props) {
 					</Text>
 				</Body>
 			</ListItem>
+			<Text>{"\n"}</Text>
 		</View>
 	);
 }
+
+const styles = StyleSheet.create({
+	dateField: {
+		flex: 10,
+		backgroundColor: "#d6ab86",
+		textAlign: "left"
+	}
+});
 
 export default Table;

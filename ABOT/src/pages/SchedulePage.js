@@ -1,56 +1,44 @@
 import React, { Component } from "react";
-import Table from "../component/Table";
-import API from "../utils/API";
+import { StyleSheet, Text, ScrollView, ImageBackground } from "react-native";
+import {Root} from "native-base";
+import ScheduleInfo from "../component/ScheduleInfo";
 
-class SchedulePage extends Component {
-	_isMounted = false;
-	constructor(props) {
-		super(props);
-		this.state = {
-			schedules: [],
-			error: null,
-			isLoaded: false
-		};
-	}
+function SchedulePage() {
+	
+	return (
+		<Root>
+		<ImageBackground
+			style={{
+				resizeMode: "cover",
+				height: "100%",
+				width: "100%"
+			}}
+			source={require("../images/marble.jpg")}
+			>
+			<ScrollView>
+			<Text>{"\n"}</Text>
+<ScheduleInfo/>
 
-	componentDidMount() {
-		this._isMounted = true;
-		API.getSchedule()
-			.then(response => {
-				console.log(response.data)
-				let schedules = response.data;
-				this.setState({ schedules });
-			})
-			.catch(error => console.error(error))
-			.finally(() => {
-				this.setState({ isLoaded: false });
-			});
-	}
-
-	componentWillUnmount() {
-		this.setState = (state, callback) => {
-			return;
-		};
-	}
-
-	render() {
-		let { schedules } = this.state;
-		return schedules.map(schedule => {
-			return (
-				<Table
-					key={schedule.id}
-					date={schedule.date}
-					firstName={schedule.firstName}
-					lastName={schedule.lastName}
-					startTime={schedule.startTime}
-					endTime={schedule.endTime}
-				/>
-			);
-		});
-		
-
-
-	}
+</ScrollView>
+</ImageBackground>
+		</Root>
+	);
 }
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 10,
+		backgroundColor: "#fff",
+		alignItems: "stretch",
+		justifyContent: "space-evenly"
+	},
+	scroll: {
+		marginHorizontal: 5
+	},
+	image: {
+		flex: 1,
+		resizeMode: 'cover'
+	}
+});
 
 export default SchedulePage;
