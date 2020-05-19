@@ -34,7 +34,7 @@ class ManageEmployees extends Component {
 		return (
 			<View>
 				<ScrollView>
-				<EmployeeList />
+					<EmployeeList />
 				</ScrollView>
 				<View style={styles.centeredView}>
 					<Modal
@@ -60,17 +60,25 @@ class ManageEmployees extends Component {
 										this.onValueChange({ lastName: value })
 									}
 								></TextInput>
+								<TextInput
+									style={styles.modalText}
+									placeholder='Employee email'
+									value={this.state.email}
+									onChangeText={value =>
+										this.onValueChange({ email: value })
+									}
+								></TextInput>
 
 								<TouchableHighlight
 									onPress={() => {
-										const { firstName, lastName } = this.state;
-										API.createUser({ firstName, lastName })
+										const { firstName, lastName, email } = this.state;
+										API.createUser({ firstName, lastName, email })
 											.then(this.setModalVisible(!modalVisible))
 											.then(this.setState())
 											.catch(function(err) {
 												console.log(err);
 											})
-											.finally(Alert.alert("Employee submitted successfully!"))
+											.finally(Alert.alert("Employee submitted successfully!"));
 									}}
 								>
 									<Text style={styles.openButton}>Submit new employee</Text>
@@ -94,7 +102,6 @@ class ManageEmployees extends Component {
 					>
 						<Text style={styles.textStyle}>Add a new employee</Text>
 					</TouchableHighlight>
-					
 				</View>
 			</View>
 		);
@@ -119,7 +126,7 @@ const styles = StyleSheet.create({
 			height: 2
 		},
 		shadowOpacity: 0.25,
-		elevation: 5,
+		elevation: 5
 	},
 	openButton: {
 		backgroundColor: "#d6ad86",
@@ -134,9 +141,7 @@ const styles = StyleSheet.create({
 	},
 	modalText: {
 		marginBottom: 15,
-		textAlign: "center",
-		
-		
+		textAlign: "center"
 	}
 });
 

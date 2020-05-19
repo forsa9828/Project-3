@@ -126,6 +126,18 @@ class SignUp extends Component {
 						// this.props.navigation.navigate("NavBar")
 						//check query db to check for specific user
 					}
+				});
+			API.getCurrentUser(email)
+				.then(response => {
+					let users = response.data[0];
+					this.setState({ users });
+					let firstName = this.state.users.firstName;
+					console.log(users);
+					if (firstName === firstName && lastName === firstName) {
+						this.props.navigation.navigate("NavBar");
+					} else {
+						Alert.alert("User not found!");
+					}
 				})
 				.catch(error => console.log(error));
 		}
