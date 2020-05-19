@@ -5,15 +5,16 @@ import { createAppContainer} from 'react-navigation'
 import Signup from "../pages/Signup";
 import Signin from "../pages/Signin";
 import ForgotPassword from '../pages/ForgotPassword';
-import SchedulePage from "../pages/SchedulePage";
 import NavBar from "./Navbar";
+import NavBarManager from './NavBarManager';
 
 const AuthNavigation = createStackNavigator(
     {
       Signin: { screen: Signin },
       Signup: { screen: Signup },
       ForgotPassword: {screen: ForgotPassword},
-      NavBar: {screen: NavBar}
+      NavBar: {screen: NavBar},
+      NavBarManager: {screen: NavBarManager}
     },
     {
       initialRouteName: "Signin",

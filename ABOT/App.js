@@ -16,7 +16,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Button, Image, TouchableOpacity } from 'react-native';
 import {AppContainer} from "./src/component/AuthNav";
-import Avail from './src/pages/Avail';
+
+
 
 export default function App() {
   return (

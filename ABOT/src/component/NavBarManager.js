@@ -11,17 +11,18 @@ import { Ionicons } from 'react-native-vector-icons';
 
 //Import external files  
 import SchedulePageScreen from '../pages/SchedulePage';
-import AvailScreen from '../pages/Avail';
-import RequestOff from '../pages/RequestOff';
+import ManageEmployees from '../pages/ManageEmployees';
+import Review from "../pages/Review"
+// import RequestOff from '../pages/RequestOff';
 // import SignInScreen from '../pages/Signin'
 
 
 
-const RequestOffStack = createStackNavigator(
+const ReviewStack = createStackNavigator(
   {
     //Defination of Navigaton from home screen
-    RequestOff: { screen: RequestOff },
-    RequestOff: { screen: RequestOff, navigationOptions:{tabBarVisible: true, title: 'R E Q U E S T'} },
+    Review: { screen: Review },
+    Review: { screen: Review, navigationOptions:{tabBarVisible: true, title: 'R E V I E W  R E Q U E S T S'} },
   },
   {
     //For React Navigation 2.+ change defaultNavigationOptions->navigationOptions
@@ -32,17 +33,17 @@ const RequestOffStack = createStackNavigator(
       },
       headerTintColor: '#FFFFFF',
         fontWeight: 'bold',
-      title: 'Request Off',
+      title: 'Review',
       //Header title
     },
   }
 );
 
-const AvailStack = createStackNavigator(
+const ManageEmployeesStack = createStackNavigator(
   {
     //Defination of Navigaton from home screen
-    Avail: { screen: AvailScreen },
-    Avail: { screen: AvailScreen, navigationOptions:{tabBarVisible: true, title: 'A V A I L A B I L I T Y '} },
+    ManageEmployees: { screen: ManageEmployees },
+    ManageEmployees: { screen: ManageEmployees, navigationOptions:{tabBarVisible: true, title: 'M A N A G E'} },
   },
   {
     //For React Navigation 2.+ change defaultNavigationOptions->navigationOptions
@@ -52,7 +53,7 @@ const AvailStack = createStackNavigator(
         backgroundColor: '#d6ab86',
       },
       headerTintColor: '#FFFFFF',
-      title: 'Avail',
+      title: 'Manage Employees',
       //Header titl
     },
   }
@@ -79,54 +80,47 @@ const SchedulePageStack = createStackNavigator(
 );
 
 
-SchedulePageStack.navigationOptions = RequestOffStack.navigationOptions = ({ navigation }) => {
-  let tabBarVisible = true;
-  if (navigation.state.index > 0) {
-    tabBarVisible = false;
-  }
+// SchedulePageStack.navigationOptions = ManageEmployeesStack.navigationOptions = ({ navigation }) => {
+//   let tabBarVisible = true;
+//   if (navigation.state.index > 0) {
+//     tabBarVisible = false;
+//   }
 
-  return {
-    tabBarVisible,
-  };
-};
+//   return {
+//     tabBarVisible,
+//   };
+// };
 
 const NavBar = createBottomTabNavigator(
   {
     SchedulePage: { 
       screen: SchedulePageStack,
       navigationOptions: {
-        tabBarLabel: 'Schedule Page',
+        tabBarLabel: 'SchedulePage',
         tabBarIcon: ({ tintColor }) => <Ionicons name="ios-calendar" size={25} color={tintColor} />
       }
     },
     //Defination of Navigaton bottom options
-    RequestOff: { 
-      screen: RequestOffStack,
+    Review: { 
+      screen: ReviewStack,
       navigationOptions: {
-        tabBarLabel: 'Submit Request',
+        tabBarLabel: 'Review Requests',
         tabBarIcon: ({ tintColor }) => <Ionicons name="ios-book" size={25} color={tintColor} />
       }
     },
-    Avail: { 
-      screen: AvailStack,
+    ManageEmployees: { 
+      screen: ManageEmployees,
       navigationOptions: {
-        tabBarLabel: 'Submit Availability',
+        tabBarLabel: 'Manage Employees',
         tabBarIcon: ({ tintColor }) => <Ionicons name="ios-time" size={25} color={tintColor} />
       }
     },
 
-    // SignIn: {
-    //   screen: SignInStack,
-    //   navigationOptions:{
-    //     tabBarLabel: 'Logout',
-    //     tabBarIcon: ({ tintColor }) => <Ionicons name="ios-log-out" size={25} color={tintColor} />
-    //   }
-    // }
   },
   {
     //For React Navigation 2.+ change defaultNavigationOptions->navigationOptions
     // initialRouteName: "SignIn",
-    initialRouteName: 'SchedulePage',
+    initialRouteName: 'ManageEmployees',
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
@@ -134,7 +128,7 @@ const NavBar = createBottomTabNavigator(
         // console.log(userValues)
         let IconComponent = Ionicons;
         let iconName;
-        if (routeName === 'RequestOff'){
+        if (routeName === 'Review'){
           iconName = `ios-home${focused ? '' : '-outline'}`;
           // Sometimes we want to add badges to some icons.
           // You can check the implementation below.
@@ -142,10 +136,12 @@ const NavBar = createBottomTabNavigator(
          else if (routeName === 'SchedulePage') {
           iconName = `ios-options${focused ? '' : '-outline'}`;
         } 
-        else if (routeName === 'Avail') {
+        else if (routeName === 'ManageEmployees') {
           iconName = `ios-list${focused ? '' : '-outline'}`;
        } 
         
+        // else if (routeName === 'SignIn')
+        //   iconName = `ios-logout${focused ? '' : '-outline'}`;
 
         // You can return any component that you like here!
         return <IconComponent name={iconName} size={25} color={tintColor} />;
