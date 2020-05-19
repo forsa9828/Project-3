@@ -59,15 +59,15 @@ export default {
 	},
 
 	logIn: function(data) {
-		return axios.post("http://192.168.0.6:8080/signin", data);
+		return axios.post("http://192.168.1.72:8080/signin", data);
 	},
 
 	authUser: function(data) {
-		return axios.post("http://192.168.0.6:8080/auth/signup", data);
+		return axios.post("http://192.168.1.72:8080/auth/signup", data);
 	},
 
 	forgotPassword: function(data) {
-		return axios.post("http://192.168.0.6:8080/forgotpassword", data);
+		return axios.post("http://192.168.1.72/forgotpassword", data);
 	},
 
 	renderSignup: function() {
