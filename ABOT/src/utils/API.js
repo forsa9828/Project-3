@@ -75,7 +75,7 @@ export default {
 	},
 
 	renderSignin: function() {
-		return axios.get("http://192.168.0.6:8080/signin");
+		return axios.get("http://192.168.0.6:8080/auth/signin");
 	},
 
 	getCurrentUser: function(email) {

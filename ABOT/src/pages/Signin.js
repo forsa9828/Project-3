@@ -32,8 +32,8 @@ class SignIn extends Component {
 
 	signInSubmit = async event => {
 		event.preventDefault();
-		const { email, password } = this.state;
-		// //validation here
+		const { email, password, isLoggedIn } = this.state;
+
 		const checkEmail = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/;
 
 		if (!checkEmail.test(email)) {
@@ -45,36 +45,20 @@ class SignIn extends Component {
 				emailMsg: "",
 				pswdMsg: "Enter your password"
 			});
-			console.log("nothing here");
 		} else {
-			this.setState({ pswdMsg: "" });
+			this.setState({
+				email: "",
+				password: "",
+				pswdMsg: ""
+			});
 
-			API.logIn(
-				{
-					email,
-					password
-				},
-				{
-					//headers are to check network errors if any
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: "Bearer "
-					}
-				}
-			).then(response => {
+			API.logIn({
+				email,
+				password
+			}).then(response => {
 				console.log(response);
-				if (!response) {
-					Alert.alert(
-						"Oh no! We are experiencing some network issues. Please try again later."
-					);
-				} else if (response === null) {
-					Alert.alert("User does not exist.");
-				} else {
-					console.log("good to go");
 					let isLoggedIn = true;
 					this.setState({ isLoggedIn });
-					console.log(isLoggedIn);
-
 					API.getCurrentUser(email)
 						.then(response => {
 							let users = response.data[0];
@@ -89,11 +73,13 @@ class SignIn extends Component {
 								Alert.alert("Welcome back " + users.firstName + "!");
 							}
 						})
-						.catch(error => {
-							console.log(error);
-						});
-				}
-			});
+					})
+								.catch(error => {
+									console.log(error);
+									Alert.alert(
+										"Check your email and password again. If you are new, please use Sign Up."
+									);
+								});
 		}
 	};
 

@@ -11,12 +11,12 @@ module.exports = {
     signin: (req, res) => {
         //res.redirect, redirect to the route for React
        console.log("trying to go to signin")
-       res.redirect("/SchedulePage");
+       res.redirect("/Signin");
         
     },
 
     index: (req, res) => {
-        res.render("/SchedulePage");
+        res.redirect("/SchedulePage");
 
     },
 

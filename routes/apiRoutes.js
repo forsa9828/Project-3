@@ -45,7 +45,7 @@ module.exports = app => {
 	app.get("/api/requestoff", (req, res) => {
 		db.pto
 			.findAll({
-				order: [[sequelize.col("date"), 'DESC']]
+				order: [[sequelize.col("date"), "DESC"]]
 			})
 			.then(dbpto => {
 				res.json(dbpto);
@@ -129,12 +129,24 @@ module.exports = app => {
 
 	// deleting user from db
 	app.delete("/api/user/:id", (req, res) => {
-		db.user
-			.destroy({ where: { id: req.params.id } })
-			.then(dbuser => {
-				res.json(dbuser);
-			});
+		db.user.destroy({ where: { id: req.params.id } }).then(dbuser => {
+			res.json(dbuser);
+		});
 	});
+
+	// app.get("/api/checkName", (req, res) => {
+	// 	db.user.findAll({
+	// 		where:{
+	// 			firstName: req.params.user.firstName,
+	// 			lastName: req.params.user.lastName
+	// 		}
+	// 	}).then(dbuser => {
+	// 		res.json(dbuser);
+	// 		})
+
+	// 		console.log(dbuser)
+
+	// });
 
 	// Update a PTO request from false to true
 	app.put("/api/approverequestoff/:id", (req, res) => {
@@ -167,9 +179,8 @@ module.exports = app => {
 				}
 			})
 			.then(dbuser => {
-				res.json(dbuser)
+				res.json(dbuser);
 				console.log(dbuser);
 			});
 	});
-
 };

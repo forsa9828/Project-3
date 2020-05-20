@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Button, Text, View, StyleSheet, ImageBackground, Image } from "react-native";
+import {Button, Text, View, StyleSheet, ImageBackground, Image, Alert } from "react-native";
 import { Container, Header, Root, Form, Item, Input, Picker, Left, Right, Body, Title, Icon} from "native-base";
 import API from "../utils/API";
 
@@ -10,7 +10,8 @@ class ForgotPassword extends Component{
        password: "",
        emailMsg: "",
        pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character",
-       isLoggedIn: false
+       isLoggedIn: false,
+       users: {}
     }
 
     onValueChange= (value) => {
@@ -20,8 +21,7 @@ class ForgotPassword extends Component{
 
     sendEmailSubmit= () => {
         const {email, password} = this.state;
-        console.log(password, email)
-        //check email format first
+  
         const checkEmail=/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/
         const passwordRegEx=/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,10}$/;
 
@@ -31,15 +31,16 @@ class ForgotPassword extends Component{
                 {
                   emailMsg: "Enter valid email",
                 })
-       // }else if(!passwordRegEx.test(password)){
-        //     this.setState(
-        //         {
-        //             emailMsg: "",
-        //             pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character"
-        //     })
+       }
+       else if(!passwordRegEx.test(password)){
+            this.setState(
+                {
+                    emailMsg: "",
+                    pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character",
+
+            })
         
         }else{
-            console.log("good to go")
             this.setState(
                 {
                     emailMsg: "",
@@ -49,33 +50,36 @@ class ForgotPassword extends Component{
             API.forgotPassword({
                 email,
                 password
-            }, {//headers are to check network errors if any
-                 headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer '
-                }
-            }).then(response=>{ //still needs work
+            }).then(response=>{ 
               console.log(response)
-              if(!response){
-                console.log("no response")
-            } else{
-              console.log("good to go")
-              this.props.navigation.navigate("NavBar")
-              // let isLoggedIn = true;
-              // this.setState({isLoggedIn})
-              // console.log(isLoggedIn)
-              // Alert.alert("Welcome Back!")
-               //this.props.navigation.navigate("NavBar")
+              if (!response) {
+                Alert.alert(
+                  "Oh no! We have experienced a network issue, please try again later."
+                );
+              } else {
+                API.getCurrentUser(email).then(response => {
+                    let users = response.data[0];
+                    console.log(users)
+                    this.setState({ users });
+                    let firstName = this.state.users.firstName;
+                    let lastName = this.state.users.lastName;
+                    if (firstName === firstName && lastName === lastName) {
+                      this.props.navigation.navigate("AuthNav");
+                      Alert.alert("Password changed successfully!")
+                    } else {
+                      Alert.alert(
+                        "User information does not match. Contact employer."
+                    );
+                      }
+              });
+            }
+          })
+          .catch(error => console.log(error.response))
           }
-                
-            })
-            //add logic here if email doesn't exist, can't update
-           .catch(error => console.log(error.response))
-      }
         
     }
 
-    //this method will allow to go to sign IN screen
+  
     goToSignIn=() =>{
         this.props.navigation.navigate('Signin')
     }
@@ -144,12 +148,9 @@ class ForgotPassword extends Component{
                       )}
                       /> 
                   </Item>
-      
                   <Text style={styles.errorMsg}>
                       {this.state.pswdMsg}
-                    </Text>
-                 
-                
+                      </Text>
                   <View style={styles.myBtn}>
                   <Button 
                   color='#d6ad86'
@@ -176,9 +177,9 @@ class ForgotPassword extends Component{
 export default ForgotPassword;
 
 const styles = StyleSheet.create({
-    // pswdStyle: {
-    //   color: "white"
-    // },
+    pswdStyle: {
+      fontWeight: "bold",
+    },
     errorMsg:{
       color: "red",
       textAlign: "center",

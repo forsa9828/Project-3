@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FormSignUp } from "../component/Form";
 import API from "../utils/API";
 import { Alert } from "react-native";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 class SignUp extends Component {
 	state = {
@@ -104,16 +104,7 @@ class SignUp extends Component {
 					phone,
 					emergencyContact,
 					emergencyContactPhone
-				},
-				{
-					//headers are to check network errors if any
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: "Bearer "
-					}
-				}
-			)
-				//handle the response still needs work
+				})
 				.then(response => {
 					if (!response) {
 						Alert.alert(
@@ -122,6 +113,7 @@ class SignUp extends Component {
 					} else {
 						API.getCurrentUser(email).then(response => {
 							let users = response.data[0];
+							
 							if (typeof users === "undefined") {
 								Alert.alert("User doest not exist. Contact employer.");
 							} else {
@@ -145,7 +137,7 @@ class SignUp extends Component {
 
 	render() {
 		return (
-			<KeyboardAwareScrollView>
+			// <KeyboardAwareScrollView>
 			<FormSignUp
 				firstName={this.state.firstName}
 				lastName={this.state.lastName}
@@ -167,7 +159,7 @@ class SignUp extends Component {
 				clicked={this.signUpSubmit}
 				goBack={this.goBack}
 			/>
-			</KeyboardAwareScrollView>
+			// </KeyboardAwareScrollView>
 		);
 	}
 }

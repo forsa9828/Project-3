@@ -19,7 +19,7 @@ class ScheduleInfo extends Component {
 		this._isMounted = true;
 		API.getSchedule()
 			.then(response => {
-				console.log(response.data)
+				console.log(response.data);
 				let schedules = response.data;
 				this.setState({ schedules });
 			})
@@ -35,28 +35,23 @@ class ScheduleInfo extends Component {
 		};
 	}
 
-
 	render() {
-			
 		let { schedules } = this.state;
 		return schedules.map(schedule => {
 			return (
 				<Root>
-				<Table
-					key={schedule.id}
-					date={schedule.date}
-					firstName={schedule.firstName}
-					lastName={schedule.lastName}
-					startTime={schedule.startTime}
-					endTime={schedule.endTime}
+					<Table
+						key={schedule.id}
+						date={schedule.date}
+						firstName={schedule.firstName}
+						lastName={schedule.lastName}
+						startTime={schedule.startTime}
+						endTime={schedule.endTime}
 					/>
-{/* <Button color= "#d6ad86" title='Refresh' onPress={this.componentDidMount()} /> */}
-</Root>
+					{/* <Button color= "#d6ad86" title='Refresh' onPress={this.componentDidMount()} /> */}
+				</Root>
 			);
 		});
-		
-
-
 	}
 }
 
