@@ -4,7 +4,7 @@ import { createAppContainer} from 'react-navigation'
 
 import Signup from "../pages/Signup";
 import Signin from "../pages/Signin";
-import ForgotPassword from '../pages/ForgotPassword';
+import ForgotPassword from '../pages/forgotPassword';
 import NavBar from "./Navbar";
 import NavBarManager from './NavBarManager';
 
