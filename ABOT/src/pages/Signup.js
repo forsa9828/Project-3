@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { FormSignUp } from "../component/Form";
 import API from "../utils/API";
-import { Alert, View } from "react-native";
+import { Alert, View} from "react-native";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 class SignUp extends Component {
 	state = {
@@ -145,6 +146,7 @@ class SignUp extends Component {
 
 	render() {
 		return (
+			<KeyboardAwareScrollView>
 			<FormSignUp
 				firstName={this.state.firstName}
 				lastName={this.state.lastName}
@@ -166,6 +168,7 @@ class SignUp extends Component {
 				clicked={this.signUpSubmit}
 				goBack={this.goBack}
 			/>
+			</KeyboardAwareScrollView>
 		);
 	}
 }
