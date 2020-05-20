@@ -21,7 +21,7 @@ function Table(props) {
 					</Text>
 				</Body>
 			</ListItem>
-			<Text>{"\n"}</Text>
+			{/* <Text>{"\n"}</Text> */}
 			
 		</View>
 	);

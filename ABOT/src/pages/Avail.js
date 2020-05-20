@@ -84,7 +84,7 @@ class Avail extends Component {
 			: this.state.endTime == null || this.state.endTime.length > 7
 			? Alert.alert("Please enter a valid end time.")
 			: API.postAvail({ firstName, lastName, date, startTime, endTime })
-					.then(Alert.alert("Request Success!"))
+					.then(Alert.alert("Shift added!"))
 					.then(this.setState({
 						firstName: null,
 						lastName: null,
