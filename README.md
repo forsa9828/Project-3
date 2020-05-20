@@ -1,12 +1,14 @@
 # Always. Be. On. Time.
-User friendly scheduler at your convenience. Stay up to date with your work schedule, your time off requests and your team's schedule. 
+User friendly scheduler at your convenience for manager and employee. Employees stay up to date with your work schedule, your time off requests and your team's schedule. Mangagers view all your employees and their availability, approve or deny any submitted request offs, add new hires or delete an employee. 
 
 <p align="center"><a href="https://mighty-wildwood-15788.herokuapp.com">
 <br><img src= "public/images/ABOT.indexImg.png"></p>
 
 ## How it works:
 
-Simply login and you have access to:
+Simply login and you have access to either:
+
+##Employee
 
 <p align="center">Submit availability<br>
 <br><img src= "public/images/avail.png" width = "400"></p>
@@ -17,8 +19,23 @@ Simply login and you have access to:
 <p align="center">Request off<br>
 <br><img src= "public/images/requestoff.png" width = "400"></p>
 
+##Manager 
+
+<p align="center">View Employee Availability<br>
+<br><img src= "public/images/avail.png" width = "400"></p>
+
+<p align="center">Approve or Decline Requests Off<br>
+<br><img src= "public/images/avail.png" width = "400"></p>
+
+<p align="center">Add or Delete an Employee<br>
+<br><img src= "public/images/avail.png" width = "400"></p>
+
+<p align="center">View Employee List<br>
+<br><img src= "public/images/avail.png" width = "400"></p>
+
+
 ### Don't have an account? 
-Just click Sign Up and you can create an account.
+Just click Sign Up and you can create an account as an employee or manager.
 <p align="center">
 <br><img src= "public/images/signUp.png" width = "400"></p>
 
@@ -39,9 +56,6 @@ Learn about Passport and bCrypt here:
 * <a href="https://www.npmjs.com/package/bcrypt">bCrypt</a>
 * <a href="http://www.passportjs.org/" >Passport</a>
 * <a href="https://github.com/jaredhanson/passport">Passport Github</a>
-
-
-<a href= "https://mighty-wildwood-15788.herokuapp.com">Check out our ABOT application</a>
 
 
 ## How you can get started: 
@@ -69,9 +83,14 @@ CREATE DATABASE abot_db; </code></pre>
 ### Front End 
 * HTML
 * CSS
-* JQuery
+* JavaScript
+* Expo
 * Bootstrap
 * Moment.js 
+* Native-Base
+* React Navigation
+* React Native
+
 ### Back End 
 * Node.js
 * Express
@@ -81,7 +100,8 @@ CREATE DATABASE abot_db; </code></pre>
 * MySQL
 * Sequalize
 
-Learn more about our motivation and possible future developments: https://docs.google.com/presentation/d/1V575YpgOxrLqJHyG1Bb-LuMvrE7aMmrmb8zwXNq5Tto/edit?usp=sharing
+Learn more about our motivation and possible future developments:https://docs.google.com/presentation/d/1_rEkzdPi5TCNcpftymvb-Xn73Srgdo84G8YtX3O2hMI/edit#slide=id.g84b02839c1_0_108
+
 
 ## Contributors:
 Hallie Weintraub https://github.com/hallieraew <br>
