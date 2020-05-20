@@ -151,13 +151,6 @@ export function FormSignUp(props) {
 						>
 							SIGN UP
 						</Title>
-						<View style={styles.signInBtn}>
-								<Button
-									color='#d6ad86'
-									title='Sign Up'
-									onPress={props.clicked}
-								/>
-							</View>
 						<Form style={{ textAlign: "center", margin: 5, padding: 15 }}>
 							<Item style={styles.inputStyle}>
 								<Input
