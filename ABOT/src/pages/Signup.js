@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { FormSignUp } from "../component/Form";
 import API from "../utils/API";
-import { Alert, View } from "react-native";
+import { Alert } from "react-native";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 class SignUp extends Component {
 	state = {
@@ -44,7 +45,6 @@ class SignUp extends Component {
 			emergencyContact,
 			emergencyContactPhone
 		} = this.state;
-		console.log(firstName, lastName);
 
 		const inputRegEx = /^[A-Za-z-\s ]{1,20}$/;
 
@@ -54,12 +54,10 @@ class SignUp extends Component {
 		const passwordRegEx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,10}$/;
 
 		if (!inputRegEx.test(firstName)) {
-			console.log(firstName);
 			this.setState({
 				nameMsg: "Enter first name"
 			});
 		} else if (!inputRegEx.test(lastName)) {
-			console.log(lastName);
 			this.setState({
 				nameMsg: "",
 				lastNameMsg: "Enter last name"
@@ -70,14 +68,12 @@ class SignUp extends Component {
 				emailMsg: "Enter valid email"
 			});
 		} else if (!passwordRegEx.test(password)) {
-			console.log("no good");
 			this.setState({
 				emailMsg: "",
 				pswdMsg:
 					"Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character"
 			});
 		} else if (employmentType == "") {
-			console.log(employmentType);
 			this.setState({
 				pswdMsg: "",
 				employMsg: "Please select one"
@@ -120,23 +116,27 @@ class SignUp extends Component {
 				//handle the response still needs work
 				.then(response => {
 					if (!response) {
-						console.log("no response");
+						Alert.alert(
+							"Oh no! We have experienced a network issue, please try again later."
+						);
 					} else {
-						console.log("success! created.");
-						// this.props.navigation.navigate("NavBar")
-						//check query db to check for specific user
-					}
-				});
-			API.getCurrentUser(email)
-				.then(response => {
-					let users = response.data[0];
-					this.setState({ users });
-					let firstName = this.state.users.firstName;
-					console.log(users);
-					if (firstName === firstName && lastName === firstName) {
-						this.props.navigation.navigate("NavBar");
-					} else {
-						Alert.alert("User not found!");
+						API.getCurrentUser(email).then(response => {
+							let users = response.data[0];
+							if (typeof users === "undefined") {
+								Alert.alert("User is not found.");
+							} else {
+								this.setState({ users });
+								let firstName = this.state.users.firstName;
+								let lastName = this.state.users.lastName;
+								if (firstName === firstName && lastName === lastName) {
+									this.props.navigation.navigate("Signin");
+								} else {
+									Alert.alert(
+										"User information does not match. Contact employer."
+									);
+								}
+							}
+						});
 					}
 				})
 				.catch(error => console.log(error));
@@ -145,6 +145,7 @@ class SignUp extends Component {
 
 	render() {
 		return (
+			<KeyboardAwareScrollView>
 			<FormSignUp
 				firstName={this.state.firstName}
 				lastName={this.state.lastName}
@@ -166,6 +167,7 @@ class SignUp extends Component {
 				clicked={this.signUpSubmit}
 				goBack={this.goBack}
 			/>
+			</KeyboardAwareScrollView>
 		);
 	}
 }
