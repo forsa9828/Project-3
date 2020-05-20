@@ -6,6 +6,7 @@ import { AppLoading } from 'expo';
 import {AppContainer} from "./src/component/AuthNav";
 
 
+
 export default class App extends Component {
 	constructor(props) {
 	  super(props);

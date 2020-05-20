@@ -1,7 +1,7 @@
 {
     "development": {
         "username": "root",
-        "password": "home4567",
+        "password": "root",
         "database": "abot_db",
         "host": "localhost",
         "dialect": "mysql",
@@ -9,7 +9,7 @@
     },
     "test": {
         "username": "root",
-        "password": "home4567",
+        "password": "root",
         "database": "abot_db",
         "host": "localhost",
         "dialect": "mysql",

@@ -1,5 +1,5 @@
 //form for sign up and login
-import React, { Component } from "react";
+import React from "react";
 import {
 	Header,
 	Form,

@@ -14,7 +14,7 @@ import SchedulePageScreen from '../pages/SchedulePage';
 import ManageEmployees from '../pages/ManageEmployees';
 import Review from "../pages/Review"
 // import RequestOff from '../pages/RequestOff';
-// import SignInScreen from '../pages/Signin'
+import SignInScreen from '../pages/Signin'
 
 
 
@@ -79,6 +79,26 @@ const SchedulePageStack = createStackNavigator(
   }
 );
 
+  const SignInStack = createStackNavigator(
+    {
+      //Defination of Navigaton from setting screen
+      SignIn: { screen: SignInScreen },
+      SignIn: { screen: SignIncreen, navigationOptions:{tabBarVisible: true, title: 'L O G O U T '} },
+    },
+    {
+      //For React Navigation 2.+ change defaultNavigationOptions->navigationOptions
+      defaultNavigationOptions: {
+        //Header customization of the perticular Screen
+        headerStyle: {
+          backgroundColor: '#d6ab86',
+        },
+        headerTintColor: '#FFFFFF',
+        title: 'logout',
+        //Header title
+      },
+    }
+);
+
 
 // SchedulePageStack.navigationOptions = ManageEmployeesStack.navigationOptions = ({ navigation }) => {
 //   let tabBarVisible = true;
@@ -140,8 +160,8 @@ const NavBar = createBottomTabNavigator(
           iconName = `ios-list${focused ? '' : '-outline'}`;
        } 
         
-        // else if (routeName === 'SignIn')
-        //   iconName = `ios-logout${focused ? '' : '-outline'}`;
+        else if (routeName === 'SignIn')
+          iconName = `ios-logout${focused ? '' : '-outline'}`;
 
         // You can return any component that you like here!
         return <IconComponent name={iconName} size={25} color={tintColor} />;
