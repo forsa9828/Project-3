@@ -10,7 +10,8 @@ class ForgotPassword extends Component{
        password: "",
        emailMsg: "",
        pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character",
-       isLoggedIn: false
+       isLoggedIn: false,
+       users: {}
     }
 
     onValueChange= (value) => {
@@ -35,7 +36,8 @@ class ForgotPassword extends Component{
             this.setState(
                 {
                     emailMsg: "",
-                    pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character"
+                    pswdMsg: "Password must have: 8-10 characters. a lowercase letter, an uppercase letter, one numeric digit, and one special character",
+
             })
         
         }else{
@@ -49,27 +51,29 @@ class ForgotPassword extends Component{
                 email,
                 password
             }).then(response=>{ 
-        
-              API.getCurrentUser(email).then(response => {
-                let users = response.data[0];
-                if (typeof users === "undefined") {
-                  Alert.alert("User is not found.");
-                } else {
-                  this.setState({ users });
-                  let firstName = this.state.users.firstName;
-                  let lastName = this.state.users.lastName;
-                  if (firstName === firstName && lastName === lastName) {
-                    Alert.alert("Password changed successfully!")
-                    this.props.navigation.navigate("Signin");
-                  } else {
-                    Alert.alert(
-                      "User information does not match. Contact employer."
+              if (!response) {
+                Alert.alert(
+                  "Oh no! We have experienced a network issue, please try again later."
+                );
+              }else {
+                API.getCurrentUser(email).then(response => {
+                    let users = response.data[0];
+                    console.log(users)
+                    this.setState({ users });
+                    let firstName = this.state.users.firstName;
+                    let lastName = this.state.users.lastName;
+                    if (firstName === firstName && lastName === lastName) {
+                      Alert.alert("Password changed successfully!")
+                      this.props.navigation.navigate("Signin");
+                    } else {
+                      Alert.alert(
+                        "User information does not match. Contact employer."
                     );
-                  }
-                }
+                      }
               });
-            })
-          .catch(error => console.log(error.response))   
+            }
+          })
+          .catch(error => console.log(error.response))
           }
         
     }
@@ -143,11 +147,9 @@ class ForgotPassword extends Component{
                       )}
                       /> 
                   </Item>
-                  
                   <Text style={styles.errorMsg}>
                       {this.state.pswdMsg}
-                    </Text>
-                
+                      </Text>
                   <View style={styles.myBtn}>
                   <Button 
                   color='#d6ad86'
@@ -174,6 +176,9 @@ class ForgotPassword extends Component{
 export default ForgotPassword;
 
 const styles = StyleSheet.create({
+    pswdStyle: {
+      fontWeight: "bold",
+    },
     errorMsg:{
       color: "red",
       textAlign: "center",
