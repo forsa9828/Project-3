@@ -40,7 +40,7 @@ LoginTitle: {
 
 /* FONT FOR EMAIL ECT */
 InputText: {
-    fontFamily: 'Poppins-Regular';
+    fontFamily: 'Poppins-Regular',
     src: url('../styles/fonts/Poppins-Regular.ttf'),
     fontSize: '16',
     color: 'white',
