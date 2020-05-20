@@ -136,6 +136,20 @@ module.exports = app => {
 			});
 	});
 
+	// app.get("/api/checkName", (req, res) => {
+	// 	db.user.findAll({
+	// 		where:{
+	// 			firstName: req.params.user.firstName,
+	// 			lastName: req.params.user.lastName
+	// 		}
+	// 	}).then(dbuser => {
+	// 		res.json(dbuser);
+	// 		})
+
+	// 		console.log(dbuser)
+
+	// });
+
 	// Update a PTO request from false to true
 	app.put("/api/requestoff/:id", (req, res) => {
 		db.pto

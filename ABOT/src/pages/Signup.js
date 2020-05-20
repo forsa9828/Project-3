@@ -104,16 +104,7 @@ class SignUp extends Component {
 					phone,
 					emergencyContact,
 					emergencyContactPhone
-				},
-				{
-					//headers are to check network errors if any
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: "Bearer "
-					}
-				}
-			)
-				//handle the response still needs work
+				})
 				.then(response => {
 					if (!response) {
 						Alert.alert(
@@ -122,6 +113,7 @@ class SignUp extends Component {
 					} else {
 						API.getCurrentUser(email).then(response => {
 							let users = response.data[0];
+							
 							if (typeof users === "undefined") {
 								Alert.alert("User is not found.");
 							} else {

@@ -16,7 +16,7 @@ module.exports = {
     },
 
     index: (req, res) => {
-        res.render("/SchedulePage");
+        res.redirect("/SchedulePage");
 
     },
 
