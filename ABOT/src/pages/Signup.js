@@ -119,27 +119,29 @@ class SignUp extends Component {
                 }
             })
             //handle the response still needs work
-            .then(response => { console.log(response.data)
-                
-                if(!response){
-                    console.log("no response")
-                }else{
-                    console.log("getting a response")
-                   // this.props.navigation.navigate("NavBar")
-                   //check query db to check for specific user 
-                   //redirect user back to sign to sign in  b/c sign in works 
-                //     let user = {
-                //         firstName: firstName,
-                //         lastName: lastName
-                //     }
-                //    // console.log(user)
-                //     API.checkName(user)
-                //     .then(res => console.log(res.data[0]))
-
-                   }
+            .then(response => {
+                if (!response) {
+                    console.log("no response");
+                } else {
+                    console.log("got a response.");
+                    // this.props.navigation.navigate("NavBar")
+                    //check query db to check for specific user
                 }
-            )
-            .catch(error => console.log(error.response))
+            //});
+                    API.getCurrentUser(email)
+                    .then(response => {
+                        let users = response.data[0];
+                        this.setState({ users });
+                        let firstName = this.state.users.firstName;
+                        console.log(users);
+                        if (firstName === firstName && lastName === firstName) {
+                            this.props.navigation.navigate("NavBar");
+                        } else {
+                            Alert.alert("User not found!");
+                        }
+                    })
+                    .catch(error => console.log(error.response));
+                });
             
             
            }

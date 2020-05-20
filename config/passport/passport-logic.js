@@ -6,18 +6,33 @@ const LocalStrategy = require("passport-local").Strategy;
 module.exports = (passport, user) => {
     //SIGNUP
      passport.use("local-signup", new LocalStrategy({
-        usernameField: "firstName",
-        passwordField: "lastName",
+       usernameField: "firstName",
+       passwordField: "lastName",
         passReqToCallback: true
     }, 
     (req, firstName, lastName, done) => {
-        //console.log(email, password)
-        UserDB.user.findAll({
+        UserDB.user.findOne({
             where: {
+                
                 firstName: firstName,
-                lastName: lastName
+                //lastName: lastName
+               
             }
-        }).then((user, err) => {
+        }).then((user) => {
+            //compare lastName to match firstName
+
+            // if(!user){
+            //     console.log("this user does not exist")
+            // }
+          // console.log( [user.dataValues.firstName])
+     
+           // console.log(user)
+          if(firstName && [user.dataValues.lastName] ) {
+        //     console.log("true")
+        // }    
+        //     if(user){
+                user.get()
+                //if in db, then add the below info 
                 let password=req.body.password
                     console.log(password)
                 let generateHash = password => {
@@ -27,6 +42,7 @@ module.exports = (passport, user) => {
                 let userPassword = generateHash(password);
                 console.log("new" + userPassword)
                 let data = {
+                    
                     email: req.body.email,
                     password: userPassword,
                     employmentType: req.body.employmentType,
@@ -35,34 +51,94 @@ module.exports = (passport, user) => {
                     emergencyContactPhone: req.body.emergencyContactPhone
                 }
 
-                if([user] == ""){
-                    console.log("no user info in db")
-                    return done(null);
-                        }
-                //else  if({
-
-                if(user){
-                    console.log(user)
                     UserDB.user.update(data, {
                         where: {
-                            firstName: req.body.firstName,
-                            lastName: req.body.lastName
+                           // email: email
+                           firstName: firstName,
+                           //lastName: lastName
+                            
                         }
                         }).then(newUser => {
                             //console.log(firstName, lastName)
                             console.log("new user created!")
-                            console.log(data)
+                           // console.log(data)
                         // console.log(newUser)
                             return done(null);
                         });
-                }else{
+                    
+                }
+                else{
                     console.log("nothing else to do");
                     return done(null);
                 }
-
+            })
+            .catch((err) => {   
+                console.log(err);
             });
         }
     ));
+
+//     passport.use("local-signup", new LocalStrategy({
+//         usernameField: "firstName",
+//         passwordField: "lastName",
+//         passReqToCallback: true 
+//     },
+//     (req, firstName,lastName, done) => {
+//        // console.log(firstName, lastName)
+// //need to build it so it looks for first name and last name that is entered by Manager
+//         UserDB.user.findAll({
+//                 where: {
+//                    firstName: req.body.firstName,
+//                    lastName: req.body.lastName,
+//                 }
+//             //if found first name and last then, then allow to create rest 
+//             }).then(user => {
+//                 console.log(firstName, lastName)
+//                 console.log([user] == "")
+//                  if([user] == ""){
+//                      console.log("no user info in db")
+//                      return done(null);
+//                  }
+//                  else if([user] != ""){
+//                 //if(user){
+//                     let password=req.body.password
+//                     console.log(password)
+//                     let generateHash = password => {
+//                         return bCrypt.hashSync(password, 8);
+//                     };
+                    
+//                     let userPassword = generateHash(password);
+//                     console.log("new" + userPassword)
+//                     let data = {
+//                         email: req.body.email,
+//                         password: userPassword,
+//                         employmentType: req.body.employmentType,
+//                         phone: req.body.phone, 
+//                         emergencyContact: req.body.emergencyContact,
+//                         emergencyContactPhone: req.body.emergencyContactPhone
+//                     }
+                 
+//                     UserDB.user.update(data, {
+//                         where: {
+//                             firstName: req.body.firstName,
+//                             lastName: req.body.lastName
+//                         }
+//                         }).then(newUser => {
+//                             console.log("new user created!")
+//                            // console.log(data)
+//                            // console.log(newUser)
+//                             return done(null);
+//                         });
+//                  }else{
+//                      console.log("nothing else to do")
+//                  }
+                 
+//         });
+//     }
+// ));
+
+
+
 
 
 

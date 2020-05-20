@@ -31,19 +31,24 @@ export default class App extends Component {
 	  this.setState({ loading: false });
 	}
   render() {
-	  if (this.state.loading) {
-		return (
-		  <Root>
-			<AppLoading />
-		  </Root>
-		);
-	  } else {
-		return (
-		  <Root>
-			<AppContainer />
-		  </Root>
-		);
-	  }
+	//   if (this.state.loading) {
+	// 	return (
+	// 	  <Root>
+	// 		<AppLoading />
+	// 	  </Root>
+	// 	);
+	//   } else {
+	// 	return (
+	// 	  <Root>
+	// 		<AppContainer />
+	// 	  </Root>
+	// 	);
+	//   }
+return(
+	  <Root>
+		  <SignUp />
+	  </Root>
+)
 	}
   };
 

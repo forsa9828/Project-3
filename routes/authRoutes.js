@@ -17,16 +17,10 @@ module.exports = app => {
             })
         );
     
-    // app.post("/auth/signup", passport.authenticate("local-signup", 
-    // function(err, user, info) {
-    //     if (err)
-    //     console.log(err)
-    //         return next(err);
-    //     if(!user){
-    //         console.log("not user")
-    //     }else{
-    //         console.log("good to go")
-    //     }
+    // app.post("/auth/signup", passport.authenticate("local-signup"), 
+    // (req, res)=>{
+    //     console.log(res)
+    // });
     // }));
 
     // app.post("/forgotpassword", passport.authenticate("forgotPassword", {
