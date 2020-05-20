@@ -137,7 +137,7 @@ module.exports = app => {
 	});
 
 	// Update a PTO request from false to true
-	app.put("/api/requestoff/:id", (req, res) => {
+	app.put("/api/approverequestoff/:id", (req, res) => {
 		db.pto
 			.update(
 				{ approved: true, pending: false },
@@ -148,10 +148,10 @@ module.exports = app => {
 			});
 	});
 
-	app.put("/api/requestoff/:id", (req, res) => {
+	app.put("/api/denyrequestoff/:id", (req, res) => {
 		db.pto
 			.update(
-				{ pending: false },
+				{ approved: false, pending: false },
 				{ where: { id: req.params.id } }
 			)
 			.then(dbpto => {

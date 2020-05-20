@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Body, ListItem, Text } from "native-base";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Button } from "react-native";
 
 function Table(props) {
 	return (
@@ -22,6 +22,7 @@ function Table(props) {
 				</Body>
 			</ListItem>
 			<Text>{"\n"}</Text>
+			
 		</View>
 	);
 }

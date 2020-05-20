@@ -30,11 +30,11 @@ export default {
 	},
 
 	approveReq: function(key) {
-		return axios.put(`http://192.168.0.6:8080/api/requestoff/${key}`)
+		return axios.put(`http://192.168.0.6:8080/api/approverequestoff/${key}`)
 	},
 
 	denyReq: function(key) {
-		return axios.put(`http://192.168.0.6:8080/api/requestoff/${key}`)
+		return axios.put(`http://192.168.0.6:8080/api/denyrequestoff/${key}`)
 	},
 
 	createUser: function(data) {

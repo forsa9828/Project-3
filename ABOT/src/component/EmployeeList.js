@@ -39,8 +39,7 @@ class EmployeeList extends Component {
 			},
 			buttonIndex => {
 				if (buttonIndex === 0) {
-					API.deleteUser(key).then(Alert.alert("Employee has been deleted"))
-					.then(this.setState());
+					API.deleteUser(key).then(this.componentDidMount(), Alert.alert("Employee has been deleted"));
 				} else {
 					ActionSheet.hide();
 				}

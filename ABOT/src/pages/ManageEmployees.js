@@ -8,12 +8,12 @@ import {
 	TextInput,
 	Alert,
 	ScrollView,
-	ImageBackground,
-	Item
+	ImageBackground
 } from "react-native";
 import API from "../utils/API";
 import EmployeeList from "../component/EmployeeList";
 import { Root, Header, Title, Body, Left } from "native-base";
+
 
 class ManageEmployees extends Component {
 	_isMounted = false;
@@ -23,6 +23,7 @@ class ManageEmployees extends Component {
 		lastName: "",
 		users: []
 	};
+
 
 	onValueChange = value => {
 		this.setState(value);
@@ -57,7 +58,7 @@ class ManageEmployees extends Component {
 								width: "100%"
 							}}
 						>
-							M A N A G E E M P L O Y E E S
+							MANAGE EMPLOYEES
 						</Text>
 						<Text>{"\n"}</Text>
 						<Text style={styles.infoText}>
@@ -105,7 +106,6 @@ class ManageEmployees extends Component {
 												const { firstName, lastName, email } = this.state;
 												API.createUser({ firstName, lastName, email })
 													.then(this.setModalVisible(!modalVisible))
-													.then(this.setState())
 													.catch(function(err) {
 														console.log(err);
 													})
