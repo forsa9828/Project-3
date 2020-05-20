@@ -1,14 +1,14 @@
 require("dotenv").config();
-var express = require("express");
+const express = require("express");
 
-var db = require("./models");
+const db = require("./models");
 
-var app = express();
-var passport = require("passport");
-var session = require("express-session");
-var bodyParser = require("body-parser");
+const app = express();
+const passport = require("passport");
+const session = require("express-session");
+const bodyParser = require("body-parser");
 
-var PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 
 
 
@@ -38,7 +38,7 @@ require("./routes/authRoutes")(app);
 require("./config/passport/passport-logic")(passport, db.user);
 require("./routes/frontEndRoutes")(app);
 
-var syncOptions = { force: false };
+const syncOptions = { force: false };
 
 if (process.env.NODE_ENV === "test") {
 	syncOptions.force = true;

@@ -198,6 +198,7 @@ export function FormSignUp(props) {
 									name='password'
 									secureTextEntry={true}
 									value={props.password}
+									maxLength={10}
 									onChangeText={value =>
 										props.onValueChange({
 											password: value
