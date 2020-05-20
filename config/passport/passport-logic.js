@@ -13,15 +13,13 @@ module.exports = (passport, user) => {
 				passReqToCallback: true
 			},
 			(req, firstName, lastName, done) => {
-				// console.log(firstName, lastName)
-				//need to build it so it looks for first name and last name that is entered by Manager
+				
 				UserDB.user
 					.findAll({
 						where: {
 							firstName: req.body.firstName,
 							lastName: req.body.lastName
 						}
-						//if found first name and last then, then allow to create rest
 					})
 					.then(user => {
 						console.log(firstName, lastName);
@@ -29,6 +27,7 @@ module.exports = (passport, user) => {
 						if ([user] == "") {
 							console.log("no user info in db");
 							return done(null);
+
 						} else if ([user] != "") {
 							let password = req.body.password;
 							let generateHash = password => {
@@ -66,7 +65,6 @@ module.exports = (passport, user) => {
 		)
 	);
 
-	console.log("testing");
 
 	// SIGN-IN for existing users
 	passport.use(
@@ -86,7 +84,7 @@ module.exports = (passport, user) => {
 						}
 					})
 					.then((user, err) => {
-						console.log(user); //showing null if user email doesn't exist
+						console.log(user); 
 						let validPassword = bCrypt.compareSync(password, user.password);
 
 						if (!user) {
@@ -111,8 +109,8 @@ module.exports = (passport, user) => {
 		)
 	);
 
-	//forgotPassword
-	passport.use(
+    //forgotPassword
+    passport.use(
 		"forgotPassword",
 		new LocalStrategy(
 			{
@@ -120,7 +118,7 @@ module.exports = (passport, user) => {
 				//passwordField: "lastName",
 				passReqToCallback: true //The purpose of a verify callback is to find the user that possesses a set of credentials.
 			},
-			(req, email, done) => {
+			(req, email, password, done) => {
 				console.log(email);
 				//need to build it so it looks for first name and last name that is entered by Manager
 				UserDB.user
@@ -132,7 +130,7 @@ module.exports = (passport, user) => {
 					.then(user => {
 						//console.log(user.dataValues)
 						if (user) {
-							let password = req.body.password;
+							password = req.body.password;
 							console.log(password);
 							let generateHash = password => {
 								return bCrypt.hashSync(password, 8);
@@ -145,27 +143,29 @@ module.exports = (passport, user) => {
 							};
 
 							UserDB.user
-								.update(data, {
+                                .update(data,
+                                    {
 									where: {
 										email: email
 									}
-								})
+                                }
+                                )
 								.then(newUser => {
 									//console.log(data)
 									console.log(newUser);
-									//return done(null);
+									return done(null);
 								});
 						} else {
-							console.log("user does not exist = password change failed");
+                            console.log("user does not exist = password change failed");
+                            
 						}
 					});
 			}
 		)
 	);
 
-	console.log("got here2");
+
 	passport.serializeUser((user, done) => {
-		console.log("got here");
 		done(null, user.id);
 	});
 

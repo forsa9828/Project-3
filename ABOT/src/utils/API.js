@@ -59,15 +59,15 @@ export default {
 	},
 
 	logIn: function(data) {
-		return axios.post("http://192.168.0.6:8080/signin", data);
+		return axios.post("http://192.168.1.72:8080/signin", data);
 	},
 
 	authUser: function(data) {
-		return axios.post("http://192.168.0.6:8080/auth/signup", data);
+		return axios.post("http://192.168.1.72:8080/auth/signup", data);
 	},
 
 	forgotPassword: function(data) {
-		return axios.post("http://192.168.0.6:8080/forgotpassword", data);
+		return axios.post("http://192.168.1.72:8080/forgotpassword", data);
 	},
 
 	renderSignup: function() {
@@ -75,11 +75,11 @@ export default {
 	},
 
 	renderSignin: function() {
-		return axios.get("http://192.168.0.6:8080/signin");
+		return axios.get("http://192.168.0.6:8080/auth/signin");
 	},
 
 	getCurrentUser: function(email) {
-		return axios.get(`http://192.168.0.6:8080/api/user/${email}`)
+		return axios.get(`http://192.168.1.72:8080/api/user/${email}`)
 	}
 };
 

@@ -1,15 +1,23 @@
 {
     "development": {
         "username": "root",
+<<<<<<< HEAD
         "password": "root",
+=======
+        "password": "124Cloud",
+>>>>>>> e958172ea68a20c7703a037725d431a598837b92
         "database": "abot_db",
         "host": "localhost",
         "dialect": "mysql",
-        "port": "3306"
+        "port": "3307"
     },
     "test": {
         "username": "root",
+<<<<<<< HEAD
         "password": "root",
+=======
+        "password": "124Cloud",
+>>>>>>> e958172ea68a20c7703a037725d431a598837b92
         "database": "abot_db",
         "host": "localhost",
         "dialect": "mysql",

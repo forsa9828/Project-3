@@ -40,7 +40,7 @@ constructor(props){
 	signInSubmit = async event => {
 		event.preventDefault();
 		const { email, password, isLoggedIn } = this.state;
-		// //validation here
+	
 		const checkEmail = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/;
 
 		if (!checkEmail.test(email)) {
@@ -52,72 +52,46 @@ constructor(props){
 				emailMsg: "",
 				pswdMsg: "Enter your password"
 			});
-			console.log("nothing here");
+			
 		} else {
-			this.setState({ pswdMsg: "" });
+			this.setState({ 
+				email: "",
+				password: "",
+				pswdMsg: "" 
+			});
 
 			API.logIn(
 				{
 					email,
 					password
-				},
-				{
-					//headers are to check network errors if any
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: "Bearer "
-					}
-				}
-			)
+				})
 				.then(response => {
-					//res from server- still needs work
-					if (!response) {
-						console.log("no response");
-					} //maybe add below?
-					// else if(managerLoggedIn == true){
-					//     console.log("manager in")
-					//     //add route to manager navbar
-					// }
-					else if (response === null) {
-						console.log("no such user");
-					} else {
-						console.log("good to go");
+		
 						let isLoggedIn = true;
 						this.setState({ isLoggedIn });
-						console.log(isLoggedIn);
-						// Alert.alert("Welcome Back!");
-					}
-				})
-				.then(
-					// isLoggedIn => {
-					// if(!isLoggedIn) {
-						
-					// 	Alert.alert("Oh no! Something went wrong. Please try again later.");
-						
-					// } else {
-						
+						Alert.alert("Welcome Back!");
 						API.getCurrentUser(email)
 						.then(response => {
 							let users = response.data[0];
+							console.log(users)
 							this.setState({ users })
 							let type = this.state.users.employmentType
+							console.log(this.state.users.password)
 							if(type === "Employee"){
 
 							this.props.navigation.navigate('NavBar');
-							} else {
+							} 
+							else {
 								this.props.navigation.navigate('NavBarManager');
 							}
 						})
-					// }
-					
-				// }
-				) 
-					//will show a catch error if user doesn't exist in db
-				.catch(error => {
-					console.log(error);
-				});
-		}
-		//now need to get user info and pass it
+				})
+					.catch(error => {
+						console.log(error)
+						Alert.alert("Check your email and password again. If you are new, please use Sign Up. Reset your password with Forgot Password")
+					})
+				}
+	
 	};
 
 	render() {

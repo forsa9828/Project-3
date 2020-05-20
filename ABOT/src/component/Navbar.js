@@ -13,7 +13,7 @@ import { Ionicons } from 'react-native-vector-icons';
 import SchedulePageScreen from '../pages/SchedulePage';
 import AvailScreen from '../pages/Avail';
 import RequestOff from '../pages/RequestOff';
-// import SignInScreen from '../pages/Signin'
+//import SignInScreen from '../pages/Signin'
 
 
 
@@ -121,7 +121,7 @@ const NavBar = createBottomTabNavigator(
     //     tabBarLabel: 'Logout',
     //     tabBarIcon: ({ tintColor }) => <Ionicons name="ios-log-out" size={25} color={tintColor} />
     //   }
-    // }
+   // }
   },
   {
     //For React Navigation 2.+ change defaultNavigationOptions->navigationOptions
