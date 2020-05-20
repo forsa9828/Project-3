@@ -1,27 +1,20 @@
-//nothing new to add
 import React, { Component } from "react";
-import { Root } from "native-base";
 import { FormLogin } from "../component/Form";
 import API from "../utils/API";
-import { Alert, Stylesheet, Text } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
-import SchedulePage from "./SchedulePage";
-import { NavigationContainer } from "@react-navigation/native";
-import { useNavigation } from "@react-navigation/native";
-import Navbar from "../component/Navbar";
+import { Alert } from "react-native";
 
 class SignIn extends Component {
-constructor(props){
-	super(props)
-	this.state = {
-		email: "",
-		password: "",
-		emailMsg: "",
-		pswdMsg: "",
-		isLoggedIn: false,
-		users: {}
-	};
-}
+	constructor(props) {
+		super(props);
+		this.state = {
+			email: "",
+			password: "",
+			emailMsg: "",
+			pswdMsg: "",
+			isLoggedIn: false,
+			users: {}
+		};
+	}
 
 	onValueChange = value => {
 		this.setState(value);
@@ -39,7 +32,7 @@ constructor(props){
 
 	signInSubmit = async event => {
 		event.preventDefault();
-		const { email, password, isLoggedIn } = this.state;
+		const { email, password } = this.state;
 		// //validation here
 		const checkEmail = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/;
 
@@ -68,56 +61,40 @@ constructor(props){
 						Authorization: "Bearer "
 					}
 				}
-			)
-				.then(response => {
-					//res from server- still needs work
-					if (!response) {
-						console.log("no response");
-					} //maybe add below?
-					// else if(managerLoggedIn == true){
-					//     console.log("manager in")
-					//     //add route to manager navbar
-					// }
-					else if (response === null) {
-						console.log("no such user");
-					} else {
-						console.log("good to go");
-						let isLoggedIn = true;
-						this.setState({ isLoggedIn });
-						console.log(isLoggedIn);
-						// Alert.alert("Welcome Back!");
-					}
-				})
-				.then(
-					// isLoggedIn => {
-					// if(!isLoggedIn) {
-						
-					// 	Alert.alert("Oh no! Something went wrong. Please try again later.");
-						
-					// } else {
-						
-						API.getCurrentUser(email)
+			).then(response => {
+				console.log(response);
+				if (!response) {
+					Alert.alert(
+						"Oh no! We are experiencing some network issues. Please try again later."
+					);
+				} else if (response === null) {
+					Alert.alert("User does not exist.");
+				} else {
+					console.log("good to go");
+					let isLoggedIn = true;
+					this.setState({ isLoggedIn });
+					console.log(isLoggedIn);
+
+					API.getCurrentUser(email)
 						.then(response => {
 							let users = response.data[0];
-							this.setState({ users })
-							let type = this.state.users.employmentType
-							if(type === "Employee"){
-
-							this.props.navigation.navigate('NavBar');
+							console.log(users);
+							this.setState({ users });
+							let type = this.state.users.employmentType;
+							if (type === "Employee") {
+								this.props.navigation.navigate("NavBar");
+								Alert.alert("Welcome back " + users.firstName + "!");
 							} else {
-								this.props.navigation.navigate('NavBarManager');
+								this.props.navigation.navigate("NavBarManager");
+								Alert.alert("Welcome back " + users.firstName + "!");
 							}
 						})
-					// }
-					
-				// }
-				) 
-					//will show a catch error if user doesn't exist in db
-				.catch(error => {
-					console.log(error);
-				});
+						.catch(error => {
+							console.log(error);
+						});
+				}
+			});
 		}
-		//now need to get user info and pass it
 	};
 
 	render() {

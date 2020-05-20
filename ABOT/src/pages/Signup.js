@@ -123,7 +123,7 @@ class SignUp extends Component {
 						API.getCurrentUser(email).then(response => {
 							let users = response.data[0];
 							if (typeof users === "undefined") {
-								Alert.alert("User is not found.");
+								Alert.alert("User doest not exist. Contact employer.");
 							} else {
 								this.setState({ users });
 								let firstName = this.state.users.firstName;
