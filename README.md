@@ -12,7 +12,7 @@ Simply login and you have access to either:
 <br><img src= "ABOT\assets\avail.png" width = "400"></p>
 
 <p align="center">View you and your team's availability in ascending order of dates<br>
-<br><img src= "Project-3\ABOT\assets\schedule.png"></p>
+<br><img src= "ABOT\assets\schedule.png"></p>
 
 <p align="center">Request off<br>
 <br><img src= "ABOT\assets\request.png" width = "400"></p>
@@ -36,7 +36,8 @@ Just click Sign Up and you can create an account as a mangager or employee
 
 Mobile friendly and you will *always be on time!*
 
-##Authentication
+### Authentication
+
 In this application, we are using Passport.js.
 
 Sign In: We use Passport to check for email and password from the database. Authentication is done with passport.authenticate() via its function of passport.use().
