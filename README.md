@@ -2,11 +2,11 @@
 User friendly scheduler at your convenience for manager and employee. Employees stay up to date with your work schedule, your time off requests and your team's schedule. Mangagers view all your employees and their availability, approve or deny any submitted request offs, add new hires or delete an employee. 
 
 
-## How it works:
+### How it works:
 
 Simply login and you have access to either:
 
-##Employee
+## Employee
 
 <p align="center">Submit availability<br>
 <br><img src= "ABOT\assets\avail.png" width = "400"></p>
@@ -17,7 +17,7 @@ Simply login and you have access to either:
 <p align="center">Request off<br>
 <br><img src= "ABOT\assets\request.png" width = "400"></p>
 
-##Manager 
+## Manager 
 
 <p align="center">Approve or Decline Requests Off<br>
 <br><img src= "ABOT\assets\Review Requests.png" width = "400"></p>
