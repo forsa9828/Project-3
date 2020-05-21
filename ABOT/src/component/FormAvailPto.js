@@ -12,21 +12,24 @@ function FormAvailPto(props) {
 					<Input
 						value={props.firstName}
 						onChangeText={value => props.onValueChange({ firstName: value })}
-						/>
+					/>
 				</Item>
-				<Item stackedLabel >
+				<Item stackedLabel>
 					<Label style={styles.inputText}>Last Name</Label>
 					<Input
-					style={styles.fixToText}
+						style={styles.fixToText}
 						value={props.lastName}
 						onChangeText={value => props.onValueChange({ lastName: value })}
-						/>
+					/>
 				</Item>
 				<Item stackedLabel style={styles.fixToText}>
-					<Button color="#d6ad86" title="Select date" onPress={props.dateOptions} >
-					</Button>
+					<Button
+						color='#d6ad86'
+						title='Select date'
+						onPress={props.dateOptions}
+					></Button>
 					<Text style={styles.date}>{props.date}</Text>
-					</Item>
+				</Item>
 				<Item stackedLabel>
 					<Label style={styles.inputText}>Start Time</Label>
 					<Input
@@ -44,7 +47,7 @@ function FormAvailPto(props) {
 					/>
 				</Item>
 				<View style={styles.openButton}>
-				<Button color= "#d6ad86" title='Submit' onPress={props.clicked} />
+					<Button color='#d6ad86' title='Submit' onPress={props.clicked} />
 				</View>
 			</Form>
 		</View>
@@ -53,30 +56,29 @@ function FormAvailPto(props) {
 
 const styles = StyleSheet.create({
 	inputText: {
-		fontWeight: "bold",
-		
+		fontWeight: "bold"
 	},
 	dateButton: {
 		flex: 1,
 		backgroundColor: "#d6ad86",
-		color: "#d6ad86",
-		
-	},openButton: {
+		color: "#d6ad86"
+	},
+	openButton: {
 		padding: 10,
-		flexDirection: 'row',
-		marginTop:5,
+		flexDirection: "row",
+		marginTop: 5,
 		marginLeft: 5
 	},
 	fixToText: {
-		flexDirection: 'row',
-		justifyContent: 'space-between',
-	  },
-	  date: {
+		flexDirection: "row",
+		justifyContent: "space-between"
+	},
+	date: {
 		marginRight: 25,
 		fontSize: 16
-	  },
-	  formBody: {
-		  marginVertical: 50
-	  }
+	},
+	formBody: {
+		marginVertical: 50
+	}
 });
 export default FormAvailPto;

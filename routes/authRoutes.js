@@ -12,13 +12,13 @@ module.exports = app => {
 
 
     app.post("/auth/signup", passport.authenticate("local-signup", {
-                successRedirect: "/SchedulePage",
+                successRedirect: "/Signin",
                 failureRedirect: "/Signin"
             })
         );
    
     app.post("/forgotpassword", passport.authenticate("forgotPassword", {
-            successRedirect: "/SchedulePage",
+            successRedirect: "/Signin",
             failureRedirect: "/Signin"
             })
         );
@@ -39,7 +39,7 @@ module.exports = app => {
 
     app.post("/signin", passport.authenticate("signin",{
         successRedirect: "/SchedulePage",
-            failureRedirect: "/"
+        failureRedirect: "/Signin"
             // "/" route doesn't exist. forcing fail for client side. 
         })
     );

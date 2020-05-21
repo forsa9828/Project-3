@@ -36,11 +36,6 @@ export default class ReviewPto extends Component {
 			});
 	}
 
-	componentWillUnmount() {
-		this.setState = (state, callback) => {
-			return;
-		};
-	}
 
 	handleClick = key => {
 		const BUTTONS = ["Approve", "Deny", "Cancel"];
@@ -59,13 +54,13 @@ export default class ReviewPto extends Component {
 						.catch(function(err) {
 							console.log(err);
 						})
-						.then(Alert.alert("Request denied"));
+						.then(this.componentDidMount(), Alert.alert("Request denied"));
 				} else if (buttonIndex === 0) {
 					API.approveReq(key)
 						.catch(function(err) {
 							console.log(err);
 						})
-						.then(Alert.alert("Request approved"));
+						.then(this.componentDidMount(), Alert.alert("Request approved"));
 				} else {
 					ActionSheet.hide();
 				}

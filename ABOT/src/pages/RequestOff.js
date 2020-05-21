@@ -15,8 +15,7 @@ class RequestOff extends ValidationComponent {
 			lastName: null,
 			date: null,
 			startTime: null,
-			endTime: null,
-			// userName: userValues
+			endTime: null
 		};
 	}
 
@@ -73,7 +72,6 @@ class RequestOff extends ValidationComponent {
 		);
 	};
 
-
 	handleFormSubmit = event => {
 		event.preventDefault();
 		const { firstName, lastName, date, startTime, endTime } = this.state;
@@ -104,16 +102,9 @@ class RequestOff extends ValidationComponent {
 					});
 	};
 
-	render( ) {
-		// const userName = this.state.userName;
-		// console.log(userName)
-		// const {navigation} = this.props;
-		// const {userValues} = navigation.getParam("users", "No user info");
-		// console.log(userValues)
-		// const { userName } = this.props.route.params;
+	render() {
 		return (
 			<ScrollView>
-				{/* <Text>Welcome {JSON.stringify(this.props.navigation.state.params.route.userName)}</Text> */}
 				<FormAvailPto
 					firstName={this.state.firstName}
 					lastName={this.state.lastName}

@@ -51,11 +51,12 @@ class ForgotPassword extends Component{
                 email,
                 password
             }).then(response=>{ 
+              console.log(response)
               if (!response) {
                 Alert.alert(
                   "Oh no! We have experienced a network issue, please try again later."
                 );
-              }else {
+              } else {
                 API.getCurrentUser(email).then(response => {
                     let users = response.data[0];
                     console.log(users)
@@ -63,8 +64,8 @@ class ForgotPassword extends Component{
                     let firstName = this.state.users.firstName;
                     let lastName = this.state.users.lastName;
                     if (firstName === firstName && lastName === lastName) {
+                      this.props.navigation.navigate("AuthNav");
                       Alert.alert("Password changed successfully!")
-                      this.props.navigation.navigate("Signin");
                     } else {
                       Alert.alert(
                         "User information does not match. Contact employer."

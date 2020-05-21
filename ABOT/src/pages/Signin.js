@@ -1,27 +1,20 @@
-//nothing new to add
 import React, { Component } from "react";
-import { Root } from "native-base";
 import { FormLogin } from "../component/Form";
 import API from "../utils/API";
-import { Alert, Stylesheet, Text } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
-import SchedulePage from "./SchedulePage";
-import { NavigationContainer } from "@react-navigation/native";
-import { useNavigation } from "@react-navigation/native";
-import Navbar from "../component/Navbar";
+import { Alert } from "react-native";
 
 class SignIn extends Component {
-constructor(props){
-	super(props)
-	this.state = {
-		email: "",
-		password: "",
-		emailMsg: "",
-		pswdMsg: "",
-		isLoggedIn: false,
-		users: {}
-	};
-}
+	constructor(props) {
+		super(props);
+		this.state = {
+			email: "",
+			password: "",
+			emailMsg: "",
+			pswdMsg: "",
+			isLoggedIn: false,
+			users: {}
+		};
+	}
 
 	onValueChange = value => {
 		this.setState(value);
@@ -40,7 +33,7 @@ constructor(props){
 	signInSubmit = async event => {
 		event.preventDefault();
 		const { email, password, isLoggedIn } = this.state;
-	
+
 		const checkEmail = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/;
 
 		if (!checkEmail.test(email)) {
@@ -52,46 +45,42 @@ constructor(props){
 				emailMsg: "",
 				pswdMsg: "Enter your password"
 			});
-			
 		} else {
-			this.setState({ 
+			this.setState({
 				email: "",
 				password: "",
-				pswdMsg: "" 
+				pswdMsg: ""
 			});
 
-			API.logIn(
-				{
-					email,
-					password
-				})
-				.then(response => {
-		
-						let isLoggedIn = true;
-						this.setState({ isLoggedIn });
-						Alert.alert("Welcome Back!");
-						API.getCurrentUser(email)
+			API.logIn({
+				email,
+				password
+			}).then(response => {
+				console.log(response);
+					let isLoggedIn = true;
+					this.setState({ isLoggedIn });
+					API.getCurrentUser(email)
 						.then(response => {
 							let users = response.data[0];
-							console.log(users)
-							this.setState({ users })
-							let type = this.state.users.employmentType
-							console.log(this.state.users.password)
-							if(type === "Employee"){
-
-							this.props.navigation.navigate('NavBar');
-							} 
-							else {
-								this.props.navigation.navigate('NavBarManager');
+							console.log(users);
+							this.setState({ users });
+							let type = this.state.users.employmentType;
+							if (type === "Employee") {
+								this.props.navigation.navigate("NavBar");
+								Alert.alert("Welcome back " + users.firstName + "!");
+							} else {
+								this.props.navigation.navigate("NavBarManager");
+								Alert.alert("Welcome back " + users.firstName + "!");
 							}
 						})
-				})
-					.catch(error => {
-						console.log(error)
-						Alert.alert("Check your email and password again. If you are new, please use Sign Up. Reset your password with Forgot Password")
 					})
-				}
-	
+								.catch(error => {
+									console.log(error);
+									Alert.alert(
+										"Check your email and password again. If you are new, please use Sign Up."
+									);
+								});
+		}
 	};
 
 	render() {

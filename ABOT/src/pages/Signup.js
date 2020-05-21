@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FormSignUp } from "../component/Form";
 import API from "../utils/API";
 import { Alert } from "react-native";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 class SignUp extends Component {
 	state = {
@@ -115,7 +115,7 @@ class SignUp extends Component {
 							let users = response.data[0];
 							
 							if (typeof users === "undefined") {
-								Alert.alert("User is not found.");
+								Alert.alert("User doest not exist. Contact employer.");
 							} else {
 								this.setState({ users });
 								let firstName = this.state.users.firstName;
@@ -137,7 +137,7 @@ class SignUp extends Component {
 
 	render() {
 		return (
-			<KeyboardAwareScrollView>
+			// <KeyboardAwareScrollView>
 			<FormSignUp
 				firstName={this.state.firstName}
 				lastName={this.state.lastName}
@@ -159,7 +159,7 @@ class SignUp extends Component {
 				clicked={this.signUpSubmit}
 				goBack={this.goBack}
 			/>
-			</KeyboardAwareScrollView>
+			// </KeyboardAwareScrollView>
 		);
 	}
 }
