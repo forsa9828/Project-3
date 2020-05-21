@@ -36,16 +36,17 @@ Just click Sign Up and you can create an account as a mangager or employee
 
 Mobile friendly and you will *always be on time!*
 
-## How we authenticate the Sign In and Sign Up 
-In this application, we are using Passport.
+##Authentication
+In this application, we are using Passport.js.
 
-We have set Local Strategy with Passport to check for email and password from the database. Authentication is done with passport.authenticate() via its function of passport.use().
+Sign In: We use Passport to check for email and password from the database. Authentication is done with passport.authenticate() via its function of passport.use().
 
-Passport.use() is configured by setting strategies on how to validate user's information when a user is signing back in or when a user is signing up. 
+Sign Up: Managers must already have entered an employee first name and last name to be in the database. The employee then can go to Sign Up option and fill out the sign up form. Passport will check the database with Sequalize ORM methods.
+Forgot Password: Users can enter email and create a new password. Passport will check the database with Sequalize ORM methods and update.
 
-Our strategy for when users are signing up, is to have Passport check the database with Sequalize ORM methods. If the user is not in database it will add the user. Also, along with bCrypt it will create a hashed password. When users are signing in, we have Passport with Sequalize ORM methods. It will verify the user's email and password from the database. 
-
-If authentication with Passport is successful, users gain access to rest of html pages (such as requesting time off). 
+Current issues with Passport and our work around with it:
+Passport is not authenticating our Sign Up and Forgot Password. Passport is updating the database as users sign up or change password. Users can then still login and get authenticated via Sign In strategy we've implemented.
+For now, our solution is on the client side. We are use a GET to access our database to allow users to navigate to appropriate pages. 
 
 Learn about Passport and bCrypt here:
 * <a href="https://www.npmjs.com/package/bcrypt">bCrypt</a>
